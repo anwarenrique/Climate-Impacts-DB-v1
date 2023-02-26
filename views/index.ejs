@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>This is the Home Page!</h1>
+    <form action="/new" method="POST">
+        <label for="titleinput">Input Title</label>
+        <input type="text" name="titleinput">
+        <br>
+        <label for="textinput">Input Text</label>
+        <input type="text" name="textinput">
+        <br>
+        <label for="linkinput">Input Link</label>
+        <input type="text" name="linkinput">
+        <br>
+        <label for="numinput">Input Number</label>
+        <input type="number" name="numinput" value=0>
+        <br>
+
+        <label for="region-select">Select a subregion:</label>
+        <select name="regioninput" id="region-select">
+            <option value="">--Please choose an option--</option>
+            <option value="North America">North America</option>
+            <option value="Central America">Central America</option>
+            <option value="Caribbean">Caribbean</option>
+            <option value="South America">South America</option>
+        </select>
+
+        <button type="submit">Add item</button>
+    </form>
+    <ul>
+        <% itemList.forEach(item => { %>
+            <li>
+                <div><%= item.titleinput %></div>
+                <div><%= item.textinput %></div>
+                <a href="<%= item.linkinput %>" target="_blank">Link</a>
+                <div><%= item.numinput %></div>
+                <div><%= item.regioninput %></div>
+                <a href="/edit/<%= item._id %>">Edit</a>
+                <a href="/edit/remove/<%= item._id %>">Remove</a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
