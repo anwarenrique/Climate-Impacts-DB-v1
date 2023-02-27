@@ -19,6 +19,10 @@ numinput: {
 regioninput: {
     type: String
 },
+countryinput: {
+    type: [String]
+    
+},
 date: {
     type: Date,
     default: Date.now
