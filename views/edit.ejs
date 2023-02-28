@@ -24,13 +24,13 @@
                                 <input type="text" value="<%= item.textinput %>" name="textinput">
                                 <br>
                                 <label for="linkinput">Input Link</label>
-                                <input type="text" value="<%= item.linkinput %>" name="linkinput">
+                                <input type="url" value="<%= item.linkinput %>" name="linkinput">
                                 <br>
                                 <label for="numinput">Input Number</label>
                                 <input type="number" value="<%= item.numinput %>" name="numinput">
                                 <br>
                                 <label for="region-select">Select a subregion:</label>
-                                <select name="regioninput" id="region-select">
+                                <select name="regioninput" id="region-select" type="text">
                                     <option value="">--Please choose an option--</option>
                                     <option value="north america">North America</option>
                                     <option value="central america">Central America</option>
@@ -39,7 +39,7 @@
                                 </select>
                                 <br>
                                 <label for="countryinput">Please input affected country(s)</label>
-                                <select name="countryinput" id="countryinput" multiple>
+                                <select type="text" name="countryinput" id="countryinput" multiple>
                                     <option value="AntiguaAndBarbuda">Antigua and Barbuda</option>
                                     <option value="Argentina">Argentina</option>
                                     <option value="Bahamas">Bahamas</option>
