@@ -23,6 +23,9 @@ countryinput: {
     type: [String]
     
 },
+healthriskinput: {
+    type: [String]
+},
 date: {
     type: Date,
     default: Date.now

@@ -32,7 +32,8 @@ module.exports = {
                 linkinput: req.body.linkinput,
                 numinput: req.body.numinput,
                 regioninput: req.body.regioninput,
-                countryinput: req.body.countryinput
+                countryinput: req.body.countryinput,
+                healthriskinput: req.body.healthriskinput
                 },
             )
             res.redirect('/');

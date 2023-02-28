@@ -17,16 +17,17 @@
         <label for="textinput">Input Text</label>
         <input type="text" name="textinput">
         <br>
-        <label for="linkinput">Input Link</label>
+        <label for="linkinput">Paste Link</label>
         <input type="text" name="linkinput">
         <br>
-        <label for="numinput">Input Number</label>
-        <input type="number" name="numinput" value=0>
+        <label for="numinput">Input Year</label>
+        <input type="number" name="numinput" value=2023>
         <br>
 
         <label for="region-select">Select a subregion:</label>
         <select name="regioninput" id="region-select" type="text">
             <option value="">--Please choose an option--</option>
+            <option value="The Americas (all subregions)">The Americas (full region)</option>
             <option value="North America">North America</option>
             <option value="Central America">Central America</option>
             <option value="Caribbean">Caribbean</option>
@@ -36,7 +37,8 @@
         <br>
         <label for="countryinput">Please input affected country(s)</label>
         <select name="countryinput" id="countryinput" multiple>
-            <option value="AntiguaAndBarbuda">Antigua and Barbuda</option>
+            <option value="All countries">All countries</option>
+            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
             <option value="Argentina">Argentina</option>
             <option value="Bahamas">Bahamas</option>
             <option value="Barbados">Barbados</option>
@@ -49,9 +51,9 @@
             <option value="CostaRica">Costa Rica</option>
             <option value="Cuba">Cuba</option>
             <option value="Dominica">Dominica</option>
-            <option value="DominicanRepublic">Dominican Republic</option>
+            <option value="Dominican Republic">Dominican Republic</option>
             <option value="Ecuador">Ecuador</option>
-            <option value="ElSalvador">El Salvador</option>
+            <option value="El Salvador">El Salvador</option>
             <option value="Grenada">Grenada</option>
             <option value="Guatemala">Guatemala</option>
             <option value="Guyana">Guyana</option>
@@ -63,14 +65,29 @@
             <option value="Panama">Panama</option>
             <option value="Paraguay">Paraguay</option>
             <option value="Peru">Peru</option>
-            <option value="SaintLucia">Saint Lucia</option>
-            <option value="StVincentAndTheGrenadines">St. Vincent and the Grenadines</option>
-            <option value="StKittsAndNevis">St. Kitts and Nevis</option>
+            <option value="Saint Lucia">Saint Lucia</option>
+            <option value="St Vincent and the Grenadines">St. Vincent and the Grenadines</option>
+            <option value="St Kitts and Nevis">St. Kitts and Nevis</option>
             <option value="Suriname">Suriname</option>
-            <option value="TrinidaAndTobago">Trinidad and Tobago</option>
-            <option value="UnitedStates">United States</option>
+            <option value="Trinida and Tobago">Trinidad and Tobago</option>
+            <option value="United States">United States</option>
             <option value="Uruguay">Uruguay</option>
             <option value="Venezuela">Venezuela</option>
+        </select>
+
+        <br>
+        <label for="healthriskinput">Please input relevant climate-sensitive health risks</label>
+        <select name="healthriskinput" id="healthriskinput" multiple>
+            <option value="General">General</option>
+            <option value="Air-borne and respiratory illnesses">Air-borne and respiratory illnesses</option>
+            <option value="Heat-related illness">Heat-related illness</option>
+            <option value="Injury and mortality from extreme weather events">Injury and mortality from extreme weather events</option>
+            <option value="Malnutrition and food-borne diseases">Malnutrition and food-borne diseases</option>
+            <option value="Mental and psychosocial health">Mental and psychosocial health</option>
+            <option value="Noncommunicable diseases (NCDs)">Noncommunicable diseases (NCDs)</option>
+            <option value="Vector-borne diseases">Vector-borne diseases</option>
+            <option value="Water-borne diseases and other water-related health outcomes">Water-borne diseases and other water-related health outcomes</option>
+            <option value="Zoonoses">Zoonoses</option>
         </select>
 
         <button type="submit">Add item</button>
@@ -78,12 +95,12 @@
     <ul>
         <% itemList.forEach(item => { %>
             <li>
-                <div><%= item.titleinput %></div>
-                <div><%= item.textinput %></div>
+                <h3><%= item.titleinput %></h3>
+                <p><%= item.textinput %></p>
                 <a href="<%= item.linkinput %>" target="_blank">Link</a>
-                <div><%= item.numinput %></div>
-                <div><%= item.regioninput %></div>
-                <div><%= item.countryinput %></div>
+                <div>Year: <%= item.numinput %></div>
+                <div>Subregion affected: <%= item.regioninput %></div>
+                <div>Countries affected: <%= item.countryinput %></div>
                 <a href="/edit/<%= item._id %>">Edit</a>
                 <a href="/edit/remove/<%= item._id %>">Remove</a>
             </li>
@@ -93,6 +110,7 @@
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
     <script>
         new MultiSelectTag('countryinput')  // id
+        new MultiSelectTag('healthriskinput')  // id
     </script>
 </body>
 </html>
