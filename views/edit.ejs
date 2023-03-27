@@ -21,7 +21,7 @@
                                 <input type="text" value="<%= item.titleinput %>" name="titleinput">
                                 <br>
                                 <label for="textinput">Input Text</label>
-                                <input type="text" value="<%= item.textinput %>" name="textinput">
+                                <textarea type="text" value="<%= item.textinput %>" placeholder="<%= item.textinput %>"name="textinput"></textarea>
                                 <br>
                                 <label for="linkinput">Input Link</label>
                                 <input type="url" value="<%= item.linkinput %>" name="linkinput">
@@ -136,10 +136,16 @@
         </section>
     </section>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.21.0/ckeditor.js" integrity="sha512-ff67djVavIxfsnP13CZtuHqf7VyX62ZAObYle+JlObWZvS4/VQkNVaFBOO6eyx2cum8WtiZ0pqyxLCQKC7bjcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <script>
         new MultiSelectTag('regioninput')  // id
         new MultiSelectTag('countryinput')  // id
         new MultiSelectTag('healthriskinput')  // id
+
+        CKEDITOR.replace('textinput', {
+            plugins: 'wysiwygarea, toolbar, basicstyles, link'
+        }, {placeholder: 'Welcome to CKEditor 5!'})
     </script>
 </body>
 </html>
