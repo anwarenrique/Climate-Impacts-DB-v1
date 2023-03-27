@@ -18,7 +18,7 @@
         <input type="text" name="textinput">
         <br>
         <label for="linkinput">Paste Link</label>
-        <input type="text" name="linkinput">
+        <input type="url" name="linkinput">
         <br>
         <label for="numinput">Input Year</label>
         <input type="number" name="numinput" value=2023>
@@ -36,7 +36,7 @@
 
         <br>
         <label for="countryinput">Please input affected country(s)</label>
-        <select name="countryinput" id="countryinput" multiple>
+        <select type="text" name="countryinput" id="countryinput" multiple>
             <option value="All countries">All countries</option>
             <option value="Antigua and Barbuda">Antigua and Barbuda</option>
             <option value="Argentina">Argentina</option>
@@ -89,6 +89,10 @@
             <option value="Water-borne diseases and other water-related health outcomes">Water-borne diseases and other water-related health outcomes</option>
             <option value="Zoonoses">Zoonoses</option>
         </select>
+
+        <br>
+        <label for="citationinput">Input Citation</label>
+        <input type="text" name="citationinput">
 
         <button type="submit">Add item</button>
     </form>

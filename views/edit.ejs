@@ -30,7 +30,7 @@
                                 <input type="number" value="<%= item.numinput %>" name="numinput">
                                 <br>
                                 <label for="region-select">Select a subregion:</label>
-                                <select name="regioninput" id="region-select" type="text">
+                                <select name="regioninput" id="region-select" type="text" value="<%= item.regioninput %>">
                                     <option value="">--Please choose an option--</option>
                                     <option value="The Americas">The Americas (full region)</option>
                                     <option value="North America">North America</option>
@@ -94,21 +94,23 @@
                                     <option value="Zoonoses">Zoonoses</option>
                                 </select>
 
+                                <br>
+                                <label for="citationinput">Input Citation</label>
+                                <input type="text" name="citationinput">
+
                                 <button type="submit" class="confirm">Confirm</button>
                                 <a href="/" class="cancel">Cancel</a>
                             </form>
                         </li>
                         <% } else { %>
                             <li>
-                                <div>
+                                <h3>
                                     <%= item.titleinput %>
-                                </div>
+                                </h3>
                                 <p>
                                     <%= item.textinput %>
                                 </p>
-                                <div>
-                                    <%= item.linkinput %>
-                                </div>
+                                <a href="<%= item.linkinput %>" target="_blank">Link</a>
                                 <div>
                                     <%= item.numinput %>
                                 </div>
