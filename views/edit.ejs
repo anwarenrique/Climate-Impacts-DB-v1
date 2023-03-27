@@ -41,6 +41,7 @@
                                 <br>
                                 <label for="countryinput">Please input affected country(s)</label>
                                 <select type="text" name="countryinput" id="countryinput" multiple>
+                                    <option value="" disabled selected hidden><%= item.countryinput %></option>
                                     <option value="All countries">All countries</option>
                                     <option value="Antigua and Barbuda">Antigua and Barbuda</option>
                                     <option value="Argentina">Argentina</option>
@@ -81,7 +82,8 @@
 
                                 <br>
                                 <label for="healthriskinput">Please input relevant climate-sensitive health risks</label>
-                                <select name="healthriskinput" id="healthriskinput" multiple>
+                                <select name="healthriskinput" id="healthriskinput" value="<%= item.healthriskinput %>" multiple>
+                                    <option value="" disabled selected hidden><%= item.healthriskinput %></option>
                                     <option value="General">General</option>
                                     <option value="Air-borne and respiratory illnesses">Air-borne and respiratory illnesses</option>
                                     <option value="Heat-related illness">Heat-related illness</option>
@@ -123,6 +125,7 @@
                                 <div>
                                     <%= item.healthriskinput %>
                                 </div>
+                                <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
                                 <a href="/edit/<%= item._id %>">Edit</a>
                                 <a href="/edit/remove/<%= item._id %>" class="remove">Cancel</a>
                             </li>
