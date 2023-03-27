@@ -29,8 +29,9 @@
                                 <label for="numinput">Input Year</label>
                                 <input type="number" value="<%= item.numinput %>" name="numinput">
                                 <br>
-                                <label for="region-select">Select a subregion:</label>
-                                <select name="regioninput" id="region-select" type="text" value="<%= item.regioninput %>">
+                                <label for="regioninput">Select a subregion:</label>
+                                <select name="regioninput" id="regioninput" type="text" value="<%= item.regioninput %>" multiple>
+                                    <option value="" disabled selected hidden><%= item.regioninput %></option>
                                     <option value="">--Please choose an option--</option>
                                     <option value="The Americas">The Americas (full region)</option>
                                     <option value="North America">North America</option>
@@ -136,6 +137,7 @@
     </section>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
     <script>
+        new MultiSelectTag('regioninput')  // id
         new MultiSelectTag('countryinput')  // id
         new MultiSelectTag('healthriskinput')  // id
     </script>

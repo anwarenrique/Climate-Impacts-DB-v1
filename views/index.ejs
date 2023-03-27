@@ -24,8 +24,8 @@
         <input type="number" name="numinput" value=2023>
         <br>
 
-        <label for="region-select">Select a subregion:</label>
-        <select name="regioninput" id="region-select" type="text">
+        <label for="regioninput">Select a subregion:</label>
+        <select name="regioninput" id="regioninput" type="text" multiple>
             <option value="">--Please choose an option--</option>
             <option value="The Americas (all subregions)">The Americas (full region)</option>
             <option value="North America">North America</option>
@@ -114,6 +114,7 @@
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
     <script>
+        new MultiSelectTag('regioninput')  // id
         new MultiSelectTag('countryinput')  // id
         new MultiSelectTag('healthriskinput')  // id
     </script>
