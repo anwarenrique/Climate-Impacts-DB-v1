@@ -7,6 +7,7 @@
     <title>Climate-Health Impacts Database</title>
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css">
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 </head>
 <body>
     <h1>Climate-Health Impacts Database</h1>
@@ -15,7 +16,7 @@
         <input type="text" name="titleinput">
         <br>
         <label for="textinput">Input Text</label>
-        <textarea type="text" name="textinput"></textarea>
+        <textarea id="textinput" type="text" name="textinput"></textarea>
 
         <br>
         <label for="linkinput">Paste Link</label>
@@ -101,7 +102,7 @@
         <% itemList.forEach(item => { %>
             <li>
                 <h3><%= item.titleinput %></h3>
-                <p><%= item.textinput %></p>
+                <p><%- item.textinput %></p>
                 <a href="<%= item.linkinput %>" target="_blank">Link</a>
                 <div>Year: <%= item.numinput %></div>
                 <div>Subregion affected: <%= item.regioninput %></div>
@@ -114,15 +115,22 @@
     </ul>
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.21.0/ckeditor.js" integrity="sha512-ff67djVavIxfsnP13CZtuHqf7VyX62ZAObYle+JlObWZvS4/VQkNVaFBOO6eyx2cum8WtiZ0pqyxLCQKC7bjcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
     <script>
         new MultiSelectTag('regioninput')  // id
         new MultiSelectTag('countryinput')  // id
         new MultiSelectTag('healthriskinput')  // id
 
-        CKEDITOR.replace('textinput', {
-            plugins: 'wysiwygarea, toolbar, basicstyles, link'
-        })
+        // CKEDITOR.replace('textinput', {
+        //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
+        // })
+    </script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#textinput' ) )
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
 </body>
 </html>
