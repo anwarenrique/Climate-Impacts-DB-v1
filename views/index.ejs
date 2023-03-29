@@ -12,21 +12,21 @@
 <body>
     <h1>Climate-Health Impacts Database</h1>
     <form action="/new" method="POST">
-        <label for="titleinput">Input Title</label>
+        <label for="titleinput">Input Title*</label>
         <input type="text" name="titleinput">
         <br>
-        <label for="textinput">Input Text</label>
+        <label for="textinput">Input Text*</label>
         <textarea id="textinput" type="text" name="textinput"></textarea>
 
         <br>
-        <label for="linkinput">Paste Link</label>
+        <label for="linkinput">Paste Link*</label>
         <input type="url" name="linkinput">
         <br>
-        <label for="numinput">Input Year</label>
+        <label for="numinput">Input Year*</label>
         <input type="number" name="numinput" value=2023>
         <br>
 
-        <label for="regioninput">Select a subregion:</label>
+        <label for="regioninput">Select a subregion:*</label>
         <select name="regioninput" id="regioninput" type="text" multiple>
             <option value="">--Please choose an option--</option>
             <option value="The Americas (all subregions)">The Americas (full region)</option>
@@ -37,7 +37,7 @@
         </select>
 
         <br>
-        <label for="countryinput">Please input affected country(s)</label>
+        <label for="countryinput">Please input affected country(s)*</label>
         <select type="text" name="countryinput" id="countryinput" multiple>
             <option value="All countries">All countries</option>
             <option value="Antigua and Barbuda">Antigua and Barbuda</option>
