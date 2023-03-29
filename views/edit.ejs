@@ -18,19 +18,19 @@
                     <% if (item._id==idItem) { %>
                         <li>
                             <form action="/edit/update/<%= item._id %>" method="POST">
-                                <label for="titleinput">Input Title</label>
+                                <label for="titleinput">Input Title*</label>
                                 <input type="text" value="<%= item.titleinput %>" name="titleinput">
                                 <br>
-                                <label for="textinput">Input Text</label>
+                                <label for="textinput">Input Text*</label>
                                 <textarea id= "textinput" type="text" value="<%- item.textinput %>" name="textinput"><%- item.textinput %></textarea>
                                 <br>
-                                <label for="linkinput">Input Link</label>
+                                <label for="linkinput">Input Link*</label>
                                 <input type="url" value="<%= item.linkinput %>" name="linkinput">
                                 <br>
-                                <label for="numinput">Input Year</label>
+                                <label for="numinput">Input Year*</label>
                                 <input type="number" value="<%= item.numinput %>" name="numinput">
                                 <br>
-                                <label for="regioninput">Select a subregion:</label>
+                                <label for="regioninput">Select a subregion:*</label>
                                 <select name="regioninput" id="regioninput" type="text" value="<%= item.regioninput %>" multiple>
                                     <option value="" disabled selected hidden><%= item.regioninput %></option>
                                     <option value="">--Please choose an option--</option>
@@ -41,7 +41,7 @@
                                     <option value="South America">South America</option>
                                 </select>
                                 <br>
-                                <label for="countryinput">Please input affected country(s)</label>
+                                <label for="countryinput">Please input affected country(s)*</label>
                                 <select type="text" name="countryinput" id="countryinput" multiple>
                                     <option value="" disabled selected hidden><%= item.countryinput %></option>
                                     <option value="All countries">All countries</option>
