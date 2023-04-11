@@ -40,6 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 //todo - Set Routes
 app.use('/', homeRoutes)
 app.use('/edit', editRoutes)
+app.use('/auth', require('./routes/auth'))
 
 //todo - Start Server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
