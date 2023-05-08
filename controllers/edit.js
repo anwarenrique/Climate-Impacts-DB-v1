@@ -37,10 +37,10 @@ module.exports = {
                 citationinput: req.body.citationinput
                 },
             )
-            res.redirect('/');
+            res.redirect('/dashboard');
         } catch (err) {
             if (err) return res.status(500).send(err)
-            res.redirect('/');
+            res.redirect('/dashboard');
         } 
     }
 }
