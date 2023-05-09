@@ -5,6 +5,7 @@ const PORT = 8500;
 const mongoose = require("mongoose");
 const passport = require("passport")
 const session = require("express-session")
+const MongoStore = require('connect-mongo')
 
 //*Import functions/routes
 const connectDB = require("./config/database")
@@ -28,6 +29,9 @@ app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.DB_CONNECTION
+    })
 }))
 
 //Passport middleware
