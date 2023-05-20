@@ -8,15 +8,423 @@
     <link rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body>
-    <h1 class="font-bold text-rose-700">
-      Welcome to the Climate-Health Impact Tracker
-    </h1>
+  <body class="bg-[url('../../public/img/greenShapes5.svg')] bg-cover">
+    <nav class="border-gray-200">
+      <div
+        class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4"
+      >
+        <!-- <a href="https://flowbite.com/" class="flex items-center">
+      <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
+      <span class="self-center text-2xl font-semibold whitespace-nowrap ">Flowbite</span>
+  </a> -->
 
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google
-    </a>
-    <a href="/auth/logout"></a>
-    <h4>Or <a href="/guestdashboard">Continue as guest</a></h4>
+        <h3 class="px-4 text-3xl font-bold">ClimaTracker</h3>
+        <div class="flex items-center md:order-2">
+          <button
+            type="button"
+            data-dropdown-toggle="language-dropdown-menu"
+            class="inline-flex cursor-pointer items-center justify-center rounded-lg px-4 py-2 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white"
+          >
+            <svg
+              class="mr-2 h-5 w-5 rounded-full"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 3900 3900"
+            >
+              <path fill="#b22234" d="M0 0h7410v3900H0z" />
+              <path
+                d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
+                stroke="#fff"
+                stroke-width="300"
+              />
+              <path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
+              <g fill="#fff">
+                <g id="d">
+                  <g id="c">
+                    <g id="e">
+                      <g id="b">
+                        <path
+                          id="a"
+                          d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
+                        />
+                        <use xlink:href="#a" y="420" />
+                        <use xlink:href="#a" y="840" />
+                        <use xlink:href="#a" y="1260" />
+                      </g>
+                      <use xlink:href="#a" y="1680" />
+                    </g>
+                    <use xlink:href="#b" x="247" y="210" />
+                  </g>
+                  <use xlink:href="#c" x="494" />
+                </g>
+                <use xlink:href="#d" x="988" />
+                <use xlink:href="#c" x="1976" />
+                <use xlink:href="#e" x="2470" />
+              </g>
+            </svg>
+            English (US)
+          </button>
+          <!-- Dropdown -->
+          <div
+            class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded-lg bg-white text-base shadow dark:bg-gray-700"
+            id="language-dropdown-menu"
+          >
+            <ul class="py-2 font-medium" role="none">
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      aria-hidden="true"
+                      class="mr-2 h-3.5 w-3.5 rounded-full"
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="flag-icon-css-us"
+                      viewBox="0 0 512 512"
+                    >
+                      <g fill-rule="evenodd">
+                        <g stroke-width="1pt">
+                          <path
+                            fill="#bd3d44"
+                            d="M0 0h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                            transform="scale(3.9385)"
+                          />
+                          <path
+                            fill="#fff"
+                            d="M0 10h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0zm0 20h247v10H0z"
+                            transform="scale(3.9385)"
+                          />
+                        </g>
+                        <path
+                          fill="#192f5d"
+                          d="M0 0h98.8v70H0z"
+                          transform="scale(3.9385)"
+                        />
+                        <path
+                          fill="#fff"
+                          d="M8.2 3l1 2.8H12L9.7 7.5l.9 2.7-2.4-1.7L6 10.2l.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7L74 8.5l-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 7.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 24.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 21.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 38.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 35.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 52.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 49.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm-74.1 7l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7H65zm16.4 0l1 2.8H86l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm-74 7l.8 2.8h3l-2.4 1.7.9 2.7-2.4-1.7L6 66.2l.9-2.7-2.4-1.7h3zm16.4 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8H45l-2.4 1.7 1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9zm16.4 0l1 2.8h2.8l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h3zm16.5 0l.9 2.8h2.9l-2.3 1.7.9 2.7-2.4-1.7-2.3 1.7.9-2.7-2.4-1.7h2.9zm16.5 0l.9 2.8h2.9L92 63.5l1 2.7-2.4-1.7-2.4 1.7 1-2.7-2.4-1.7h2.9z"
+                          transform="scale(3.9385)"
+                        />
+                      </g>
+                    </svg>
+                    English (US)
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      class="mr-2 h-3.5 w-3.5 rounded-full"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="flag-icon-css-de"
+                      viewBox="0 0 512 512"
+                    >
+                      <path fill="#ffce00" d="M0 341.3h512V512H0z" />
+                      <path d="M0 0h512v170.7H0z" />
+                      <path fill="#d00" d="M0 170.7h512v170.6H0z" />
+                    </svg>
+                    Deutsch
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      class="mr-2 h-3.5 w-3.5 rounded-full"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      id="flag-icon-css-it"
+                      viewBox="0 0 512 512"
+                    >
+                      <g fill-rule="evenodd" stroke-width="1pt">
+                        <path fill="#fff" d="M0 0h512v512H0z" />
+                        <path fill="#009246" d="M0 0h170.7v512H0z" />
+                        <path fill="#ce2b37" d="M341.3 0H512v512H341.3z" />
+                      </g>
+                    </svg>
+                    Italiano
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                  role="menuitem"
+                >
+                  <div class="inline-flex items-center">
+                    <svg
+                      class="mr-2 h-3.5 w-3.5 rounded-full"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      xmlns:xlink="http://www.w3.org/1999/xlink"
+                      id="flag-icon-css-cn"
+                      viewBox="0 0 512 512"
+                    >
+                      <defs>
+                        <path
+                          id="a"
+                          fill="#ffde00"
+                          d="M1-.3L-.7.8 0-1 .6.8-1-.3z"
+                        />
+                      </defs>
+                      <path fill="#de2910" d="M0 0h512v512H0z" />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="matrix(76.8 0 0 76.8 128 128)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="rotate(-121 142.6 -47) scale(25.5827)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="rotate(-98.1 198 -82) scale(25.6)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="rotate(-74 272.4 -114) scale(25.6137)"
+                        xlink:href="#a"
+                      />
+                      <use
+                        width="30"
+                        height="20"
+                        transform="matrix(16 -19.968 19.968 16 256 230.4)"
+                        xlink:href="#a"
+                      />
+                    </svg>
+                    中文 (繁體)
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <button
+            data-collapse-toggle="mobile-menu-language-select"
+            type="button"
+            class="ml-1 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 md:hidden"
+            aria-controls="mobile-menu-language-select"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="h-6 w-6"
+              fill="currentColor"
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div
+          class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+          id="mobile-menu-language-select"
+        >
+          <ul
+            class="mt-4 flex flex-col rounded-lg border border-gray-100 p-4 font-medium dark:border-gray-700 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:p-0"
+          >
+            <li>
+              <a
+                href="#"
+                class="block rounded py-2 pl-3 pr-4 md:p-0 md:p-0 md:hover:text-blue-700 md:dark:hover:text-blue-500"
+                aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block rounded py-2 pl-3 pr-4 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block rounded py-2 pl-3 pr-4 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="block rounded py-2 pl-3 pr-4 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                >Resources</a
+              >
+            </li>
+            <!-- <li>
+        <a href="#" class="block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+      </li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- <h3 class="text-3xl px-8 font-bold  ">ClimaTracker</h3> -->
+
+    <section class="flex">
+      <section class="flex w-full flex-col">
+        <h1 class="mt-10 px-8 pt-10 text-7xl font-bold text-secondary-color">
+          Tracking the Health Impacts of Climate Change.
+        </h1>
+        <section class="w-3/4 py-8">
+          <p class="ml-8 w-full text-xl">
+            stay informed on the latest research and data on the connection
+            between climate change and public health
+          </p>
+        </section>
+
+        <!-- <button class="border  mx-8">
+          <a href="/auth/google">
+          <i class="fab fa-google left "></i> Log In With Google </a>
+        </button>   -->
+
+        <section class="flex flex-col place-content-evenly justify-center">
+          <button
+            href="/auth/google"
+            type="submit"
+            class="mx-8 flex w-3/4 place-content-center gap-2 rounded-lg border-slate-200 py-2 text-slate-700 transition duration-150 hover:text-slate-900 hover:text-primary-color hover:shadow"
+          >
+            <img
+              class="h-6 w-6"
+              src="https://www.svgrepo.com/show/475656/google-color.svg"
+              loading="lazy"
+              alt=""
+            />
+            <a href="/auth/google" class="font-semibold">Login with Google</a>
+          </button>
+
+          <button
+            href="/guestdashboard"
+            type="submit"
+            class="mx-8 flex w-3/4 place-content-center gap-2 rounded-lg border-slate-200 px-8 py-2 font-bold text-slate-700 transition duration-150 hover:text-slate-900 hover:text-primary-color hover:underline-offset-4 hover:shadow"
+          >
+            <span class="">Continue to dashboard</span>
+          </button>
+        </section>
+
+        <!-- <a href="/auth/logout"></a> -->
+        <!-- <button class="border  mx-8">
+          <h4 class="flex-col">Or <a href="/guestdashboard">Continue to dashboard</a></h4>
+        </button> -->
+      </section>
+
+      <section class="flex w-full justify-end">
+        <img
+          class="mt-36 h-96 w-full rounded-l-3xl bg-[url('https://images.unsplash.com/photo-1624324378932-68e20f332982?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-cover 2xl:rounded-3xl 2xl:bg-contain 2xl:bg-no-repeat"
+        />
+      </section>
+    </section>
+
+    <section class="my-36 flex justify-between">
+      <section class="w-2/4">
+        <img
+          class="h-96 w-full rounded-r-3xl border bg-[url('https://images.unsplash.com/photo-1485617359743-4dc5d2e53c89?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80')] bg-cover 2xl:w-3/4"
+        />
+      </section>
+
+      <section class="flex h-96 w-2/4 flex-col justify-center xl:w-2/5">
+        <h3 class="flex p-8 text-3xl font-bold">
+          Stay up-to-date on research.
+        </h3>
+        <p class="flex px-8 text-xl">
+          The tracker allows you to easily upload and track relevant studies,
+          articles, and images related to the health impacts of climate and
+          environment
+        </p>
+      </section>
+    </section>
+
+    <img src="" alt="" />
+
+    <!-- <footer>
+
+  <section class="flex justify-center mt-8">
+    <a class="text-l px-4 font-bold mx-4" href="">Terms of Use</a>
+    <a class="text-l px-4 font-bold mx-4" href="">Contact Us</a>
+    <a class="text-l px-4 font-bold mx-4" href="">Privacy Policy</a>
+
+    <a href="#" class="mx-4 block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary-color md:p-0  md:dark:hover:text-primary-color dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-l px-4 font-bold">Terms of Use</a>
+
+
+    <a href="#" class="mx-4 block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-primary-color dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-l px-4 font-bold">Contact Us</a>
+
+    <a href="#" class="mx-4 block py-2 pl-3 pr-4  rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0  md:dark:hover:text-primary-color dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 text-l px-4 font-bold">Privacy Policy</a>
+  </section>
+
+  <div class="flex justify-center">
+  <a class="" href="">Developed by Anwar Mendez</a>
+  </div>
+</footer> -->
+
+    <footer class="dark:bg-dark-primary">
+      <div class="mx-auto w-full max-w-screen-xl p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <a
+            href="https://flowbite.com/"
+            class="mb-4 flex items-center sm:mb-0"
+          >
+            <!-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" /> -->
+            <span
+              class="self-center whitespace-nowrap text-2xl font-semibold dark:text-white"
+              >ClimaTracker</span
+            >
+          </a>
+          <ul
+            class="mb-6 flex flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 sm:mb-0"
+          >
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6">About</a>
+            </li>
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6"
+                >Privacy Policy</a
+              >
+            </li>
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6">Licensing</a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <hr
+          class="my-6 border-gray-200 dark:border-primary-color sm:mx-auto lg:my-8"
+        />
+        <span
+          class="block text-sm text-gray-500 dark:text-gray-400 sm:text-center"
+          >© 2023 <a class="hover:underline">ClimaTracker</a> Developed by Anwar
+          Mendez</span
+        >
+      </div>
+    </footer>
   </body>
 </html>
