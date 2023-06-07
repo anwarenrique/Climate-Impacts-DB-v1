@@ -136,6 +136,10 @@
         <div>Countries affected: <%= item.countryinput %></div>
         <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
         <div>Posted by <%= item.postedBy %></div>
+        <form action="/likePost/<%= item._id %>">
+          <button type="submit">Like this post</button>
+        </form>
+        <div>This post has <%= item.likes %> likes</div>
 
         <a href="/edit/<%= item._id %>">Edit</a>
         <a href="/edit/remove/<%= item._id %>">Remove</a>

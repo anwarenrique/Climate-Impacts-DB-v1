@@ -37,9 +37,13 @@ const itemListSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  // postedBy: {
-  //   type: String,
-  //   ref: "User.displayName",
-  // },
+  postedBy: {
+    type: String,
+    ref: "User.displayName",
+  },
+  likes: {
+    type: Number,
+    required: true,
+  },
 });
 module.exports = mongoose.model("ItemList", itemListSchema, "items");
