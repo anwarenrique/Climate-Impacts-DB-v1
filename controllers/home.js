@@ -58,15 +58,31 @@ module.exports = {
     }
   },
   likePost: async (req, res) => {
-    const id = req.params.id;
+    const postId = req.params.id;
+    const userId = req.user.id;
     try {
-      await ItemList.findOneAndUpdate(
-        { _id: id },
-        {
+      const post = await ItemList.findById(postId);
+      if (!post) {
+        console.log("Post not found.");
+        res.redirect("/dashboard");
+        return;
+      }
+
+      const likedByUser = post.likedBy.includes(userId);
+
+      if (likedByUser) {
+        await ItemList.findByIdAndUpdate(postId, {
+          $inc: { likes: -1 },
+          $pull: { likedBy: userId },
+        });
+        console.log("Post unliked.");
+      } else {
+        await ItemList.findByIdAndUpdate(postId, {
           $inc: { likes: 1 },
-        }
-      );
-      console.log("Likes +1");
+          $push: { likedBy: userId },
+        });
+        console.log("Post liked.");
+      }
 
       res.redirect("/dashboard");
     } catch (err) {

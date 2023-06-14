@@ -45,5 +45,8 @@ const itemListSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  likedBy: {
+    type: Array,
+  },
 });
 module.exports = mongoose.model("ItemList", itemListSchema, "items");
