@@ -21,7 +21,7 @@ module.exports = {
   },
   getDashboard: async (req, res) => {
     try {
-      const items = await ItemList.find();
+      const items = await ItemList.find().populate("postedBy");
       res.render("dashboard.ejs", { itemList: items });
     } catch (err) {
       res.render("error/500");
@@ -38,7 +38,7 @@ module.exports = {
       countryinput: req.body.countryinput,
       healthriskinput: req.body.healthriskinput,
       citationinput: req.body.citationinput,
-      postedBy: User.displayName,
+      postedBy: req.user.id,
       likes: 0,
       // User: req.body.User,
     });

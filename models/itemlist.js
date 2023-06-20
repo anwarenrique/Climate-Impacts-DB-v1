@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("./User");
+
 const itemListSchema = new mongoose.Schema({
   titleinput: {
     type: String,
@@ -33,14 +34,14 @@ const itemListSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  User: {
+  postedBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  postedBy: {
-    type: String,
-    ref: "User.displayName",
-  },
+  // user: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "User",
+  // },
   likes: {
     type: Number,
     required: true,
