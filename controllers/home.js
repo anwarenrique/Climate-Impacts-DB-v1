@@ -28,6 +28,15 @@ module.exports = {
       if (err) return res.status(500).send(err);
     }
   },
+  getNewPost: async (req, res) => {
+    try {
+      const items = await ItemList.find().populate("postedBy");
+      res.render("newPost.ejs", { itemList: items });
+    } catch (err) {
+      res.render("error/500");
+      if (err) return res.status(500).send(err);
+    }
+  },
   createItem: async (req, res) => {
     const newItem = new ItemList({
       titleinput: req.body.titleinput,
