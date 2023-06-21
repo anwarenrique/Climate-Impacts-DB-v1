@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="Tagify" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate-Health Impacts Database</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
+    />
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+  </head>
+  <body>
+    <h1>Climate-Health Impact Tracker POST VIEW</h1>
+    <a href="/auth/google">
+      <i class="fab fa-google left"></i> Log In With Google
+    </a>
+    <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
+    <br />
+    <a href="/newPost">Add a new post!</a>
+
+    <ul>
+      <li>
+        <h3><%= item.titleinput %></h3>
+        <p><%- item.textinput %></p>
+        <a href="<%= item.linkinput %>" target="_blank">Link</a>
+        <div>Year: <%= item.numinput %></div>
+        <div>Subregion affected: <%= item.regioninput %></div>
+        <div>Countries affected: <%= item.countryinput %></div>
+        <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
+        <div>Posted by <%= item.postedBy %></div>
+        <form action="/likePost/<%= item._id %>">
+          <button type="submit">Like this post</button>
+        </form>
+        <div>This post has <%= item.likes %> likes</div>
+
+        <a href="/edit/<%= item._id %>">Edit</a>
+        <a href="/edit/remove/<%= item._id %>">Remove</a>
+        <a href="/viewPost/<%= item._id %>">View Post</a>
+      </li>
+    </ul>
+
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
+    <script>
+      // new MultiSelectTag("regioninput"); // id
+      // new MultiSelectTag("countryinput"); // id
+      // new MultiSelectTag("healthriskinput"); // id
+
+      new MultiSelectTag("regionfilter"); // id
+      new MultiSelectTag("countryfilter"); // id
+      new MultiSelectTag("healthriskfilter"); // id
+
+      // CKEDITOR.replace('textinput', {
+      //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
+      // })
+    </script>
+    <script>
+      ClassicEditor.create(document.querySelector("#textinput")).catch(
+        (error) => {
+          console.error(error);
+        }
+      );
+    </script>
+  </body>
+</html>

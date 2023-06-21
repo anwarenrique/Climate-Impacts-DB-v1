@@ -188,4 +188,20 @@ module.exports = {
       res.status(500).send("Server Error");
     }
   },
+  getViewPost: async (req, res) => {
+    try {
+      const itemId = req.params.id;
+      const item = await ItemList.findById(itemId).populate("postedBy");
+
+      if (!item) {
+        // Item not found
+        return res.status(404).render("error/404");
+      }
+
+      res.render("viewPost.ejs", { item });
+    } catch (err) {
+      console.error(err);
+      res.status(500).render("error/500");
+    }
+  },
 };
