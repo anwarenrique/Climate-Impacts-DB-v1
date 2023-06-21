@@ -16,5 +16,6 @@ router.get("/likePost/:id", ensureAuth, homeController.likePost);
 router.get("/getFilteredItems", ensureAuth, homeController.getFilteredItems);
 router.get("/getSortedItems", ensureAuth, homeController.getSortedItems);
 router.get("/clearFilter", ensureAuth, homeController.clearFilter);
+router.get("/viewPost/:id", homeController.getViewPost);
 
 module.exports = router;
