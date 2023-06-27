@@ -1,4 +1,4 @@
-//todo - Declare Variables
+//todo - Declare Variables and import necessary modules and routes
 const express = require("express");
 const app = express();
 const PORT = 8500;
@@ -24,7 +24,7 @@ connectDB();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-//Sessions
+//Sessions. It creates a session store using MongoStore with the provided mongoUrl for storing session data.
 app.use(
   session({
     secret: "keyboard cat",
