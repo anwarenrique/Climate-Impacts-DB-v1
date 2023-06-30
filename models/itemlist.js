@@ -8,7 +8,6 @@ const itemListSchema = new mongoose.Schema({
   },
   textinput: {
     type: String,
-    required: true,
   },
   linkinput: {
     type: String,
