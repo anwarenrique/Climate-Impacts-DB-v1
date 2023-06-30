@@ -11,14 +11,6 @@ module.exports = {
       if (err) return res.status(500).send(err);
     }
   },
-  getIndex: async (req, res) => {
-    try {
-      const items = await ItemList.find();
-      res.render("index.ejs", { itemList: items });
-    } catch (err) {
-      if (err) return res.status(500).send(err);
-    }
-  },
   getDashboard: async (req, res) => {
     try {
       const items = await ItemList.find().populate("postedBy");
