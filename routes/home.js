@@ -6,16 +6,15 @@ const router = express.Router();
 const homeController = require("../controllers/home");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-// router.get('/', homeController.getIndex) //read
 router.get("/", ensureGuest, homeController.getLogin); //read
-router.post("/new", ensureAuth, homeController.createItem); //create
-router.get("/newPost", ensureAuth, homeController.getNewPost);
-router.get("/dashboard", ensureAuth, homeController.getDashboard);
-router.get("/guestdashboard", homeController.getGuestDashboard);
-router.get("/likePost/:id", ensureAuth, homeController.likePost);
-router.get("/getFilteredItems", ensureAuth, homeController.getFilteredItems);
-router.get("/getSortedItems", ensureAuth, homeController.getSortedItems);
-router.get("/clearFilter", ensureAuth, homeController.clearFilter);
-router.get("/viewPost/:id", homeController.getViewPost);
+router.post("/new", ensureAuth, homeController.createItem); //Add post to database
+router.get("/newPost", ensureAuth, homeController.getNewPost); //go to the 'write post' view
+router.get("/dashboard", ensureAuth, homeController.getDashboard); //go to the main feed for (logged in users)
+router.get("/guestdashboard", homeController.getGuestDashboard); //go to main feed (for non logged in users)
+router.get("/likePost/:id", ensureAuth, homeController.likePost); //like a post
+router.get("/getFilteredItems", ensureAuth, homeController.getFilteredItems); //filter
+router.get("/getSortedItems", ensureAuth, homeController.getSortedItems); //sort
+router.get("/clearFilter", ensureAuth, homeController.clearFilter); //clear the filter you set
+router.get("/viewPost/:id", homeController.getViewPost); //view single post in detail
 
 module.exports = router;
