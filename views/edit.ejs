@@ -20,7 +20,12 @@
 
         <form action="/edit/update/<%= item._id %>" method="POST">
           <label for="titleinput">Input Title*</label>
-          <input type="text" value="<%= item.titleinput %>" name="titleinput" />
+          <input
+            type="text"
+            value="<%= item.titleinput %>"
+            name="titleinput"
+            maxlength="280"
+          />
           <br />
           <label for="textinput">Input Text*</label>
           <textarea
@@ -28,12 +33,18 @@
             type="text"
             value="<%- item.textinput %>"
             name="textinput"
+            maxlength="40000"
           >
 <%- item.textinput %></textarea
           >
           <br />
           <label for="linkinput">Input Link*</label>
-          <input type="url" value="<%= item.linkinput %>" name="linkinput" />
+          <input
+            type="url"
+            value="<%= item.linkinput %>"
+            name="linkinput"
+            maxlength="2100"
+          />
           <br />
           <label for="numinput">Input Year*</label>
           <input type="number" value="<%= item.numinput %>" name="numinput" />

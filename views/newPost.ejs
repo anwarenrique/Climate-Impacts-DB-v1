@@ -10,9 +10,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
     />
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script> -->
   </head>
-  <body>
+  <body
+    data-editor="ClassicEditor"
+    data-collaboration="false"
+    data-revision-history="false"
+  >
     <h1>Share your climate and health story!</h1>
     <a href="/auth/google">
       <i class="fab fa-google left"></i> Log In With Google
@@ -21,14 +25,20 @@
     <a href="/dashboard">go back to dashboard</a>
     <form action="/new" method="POST">
       <label for="titleinput">Input Title*</label>
-      <input type="text" name="titleinput" />
+      <input type="text" name="titleinput" maxlength="280" id="titleinput" />
+      <span id="titleinputCounter">0</span>
       <br />
       <label for="textinput">Input Text*</label>
-      <textarea id="textinput" type="text" name="textinput"></textarea>
+      <textarea
+        id="textinput"
+        type="text"
+        name="textinput"
+        maxlength="40000"
+      ></textarea>
 
       <br />
       <label for="linkinput">Paste Link*</label>
-      <input type="url" name="linkinput" />
+      <input type="url" name="linkinput" maxlength="2100" id="linkinput" />
       <br />
       <label for="numinput">Input Year*</label>
       <input type="number" name="numinput" value="2023" />
@@ -127,6 +137,10 @@
       <button type="submit">Add item</button>
     </form>
 
+    <!-- CK EDITOR PRACTICE -->
+    <div id="editor">chuba</div>
+    <div id="word-count"></div>
+    <!-- END OF PRACTICE -->
     <ul>
       <% itemList.forEach(item => { %>
       <li>
@@ -150,7 +164,6 @@
     </ul>
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
-
     <script>
       new MultiSelectTag("regioninput"); // id
       new MultiSelectTag("countryinput"); // id
@@ -163,13 +176,45 @@
       // CKEDITOR.replace('textinput', {
       //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
       // })
+
+      // function updateCounter() {
+      //   const input = document.getElementById("titleinput");
+      //   const counter = document.getElementById("titleinputCounter");
+      //   counter.innerText = input.value.length;
+      // }
     </script>
+    <script type="text/javascript" src="/ckeditor5/build/ckeditor.js"></script>
     <script>
-      ClassicEditor.create(document.querySelector("#textinput")).catch(
-        (error) => {
-          console.error(error);
-        }
-      );
+      // ClassicEditor.create(document.querySelector("#textinput")).catch(
+      //   (error) => {
+      //     console.error(error);
+      //   }
+      // );
+
+      // ClassicEditor.create(document.querySelector("#titleinput")).catch(
+      //   (error) => {
+      //     console.error(error);
+      //   }
+      // );
+      // CKEDITOR.replace("editor");
+      // ClassicEditor.create(document.querySelector("#editor"), {
+      //   licenseKey: "",
+      // })
+      //   .then((editor) => {
+      //     window.editor = editor;
+      //     const wordCountPlugin = editor.plugins.get("WordCount");
+      //     const wordCountWrapper = document.getElementById("word-count");
+
+      //     wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+      //   })
+      //   .catch((error) => {
+      //     console.error("Oops, something went wrong!");
+      //     console.error(
+      //       "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
+      //     );
+      //     console.warn("Build id: 721hl5hinv2d-wzy1fj80em3u");
+      //     console.error(error);
+      //   });
     </script>
   </body>
 </html>

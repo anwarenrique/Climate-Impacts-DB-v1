@@ -5,13 +5,16 @@ const itemListSchema = new mongoose.Schema({
   titleinput: {
     type: String,
     required: true,
+    maxlength: 280,
   },
   textinput: {
     type: String,
+    maxlength: 40000,
   },
   linkinput: {
     type: String,
     required: true,
+    maxlength: 2100,
   },
   numinput: {
     type: Number,
