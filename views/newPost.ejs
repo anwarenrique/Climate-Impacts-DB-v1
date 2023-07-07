@@ -10,19 +10,24 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
     />
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script> -->
   </head>
-  <body
-    data-editor="ClassicEditor"
-    data-collaboration="false"
-    data-revision-history="false"
-  >
+  <body>
     <h1>Share your climate and health story!</h1>
     <a href="/auth/google">
       <i class="fab fa-google left"></i> Log In With Google
     </a>
     <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
     <a href="/dashboard">go back to dashboard</a>
+
+    <!-- CK EDITOR PRACTICE -->
+    <form action="chuba">
+      <input type="text" id="editor" />
+    </form>
+    <!-- <div id="editor">chuba</div> -->
+    <div id="word-count"></div>
+    <!-- END OF PRACTICE -->
+
+    <!-- Form for adding new posts -->
     <form action="/new" method="POST">
       <label for="titleinput">Input Title*</label>
       <input type="text" name="titleinput" maxlength="280" id="titleinput" />
@@ -137,10 +142,6 @@
       <button type="submit">Add item</button>
     </form>
 
-    <!-- CK EDITOR PRACTICE -->
-    <div id="editor">chuba</div>
-    <div id="word-count"></div>
-    <!-- END OF PRACTICE -->
     <ul>
       <% itemList.forEach(item => { %>
       <li>
@@ -172,49 +173,27 @@
       new MultiSelectTag("regionfilter"); // id
       new MultiSelectTag("countryfilter"); // id
       new MultiSelectTag("healthriskfilter"); // id
-
-      // CKEDITOR.replace('textinput', {
-      //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
-      // })
-
-      // function updateCounter() {
-      //   const input = document.getElementById("titleinput");
-      //   const counter = document.getElementById("titleinputCounter");
-      //   counter.innerText = input.value.length;
-      // }
     </script>
-    <script type="text/javascript" src="/ckeditor5/build/ckeditor.js"></script>
+    <script type="text/javascript" src="\ckeditor5\build\ckeditor.js"></script>
     <script>
-      // ClassicEditor.create(document.querySelector("#textinput")).catch(
-      //   (error) => {
-      //     console.error(error);
-      //   }
-      // );
+      ClassicEditor.create(document.querySelector("#editor"), {
+        licenseKey: "",
+      })
+        .then((editor) => {
+          window.editor = editor;
+          const wordCountPlugin = editor.plugins.get("WordCount");
+          const wordCountWrapper = document.getElementById("word-count");
 
-      // ClassicEditor.create(document.querySelector("#titleinput")).catch(
-      //   (error) => {
-      //     console.error(error);
-      //   }
-      // );
-      // CKEDITOR.replace("editor");
-      // ClassicEditor.create(document.querySelector("#editor"), {
-      //   licenseKey: "",
-      // })
-      //   .then((editor) => {
-      //     window.editor = editor;
-      //     const wordCountPlugin = editor.plugins.get("WordCount");
-      //     const wordCountWrapper = document.getElementById("word-count");
-
-      //     wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
-      //   })
-      //   .catch((error) => {
-      //     console.error("Oops, something went wrong!");
-      //     console.error(
-      //       "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
-      //     );
-      //     console.warn("Build id: 721hl5hinv2d-wzy1fj80em3u");
-      //     console.error(error);
-      //   });
+          wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        })
+        .catch((error) => {
+          console.error("Oops, something went wrong!");
+          console.error(
+            "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
+          );
+          console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
+          console.error(error);
+        });
     </script>
   </body>
 </html>
