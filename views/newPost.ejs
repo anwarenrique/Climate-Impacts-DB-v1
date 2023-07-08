@@ -19,19 +19,12 @@
     <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
     <a href="/dashboard">go back to dashboard</a>
 
-    <!-- CK EDITOR PRACTICE -->
-    <form action="chuba">
-      <input type="text" id="editor" />
-    </form>
-    <!-- <div id="editor">chuba</div> -->
-    <div id="word-count"></div>
-    <!-- END OF PRACTICE -->
-
     <!-- Form for adding new posts -->
     <form action="/new" method="POST">
       <label for="titleinput">Input Title*</label>
-      <input type="text" name="titleinput" maxlength="280" id="titleinput" />
-      <span id="titleinputCounter">0</span>
+      <textarea type="text" name="titleinput" maxlength="280" id="titleinput">
+      </textarea>
+      <span id="word-count1"></span>
       <br />
       <label for="textinput">Input Text*</label>
       <textarea
@@ -40,6 +33,7 @@
         name="textinput"
         maxlength="40000"
       ></textarea>
+      <span id="word-count2"></span>
 
       <br />
       <label for="linkinput">Paste Link*</label>
@@ -145,7 +139,7 @@
     <ul>
       <% itemList.forEach(item => { %>
       <li>
-        <h3><%= item.titleinput %></h3>
+        <h3><%- item.titleinput %></h3>
         <p><%- item.textinput %></p>
         <a href="<%= item.linkinput %>" target="_blank">Link</a>
         <div>Year: <%= item.numinput %></div>
@@ -175,14 +169,33 @@
       new MultiSelectTag("healthriskfilter"); // id
     </script>
     <script type="text/javascript" src="\ckeditor5\build\ckeditor.js"></script>
-    <script>
-      ClassicEditor.create(document.querySelector("#editor"), {
+    <script type="text/javascript">
+      ClassicEditor.create(document.querySelector("#titleinput"), {
         licenseKey: "",
       })
         .then((editor) => {
           window.editor = editor;
           const wordCountPlugin = editor.plugins.get("WordCount");
-          const wordCountWrapper = document.getElementById("word-count");
+          const wordCountWrapper = document.getElementById("word-count1");
+
+          wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        })
+        .catch((error) => {
+          console.error("Oops, something went wrong!");
+          console.error(
+            "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
+          );
+          console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
+          console.error(error);
+        });
+
+      ClassicEditor.create(document.querySelector("#textinput"), {
+        licenseKey: "",
+      })
+        .then((editor) => {
+          window.editor = editor;
+          const wordCountPlugin = editor.plugins.get("WordCount");
+          const wordCountWrapper = document.getElementById("word-count2");
 
           wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
         })
