@@ -242,7 +242,7 @@
     <ul>
       <% itemList.forEach(item => { %>
       <li>
-        <h3><%= item.titleinput %></h3>
+        <h3><%- item.titleinput %></h3>
         <p><%- item.textinput %></p>
         <a href="<%= item.linkinput %>" target="_blank">Link</a>
         <div>Year: <%= item.numinput %></div>
