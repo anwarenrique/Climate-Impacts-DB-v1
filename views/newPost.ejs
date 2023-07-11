@@ -133,7 +133,7 @@
       <label for="citationinput">Input Citation</label>
       <input type="text" name="citationinput" />
 
-      <button type="submit">Add item</button>
+      <button type="submit" id="submitButton">Add item</button>
     </form>
 
     <ul>
@@ -170,6 +170,7 @@
     </script>
     <script type="text/javascript" src="\ckeditor5\build\ckeditor.js"></script>
     <script type="text/javascript">
+      const sendButton = document.querySelector("#submitButton");
       ClassicEditor.create(document.querySelector("#titleinput"), {
         licenseKey: "",
       })
@@ -177,8 +178,22 @@
           window.editor = editor;
           const wordCountPlugin = editor.plugins.get("WordCount");
           const wordCountWrapper = document.getElementById("word-count1");
-
           wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
+          // charlimit practice
+          const maxCharacters = 30;
+
+          editor.model.document.on("change", () => {
+            const textLength = editor.getData().length;
+
+            if (textLength >= maxCharacters) {
+              sendButton.setAttribute("disabled", "disabled");
+            } else {
+              sendButton.removeAttribute("disabled");
+            }
+          });
+
+          // charlimit practice
         })
         .catch((error) => {
           console.error("Oops, something went wrong!");
