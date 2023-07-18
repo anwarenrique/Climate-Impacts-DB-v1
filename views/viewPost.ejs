@@ -21,6 +21,7 @@
     <br />
     <a href="/newPost">Add a new post!</a>
 
+    <!-- display selected post -->
     <ul>
       <li>
         <h3><%- item.titleinput %></h3>
@@ -42,6 +43,29 @@
       </li>
     </ul>
 
+    <!-- form to add comments -->
+    
+    <form action="/comment/createComment/<%= item._id%>" method="POST">
+      <label for="commentinput">Comment</label>
+      <textarea
+        id="commentinput"
+        type="text"
+        name="commentinput"
+        maxlength="40000"
+      ></textarea>
+      <span id="word-count1"></span>
+  
+      <button type="submit" id="submitButton">Add comment</button>
+    </form>
+    <!-- comments feed-->
+    <ul>
+      <% for (let i=0; i<comments.length; i++) {%>
+        <li>
+          <%- comments[i].comment%>
+        </li>
+      <% } %>
+    </ul>
+
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
     <script>
@@ -57,12 +81,51 @@
       //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
       // })
     </script>
-    <script>
+
+    <!-- OLD COMMENT SCRIPT WHICH ACTUALLY MIGHT WORK -->
+    <!-- <script>
       ClassicEditor.create(document.querySelector("#textinput")).catch(
         (error) => {
           console.error(error);
         }
       );
+    </script> -->
+
+    <script type="text/javascript" src="\ckeditor5\build\ckeditor.js"></script>
+    <script type="text/javascript">
+      const sendButton = document.querySelector("#submitButton");
+      ClassicEditor.create(document.querySelector("#commentinput"), {
+        licenseKey: "",
+      })
+        .then((editor) => {
+          window.editor = editor;
+          const wordCountPlugin = editor.plugins.get("WordCount");
+          const wordCountWrapper = document.getElementById("word-count1");
+          wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
+          // charlimit practice
+          const maxCharacters = 30;
+
+          editor.model.document.on("change", () => {
+            const textLength = editor.getData().length;
+
+            if (textLength >= maxCharacters) {
+              sendButton.setAttribute("disabled", "disabled");
+            } else {
+              sendButton.removeAttribute("disabled");
+            }
+          });
+
+          // charlimit practice
+        })
+        .catch((error) => {
+          console.error("Oops, something went wrong!");
+          console.error(
+            "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
+          );
+          console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
+          console.error(error);
+        });
     </script>
   </body>
 </html>

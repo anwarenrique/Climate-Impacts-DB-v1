@@ -1,5 +1,6 @@
 const ItemList = require("../models/ItemList");
 const User = require("../models/User");
+const Comment = require("../models/Comment");
 
 let filteredItems = []; //declare this variable that will store filtered results
 
@@ -184,13 +185,16 @@ module.exports = {
     try {
       const itemId = req.params.id;
       const item = await ItemList.findById(itemId).populate("postedBy");
+      const comments = await Comment.find({ post: itemId })
+        .sort({ createdAt: "desc" })
+        .lean();
 
       if (!item) {
         // Item not found
         return res.status(404).render("error/404");
       }
 
-      res.render("viewPost.ejs", { item });
+      res.render("viewPost.ejs", { item, comments: comments });
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");

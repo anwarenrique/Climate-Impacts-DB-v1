@@ -11,6 +11,7 @@ const MongoStore = require("connect-mongo");
 const connectDB = require("./config/database");
 const homeRoutes = require("./routes/home");
 const editRoutes = require("./routes/edit");
+const commentRoutes = require("./routes/comment");
 
 require("dotenv").config({ path: "./config/.env" });
 
@@ -47,6 +48,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", homeRoutes);
 app.use("/edit", editRoutes);
 app.use("/auth", require("./routes/auth"));
+app.use("/comment", commentRoutes);
 
 //todo - Start Server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
