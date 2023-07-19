@@ -36,6 +36,7 @@
           <button type="submit">Like this post</button>
         </form>
         <div>This post has <%= item.likes %> likes</div>
+        <div>Posted on <%= item.createdAt %></div>
 
         <a href="/edit/<%= item._id %>">Edit</a>
         <a href="/edit/remove/<%= item._id %>">Remove</a>
@@ -62,6 +63,11 @@
       <% for (let i=0; i<comments.length; i++) {%>
         <li>
           <%- comments[i].comment%>
+          <form action="/comment/likeComment/<%= item._id%>/comments/<%= comments[i]._id %>">
+            <button type="submit">Like this comment</button>
+          </form>
+          <div>This comment has <%= comments[i].likes %> likes</div>
+          <div>posted on <%= comments[i].createdAt %></div>
         </li>
       <% } %>
     </ul>

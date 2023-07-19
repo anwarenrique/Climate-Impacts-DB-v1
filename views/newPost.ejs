@@ -151,6 +151,7 @@
           <button type="submit">Like this post</button>
         </form>
         <div>This post has <%= item.likes %> likes</div>
+        <div>Posted on <%= item.createdAt %></div>
 
         <a href="/edit/<%= item._id %>">Edit</a>
         <a href="/edit/remove/<%= item._id %>">Remove</a>

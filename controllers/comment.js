@@ -19,4 +19,39 @@ module.exports = {
       res.redirect("error/500");
     }
   },
+  likeComment: async (req, res) => {
+    const commentId = req.params.Commentid;
+    const postId = req.params.Postid;
+    const userId = req.user.id;
+
+    try {
+      const post = await Comment.findById(commentId);
+      if (!post) {
+        console.log("Comment not found.");
+        res.redirect("/dashboard");
+        return;
+      }
+
+      const likedByUser = post.likedBy.includes(userId);
+
+      if (likedByUser) {
+        await Comment.findByIdAndUpdate(commentId, {
+          $inc: { likes: -1 },
+          $pull: { likedBy: userId },
+        });
+        console.log("Comment unliked.");
+      } else {
+        await Comment.findByIdAndUpdate(commentId, {
+          $inc: { likes: 1 },
+          $push: { likedBy: userId },
+        });
+        console.log("Comment liked.");
+      }
+
+      // res.redirect("/dashboard");
+      res.redirect("/viewPost/" + postId);
+    } catch (err) {
+      if (err) return res.status(500).send(err);
+    }
+  },
 };
