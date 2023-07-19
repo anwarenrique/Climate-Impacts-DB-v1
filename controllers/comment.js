@@ -12,6 +12,12 @@ module.exports = {
     });
     try {
       await newComment.save();
+      // Update the comments count in the associated ItemList model
+      await ItemList.updateOne(
+        { _id: req.params.id },
+        { $inc: { comments: 1 } }
+      );
+
       console.log(newComment);
       res.redirect("/viewPost/" + req.params.id);
     } catch (err) {
