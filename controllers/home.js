@@ -42,6 +42,7 @@ module.exports = {
       citationinput: req.body.citationinput,
       postedBy: req.user.id,
       likes: 0,
+      comments: 0,
       // User: req.body.User,
     });
     try {
