@@ -15,6 +15,7 @@ module.exports = {
   getDashboard: async (req, res) => {
     try {
       const items = await ItemList.find().populate("postedBy");
+
       res.render("dashboard.ejs", { itemList: items });
     } catch (err) {
       res.render("error/500");
@@ -187,6 +188,7 @@ module.exports = {
       const itemId = req.params.id;
       const item = await ItemList.findById(itemId).populate("postedBy");
       const comments = await Comment.find({ post: itemId })
+        .populate("postedBy")
         .sort({ createdAt: "desc" })
         .lean();
 

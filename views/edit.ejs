@@ -176,7 +176,7 @@
             <div>
               Climate-sensitive health risks: <%= item.healthriskinput %>
             </div>
-            <div>Posted by <%= item.postedBy %></div>
+            <div>Posted by <%= item.postedBy?.displayName %></div>
             <form action="/likePost/<%= item._id %>">
               <button type="submit">Like this post</button>
             </form>
