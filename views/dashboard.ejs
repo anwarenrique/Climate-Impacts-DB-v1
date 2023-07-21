@@ -257,8 +257,11 @@
         <div>This post has <%= item.comments %> comments</div>
         <div>Posted on <%= item.createdAt %></div>
 
+        <%if(item.postedBy.id == user.id){ %>
         <a href="/edit/<%= item._id %>">Edit</a>
         <a href="/edit/remove/<%= item._id %>">Remove</a>
+        <%}%>
+
         <a href="/viewPost/<%= item._id %>">View Post</a>
       </li>
       <% }) %>

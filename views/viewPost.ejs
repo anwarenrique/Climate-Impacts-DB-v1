@@ -19,6 +19,8 @@
     </a>
     <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
     <br />
+    <a href="/dashboard">go back to dashboard</a>
+    <br>
     <a href="/newPost">Add a new post!</a>
 
     <!-- display selected post -->
@@ -39,8 +41,14 @@
         <div>This post has <%= item.comments %> comments</div>
         <div>Posted on <%= item.createdAt %></div>
 
+        <div>posted user ID <%= item.postedBy.id %></div>
+        <div>Logged in user ID <%= user.id %></div>
+
+        <%if(item.postedBy.id == user.id){ %>
         <a href="/edit/<%= item._id %>">Edit</a>
         <a href="/edit/remove/<%= item._id %>">Remove</a>
+        <%}%>
+
         <a href="/viewPost/<%= item._id %>">View Post</a>
       </li>
     </ul>

@@ -16,7 +16,7 @@ module.exports = {
     try {
       const items = await ItemList.find().populate("postedBy");
 
-      res.render("dashboard.ejs", { itemList: items });
+      res.render("dashboard.ejs", { itemList: items, user: req.user });
     } catch (err) {
       res.render("error/500");
       if (err) return res.status(500).send(err);
@@ -197,7 +197,7 @@ module.exports = {
         return res.status(404).render("error/404");
       }
 
-      res.render("viewPost.ejs", { item, comments: comments });
+      res.render("viewPost.ejs", { item, comments: comments, user: req.user });
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");
