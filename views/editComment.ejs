@@ -53,38 +53,38 @@
       </li>
     </ul>
 
-    <!-- form to add comments -->
+    <!-- comment form prefilled with comment text -->
+    <% commentsList.forEach(comment => { %> <% if (comment._id==commentId) { %>
+      <form action="/comment/updateComment/<%= item._id%>/comments/<%= comment._id%>" method="POST">
+        <label for="commentinput">Comment</label>
+        <textarea
+          id="commentinput"
+          type="text"
+          name="commentinput"
+          maxlength="40000"
+        ><%= comment.comment %></textarea>
+        <span id="word-count1"></span>
     
-    <form action="/comment/createComment/<%= item._id%>" method="POST">
-      <label for="commentinput">Comment</label>
-      <textarea
-        id="commentinput"
-        type="text"
-        name="commentinput"
-        maxlength="40000"
-      ></textarea>
-      <span id="word-count1"></span>
-  
-      <button type="submit" id="submitButton">Add comment</button>
-    </form>
-    <!-- comments feed-->
+        <button type="submit" id="submitButton">Update comment</button>
+      </form>
+
+    <% } %> <% }) %>
+
+    <!-- feed of all other remaining comments-->
     <ul>
-      <% for (let i=0; i<comments.length; i++) {%>
+      <% for (let i=0; i<commentsList.length; i++) { %>
+
+        <% if (commentsList[i]._id!=commentId) { %>
         <li>
-          <%- comments[i].comment%>
-          <form action="/comment/likeComment/<%= item._id%>/comments/<%= comments[i]._id %>">
+          <%- commentsList[i].comment%>
+          <form action="/comment/likeComment/<%= item._id%>/comments/<%= commentsList[i]._id %>">
             <button type="submit">Like this comment</button>
           </form>
-          <div>Posted by <%= comments[i].postedBy?.displayName %></div>
-          <div>This comment has <%= comments[i].likes %> likes</div>
-          <div>posted on <%= comments[i].createdAt %></div>
-          <div>user ID<%= comments[i].postedBy._id%> </div>
-          <%if(comments[i].postedBy._id == user.id){ %>
-            <a href="/comment/editComment/<%=item._id %>/comments/<%= comments[i]._id %>">Edit</a>
-            <a href="/comment/deleteComment/<%=item._id %>/comments/<%= comments[i]._id %> %>">Remove</a>
-          <%}%>
+          <div>Posted by <%= commentsList[i].postedBy?.displayName %></div>
+          <div>This comment has <%= commentsList[i].likes %> likes</div>
+          <div>posted on <%= commentsList[i].createdAt %></div>
         </li>
-      <% } %>
+      <% } }%>
     </ul>
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
