@@ -165,7 +165,7 @@
 
       <section>
         <ul>
-          <% itemList.forEach(item => { %>
+          <% itemList.forEach(item => { %> <% if (item._id!=idItem) { %>
           <li>
             <h3><%- item.titleinput %></h3>
             <p><%- item.textinput %></p>
@@ -189,7 +189,7 @@
             <a href="/edit/remove/<%= item._id %>">Remove</a>
             <%}%>
           </li>
-          <% }) %>
+          <% }}) %>
         </ul>
       </section>
     </section>

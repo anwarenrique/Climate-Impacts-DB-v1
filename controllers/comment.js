@@ -60,4 +60,63 @@ module.exports = {
       if (err) return res.status(500).send(err);
     }
   },
+  getEditComment: async (req, res) => {
+    try {
+      console.log("viewing edit comment view");
+      const Commentid = req.params.Commentid;
+      const Postid = req.params.Postid;
+      const userId = req.user.id;
+
+      const item = await ItemList.findById(Postid).populate("postedBy");
+      const comments = await Comment.find({ post: Postid })
+        .populate("postedBy")
+        .sort({ createdAt: "desc" })
+        .lean();
+
+      if (!item) {
+        // Item not found
+        return res.status(404).render("error/404");
+      }
+
+      res.render("editComment.ejs", {
+        item,
+        commentsList: comments,
+        commentId: Commentid,
+        user: req.user,
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).render("error/500");
+    }
+  },
+  updateComment: async (req, res) => {
+    const Commentid = req.params.Commentid;
+    const Postid = req.params.Postid;
+    const userId = req.user.id;
+    try {
+      console.log("update comment");
+      await Comment.findByIdAndUpdate(Commentid, {
+        comment: req.body.commentinput,
+        post: req.params.id,
+        postedBy: req.user.id,
+      });
+      res.redirect("/viewPost/" + Postid);
+    } catch (err) {
+      console.error(err);
+      res.status(500).render("error/500");
+    }
+  },
+  deleteComment: async (req, res) => {
+    const Commentid = req.params.Commentid;
+    const Postid = req.params.Postid;
+    const userId = req.user.id;
+    try {
+      const result = await Comment.findByIdAndDelete(Commentid);
+      console.log(result);
+      res.redirect("/viewPost/" + Postid);
+    } catch (err) {
+      console.error(err);
+      res.status(500).render("error/500");
+    }
+  },
 };

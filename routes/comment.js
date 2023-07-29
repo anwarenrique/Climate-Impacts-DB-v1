@@ -11,5 +11,20 @@ router.get(
   ensureAuth,
   commentController.likeComment
 ); //like a post
+router.get(
+  "/editComment/:Postid/comments/:Commentid",
+  ensureAuth,
+  commentController.getEditComment
+); //go to edit comment view
+router.post(
+  "/updateComment/:Postid/comments/:Commentid",
+  ensureAuth,
+  commentController.updateComment
+); //update comment
+router.get(
+  "/deleteComment/:Postid/comments/:Commentid",
+  ensureAuth,
+  commentController.deleteComment
+); //delete comment
 
 module.exports = router;
