@@ -106,6 +106,32 @@ module.exports = {
       if (err) return res.status(500).send(err);
     }
   },
+  savePost: async (req, res) => {
+    const postId = req.params.id;
+    const userId = req.user.id;
+    try {
+      // Find the user document
+      const user = await User.findById(userId);
+
+      // Check if the post is already saved by the user
+      const postIndex = user.savedPosts.indexOf(postId);
+      if (postIndex !== -1) {
+        // If the post is already saved, remove it from the savedPosts array
+        user.savedPosts.splice(postIndex, 1);
+      } else {
+        // If the post is not saved, add it to the savedPosts array
+        user.savedPosts.push(postId);
+      }
+
+      // Save the updated user document
+      await user.save();
+
+      // Redirect back to the original post or a specific page, as desired
+      res.redirect("/dashboard");
+    } catch (err) {
+      if (err) return res.status(500).send(err);
+    }
+  },
   getFilteredItems: async (req, res) => {
     try {
       const { regionfilter, countryfilter, healthriskfilter } = req.query;
@@ -225,6 +251,22 @@ module.exports = {
       }).populate("postedBy");
 
       res.render("likedPosts.ejs", { itemList: items, user: req.user });
+    } catch (err) {
+      res.render("error/500");
+      if (err) return res.status(500).send(err);
+    }
+  },
+  getSavedPosts: async (req, res) => {
+    try {
+      const userId = req.user.id;
+      // Retrieve the user document to get the likedPosts array
+      const user = await User.findById(userId);
+      // Fetch the posts that have their _id in the likedPosts array of the user
+      const items = await ItemList.find({
+        _id: { $in: user.savedPosts },
+      }).populate("postedBy");
+
+      res.render("savedPosts.ejs", { itemList: items, user: req.user });
     } catch (err) {
       res.render("error/500");
       if (err) return res.status(500).send(err);
