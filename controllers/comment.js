@@ -112,6 +112,7 @@ module.exports = {
     const userId = req.user.id;
     try {
       const result = await Comment.findByIdAndDelete(Commentid);
+      await ItemList.updateOne({ _id: Postid }, { $inc: { comments: -1 } });
       console.log(result);
       res.redirect("/viewPost/" + Postid);
     } catch (err) {

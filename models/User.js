@@ -25,6 +25,7 @@ const UserSchema = new mongoose.Schema({
     default: Date.now,
   },
   likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "ItemList" }],
+  savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "ItemList" }],
 });
 
 module.exports = mongoose.model("User", UserSchema, "Users");
