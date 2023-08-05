@@ -81,11 +81,22 @@ module.exports = {
           $inc: { likes: -1 },
           $pull: { likedBy: userId },
         });
+
+        // Remove the postId from the user's likedPosts array
+        await User.findByIdAndUpdate(userId, {
+          $pull: { likedPosts: postId },
+        });
+
         console.log("Post unliked.");
       } else {
         await ItemList.findByIdAndUpdate(postId, {
           $inc: { likes: 1 },
           $push: { likedBy: userId },
+        });
+
+        // Add the postId to the user's likedPosts array
+        await User.findByIdAndUpdate(userId, {
+          $push: { likedPosts: postId },
         });
         console.log("Post liked.");
       }
@@ -201,6 +212,22 @@ module.exports = {
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");
+    }
+  },
+  getLikedPosts: async (req, res) => {
+    try {
+      const userId = req.user.id;
+      // Retrieve the user document to get the likedPosts array
+      const user = await User.findById(userId);
+      // Fetch the posts that have their _id in the likedPosts array of the user
+      const items = await ItemList.find({
+        _id: { $in: user.likedPosts },
+      }).populate("postedBy");
+
+      res.render("likedPosts.ejs", { itemList: items, user: req.user });
+    } catch (err) {
+      res.render("error/500");
+      if (err) return res.status(500).send(err);
     }
   },
 };
