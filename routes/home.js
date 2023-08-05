@@ -16,5 +16,6 @@ router.get("/getFilteredItems", ensureAuth, homeController.getFilteredItems); //
 router.get("/getSortedItems", ensureAuth, homeController.getSortedItems); //sort
 router.get("/clearFilter", ensureAuth, homeController.clearFilter); //clear the filter you set
 router.get("/viewPost/:id", homeController.getViewPost); //view single post in detail
+router.get("/likedPosts", ensureAuth, homeController.getLikedPosts); //view page with posts you have liked
 
 module.exports = router;
