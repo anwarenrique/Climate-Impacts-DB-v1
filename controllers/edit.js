@@ -1,4 +1,5 @@
 const ItemList = require("../models/ItemList");
+const User = require("../models/User");
 
 module.exports = {
   getEdit: async (req, res) => {
@@ -15,6 +16,8 @@ module.exports = {
     const id = req.params.id;
     try {
       const result = await ItemList.findByIdAndDelete(id);
+      // Update the user's postCount
+      await User.findByIdAndUpdate(req.user.id, { $inc: { postCount: -1 } });
       console.log(result);
       res.redirect("back");
     } catch (err) {
