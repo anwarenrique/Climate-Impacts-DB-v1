@@ -13,21 +13,27 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
-    <h1>ClimateTracker - profile view</h1>
+    <h1>ClimaTracker - profile view</h1>
     <a href="/auth/google">
       <i class="fab fa-google left"></i> Log In With Google
     </a>
     <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
     <br />
+
+    <%if(profile.id == user.id){ %>
     <a href="/newPost">Add a new post!</a>
-    <a href="/likedPosts">View liked posts</a>
-    <a href="/savedPosts">View saved posts</a>
+    <a href="/likedPosts">My liked posts</a>
+    <a href="/savedPosts">My saved posts</a>
+    <%}%>
+
+    <a href="/dashboard">go back to dashboard</a>
 
     <section>
-      <h2>display name</h2>
-      <p>account created on</p>
-      <h3>Number of posts</h3>
-      <h3>Number of comments</h3>
+      <h2>display name: <%= profile.displayName%></h2>
+      <img src="<%- profile.image%>" alt="user image" />
+      <p>account created on: <%= profile.createdAt%></p>
+      <h3>Number of posts: <%= profile.postCount%></h3>
+      <h3>Number of comments: <%= profile.commentCount%></h3>
     </section>
 
     <h2>Filter</h2>

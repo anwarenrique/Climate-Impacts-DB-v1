@@ -165,7 +165,7 @@ module.exports = {
 
       const itemList = await query.exec();
       console.log("filter");
-      res.render("dashboard.ejs", { itemList });
+      res.render("dashboard.ejs", { itemList, user: req.user });
       filteredItems = itemList; // Store the filtered results
     } catch (error) {
       console.error(error);
@@ -205,7 +205,7 @@ module.exports = {
 
       const itemList = await query.exec();
       console.log("sort");
-      res.render("dashboard.ejs", { itemList });
+      res.render("dashboard.ejs", { itemList, user: req.user });
     } catch (error) {
       console.error(error);
       res.status(500).send("Server Error");
