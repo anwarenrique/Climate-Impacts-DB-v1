@@ -18,6 +18,9 @@ module.exports = {
         { $inc: { comments: 1 } }
       );
 
+      // Update the user's commentCount
+      await User.findByIdAndUpdate(req.user.id, { $inc: { commentCount: 1 } });
+
       console.log(newComment);
       res.redirect("/viewPost/" + req.params.id);
     } catch (err) {
@@ -113,6 +116,10 @@ module.exports = {
     try {
       const result = await Comment.findByIdAndDelete(Commentid);
       await ItemList.updateOne({ _id: Postid }, { $inc: { comments: -1 } });
+
+      // Update the user's commentCount
+      await User.findByIdAndUpdate(userId, { $inc: { commentCount: -1 } });
+
       console.log(result);
       res.redirect("/viewPost/" + Postid);
     } catch (err) {

@@ -48,6 +48,9 @@ module.exports = {
     });
     try {
       await newItem.save();
+      // Update the user's postCount
+      await User.findByIdAndUpdate(req.user.id, { $inc: { postCount: 1 } });
+
       console.log(newItem);
       res.redirect("/");
     } catch (err) {

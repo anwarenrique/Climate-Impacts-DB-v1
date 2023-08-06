@@ -26,6 +26,14 @@ const UserSchema = new mongoose.Schema({
   },
   likedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "ItemList" }],
   savedPosts: [{ type: mongoose.Schema.Types.ObjectId, ref: "ItemList" }],
+  postCount: {
+    type: Number,
+    default: 0,
+  },
+  commentCount: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema, "Users");
