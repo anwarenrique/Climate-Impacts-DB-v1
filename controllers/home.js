@@ -104,7 +104,7 @@ module.exports = {
         console.log("Post liked.");
       }
 
-      res.redirect("/dashboard");
+      res.redirect("back");
     } catch (err) {
       if (err) return res.status(500).send(err);
     }
@@ -140,6 +140,8 @@ module.exports = {
       const { regionfilter, countryfilter, healthriskfilter } = req.query;
 
       let query = ItemList.find();
+      const view = req.params.view;
+      const profileId = req.params.id;
 
       // Apply filters
       if (regionfilter) {
@@ -163,9 +165,26 @@ module.exports = {
         query = query.where("healthriskinput").in(healthriskfilter);
       }
 
+      if (view == "profile") {
+        query = query.where("postedBy").equals(profileId);
+      }
+
       const itemList = await query.exec();
       console.log("filter");
-      res.render("dashboard.ejs", { itemList, user: req.user });
+
+      if (view == "dashboard") {
+        res.render("dashboard.ejs", { itemList, user: req.user });
+      } else if (view == "profile") {
+        //Retrieve the profile document to get postCount and commentCount
+        const profile = await User.findById(profileId);
+        res.render("profile.ejs", {
+          itemList,
+          user: req.user,
+          profile: profile,
+        });
+      }
+
+      // res.render("dashboard.ejs", { itemList, user: req.user });
       filteredItems = itemList; // Store the filtered results
     } catch (error) {
       console.error(error);
@@ -175,8 +194,13 @@ module.exports = {
   getSortedItems: async (req, res) => {
     try {
       const { sort } = req.query;
+      const profileId = req.params.id;
+      const view = req.params.view;
 
       let query = ItemList.find();
+      if (view == "profile") {
+        query = query.where("postedBy").equals(profileId);
+      }
 
       if (filteredItems.length > 0) {
         query = query.where("_id").in(filteredItems.map((item) => item._id));
@@ -205,7 +229,17 @@ module.exports = {
 
       const itemList = await query.exec();
       console.log("sort");
-      res.render("dashboard.ejs", { itemList, user: req.user });
+      if (view == "dashboard") {
+        res.render("dashboard.ejs", { itemList, user: req.user });
+      } else if (view == "profile") {
+        //Retrieve the profile document to get postCount and commentCount
+        const profile = await User.findById(profileId);
+        res.render("profile.ejs", {
+          itemList,
+          user: req.user,
+          profile: profile,
+        });
+      }
     } catch (error) {
       console.error(error);
       res.status(500).send("Server Error");

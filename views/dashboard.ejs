@@ -131,8 +131,9 @@
       <button type="submit">Add item</button>
     </form> -->
 
+    <!-- FILTER BUTTON -->
     <h2>Filter</h2>
-    <form action="/getFilteredItems" method="GET">
+    <form action="/getFilteredItems/dashboard/filter" method="GET">
       <label for="regionfilter">By subregion</label>
       <select name="regionfilter" id="regionfilter" type="text" multiple>
         <option value="">--Please choose an option--</option>
@@ -223,7 +224,7 @@
     </form>
 
     <h2>Sort</h2>
-    <form action="/getSortedItems">
+    <form action="/getSortedItems/dashboard/sort">
       <label for="sort">Sort By:</label>
       <select name="sort" id="sort" onchange="this.form.submit()">
         <option value="">-- Select --</option>
