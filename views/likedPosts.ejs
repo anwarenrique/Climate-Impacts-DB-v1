@@ -24,7 +24,7 @@
     <a href="/newPost">Add a new post!</a>
 
     <h2>Filter</h2>
-    <form action="/getFilteredItems" method="GET">
+    <form action="/getFilteredItems/likedPosts/1" method="GET">
       <label for="regionfilter">By subregion</label>
       <select name="regionfilter" id="regionfilter" type="text" multiple>
         <option value="">--Please choose an option--</option>
@@ -110,12 +110,12 @@
       <button type="submit">Filter</button>
     </form>
 
-    <form action="/clearFilter">
+    <form action="/clearFilter/likedPosts/1">
       <button type="submit">clear filter</button>
     </form>
 
     <h2>Sort</h2>
-    <form action="/getSortedItems">
+    <form action="/getSortedItems/likedPosts/1">
       <label for="sort">Sort By:</label>
       <select name="sort" id="sort" onchange="this.form.submit()">
         <option value="">-- Select --</option>
@@ -128,6 +128,7 @@
         </option>
         <option value="createdAtIncreasing">Date posted (oldest first)</option>
         <option value="likes">Likes</option>
+        <option value="comments">Comments</option>
       </select>
 
       <button type="submit">Sort</button>
@@ -143,7 +144,12 @@
         <div>Subregion affected: <%= item.regioninput %></div>
         <div>Countries affected: <%= item.countryinput %></div>
         <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
-        <div>Posted by <%= item.postedBy?.displayName%></div>
+        <div>
+          Posted by
+          <a href="/profile/<%= item.postedBy._id%>"
+            ><%= item.postedBy?.displayName%></a
+          >
+        </div>
         <form action="/likePost/<%= item._id %>">
           <button type="submit">Like this post</button>
         </form>

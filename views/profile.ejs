@@ -124,7 +124,7 @@
       <button type="submit">Filter</button>
     </form>
 
-    <form action="/clearFilter">
+    <form action="/clearFilter/profile/<%= profile._id%>">
       <button type="submit">clear filter</button>
     </form>
 
@@ -142,6 +142,7 @@
         </option>
         <option value="createdAtIncreasing">Date posted (oldest first)</option>
         <option value="likes">Likes</option>
+        <option value="comments">Comments</option>
       </select>
 
       <button type="submit">Sort</button>
@@ -157,7 +158,12 @@
         <div>Subregion affected: <%= item.regioninput %></div>
         <div>Countries affected: <%= item.countryinput %></div>
         <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
-        <div>Posted by <%= item.postedBy?.displayName%></div>
+        <div>
+          Posted by
+          <a href="/profile/<%= item.postedBy._id%>"
+            ><%= item.postedBy?.displayName%></a
+          >
+        </div>
 
         <form action="/likePost/<%= item._id %>">
           <% if (user.likedPosts.includes(item._id)) { %>
