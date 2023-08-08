@@ -23,7 +23,7 @@ router.get(
   ensureAuth,
   homeController.getSortedItems
 ); //sort
-router.get("/clearFilter", ensureAuth, homeController.clearFilter); //clear the filter you set
+router.get("/clearFilter/:view/:id", ensureAuth, homeController.clearFilter); //clear the filter you set
 router.get("/viewPost/:id", homeController.getViewPost); //view single post in detail
 router.get("/likedPosts", ensureAuth, homeController.getLikedPosts); //view page with posts you have liked
 router.get("/savedPosts", ensureAuth, homeController.getSavedPosts); //view page with posts you have liked

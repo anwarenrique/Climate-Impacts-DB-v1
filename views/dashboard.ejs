@@ -20,8 +20,10 @@
     <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
     <br />
     <a href="/newPost">Add a new post!</a>
-    <a href="/likedPosts">View liked posts</a>
-    <a href="/savedPosts">View saved posts</a>
+    <!-- <a href="/likedPosts">View liked posts</a>
+    <a href="/savedPosts">View saved posts</a> -->
+    <br />
+    <a href="/profile/<%= user._id%>">My profile</a>
 
     <!-- <form action="/new" method="POST">
       <label for="titleinput">Input Title*</label>
@@ -219,7 +221,7 @@
       <button type="submit">Filter</button>
     </form>
 
-    <form action="/clearFilter">
+    <form action="/clearFilter/dashboard/1">
       <button type="submit">clear filter</button>
     </form>
 
@@ -237,6 +239,7 @@
         </option>
         <option value="createdAtIncreasing">Date posted (oldest first)</option>
         <option value="likes">Likes</option>
+        <option value="comments">Comments</option>
       </select>
 
       <button type="submit">Sort</button>

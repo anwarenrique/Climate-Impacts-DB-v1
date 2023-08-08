@@ -139,9 +139,11 @@ module.exports = {
     try {
       const { regionfilter, countryfilter, healthriskfilter } = req.query;
 
-      let query = ItemList.find();
+      let query = ItemList.find().populate("postedBy");
       const view = req.params.view;
       const profileId = req.params.id;
+      const userId = req.user.id;
+      const user = await User.findById(userId);
 
       // Apply filters
       if (regionfilter) {
@@ -167,21 +169,34 @@ module.exports = {
 
       if (view == "profile") {
         query = query.where("postedBy").equals(profileId);
+      } else if (view == "likedPosts") {
+        // Modify the query to filter liked posts
+        query = query.where("_id").in(user.likedPosts);
+      } else if (view == "savedPosts") {
+        // Modify the query to filter liked posts
+        query = query.where("_id").in(user.savedPosts);
       }
 
       const itemList = await query.exec();
       console.log("filter");
 
+      //If you started at dashboard, redirect to dashboard
       if (view == "dashboard") {
         res.render("dashboard.ejs", { itemList, user: req.user });
+        //if you started at profile, redirect to profile
       } else if (view == "profile") {
         //Retrieve the profile document to get postCount and commentCount
         const profile = await User.findById(profileId);
+
         res.render("profile.ejs", {
           itemList,
           user: req.user,
           profile: profile,
         });
+      } else if (view == "likedPosts") {
+        res.render("likedPosts.ejs", { itemList, user: req.user });
+      } else if (view == "savedPosts") {
+        res.render("savedPosts.ejs", { itemList, user: req.user });
       }
 
       // res.render("dashboard.ejs", { itemList, user: req.user });
@@ -196,10 +211,18 @@ module.exports = {
       const { sort } = req.query;
       const profileId = req.params.id;
       const view = req.params.view;
+      const userId = req.user.id;
+      const user = await User.findById(userId);
 
       let query = ItemList.find();
       if (view == "profile") {
         query = query.where("postedBy").equals(profileId);
+      } else if (view == "likedPosts") {
+        // Modify the query to filter liked posts
+        query = query.where("_id").in(user.likedPosts);
+      } else if (view == "savedPosts") {
+        // Modify the query to filter saved posts
+        query = query.where("_id").in(user.savedPosts);
       }
 
       if (filteredItems.length > 0) {
@@ -224,6 +247,9 @@ module.exports = {
           case "likes":
             query = query.sort({ likes: -1 });
             break;
+          case "comments":
+            query = query.sort({ comments: -1 });
+            break;
         }
       }
 
@@ -239,6 +265,10 @@ module.exports = {
           user: req.user,
           profile: profile,
         });
+      } else if (view == "likedPosts") {
+        res.render("likedPosts.ejs", { itemList, user: req.user });
+      } else if (view == "savedPosts") {
+        res.render("savedPosts.ejs", { itemList, user: req.user });
       }
     } catch (error) {
       console.error(error);
@@ -249,9 +279,21 @@ module.exports = {
     try {
       // Reset the filteredItems to an empty array
       filteredItems = [];
+      const profileId = req.params.id;
+      const view = req.params.view;
 
-      // Redirect or render the desired view after clearing the filter
-      res.redirect("/dashboard"); // Example: Redirect to the dashboard page
+      //If you started at dashboard, redirect to dashboard
+      if (view == "dashboard") {
+        res.redirect("/dashboard");
+
+        //if you started at profile, redirect to profile
+      } else if (view == "profile") {
+        res.redirect("/profile/" + profileId);
+      } else if (view == "likedPosts") {
+        res.redirect("/likedPosts");
+      } else if (view == "savedPosts") {
+        res.redirect("/savedPosts");
+      }
     } catch (error) {
       console.error(error);
       res.status(500).send("Server Error");
