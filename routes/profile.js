@@ -5,6 +5,7 @@ const router = express.Router();
 const profileController = require("../controllers/profile");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-router.get("/:id", ensureAuth, profileController.getProfile); //read
+router.get("/:id", profileController.getProfile); //read
+router.get("/guestDashboard/:id", profileController.getGuestProfile); //read
 
 module.exports = router;
