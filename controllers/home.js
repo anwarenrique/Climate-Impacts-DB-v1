@@ -60,7 +60,7 @@ module.exports = {
   },
   getGuestDashboard: async (req, res) => {
     try {
-      const items = await ItemList.find();
+      const items = await ItemList.find().populate("postedBy");
       res.render("guestDashboard.ejs", { itemList: items });
     } catch (err) {
       if (err) return res.status(500).send(err);
@@ -142,8 +142,11 @@ module.exports = {
       let query = ItemList.find().populate("postedBy");
       const view = req.params.view;
       const profileId = req.params.id;
-      const userId = req.user.id;
-      const user = await User.findById(userId);
+
+      if (view != "guestDashboard") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
+      }
 
       // Apply filters
       if (regionfilter) {
@@ -181,7 +184,11 @@ module.exports = {
       console.log("filter");
 
       //If you started at dashboard, redirect to dashboard
-      if (view == "dashboard") {
+
+      if (view == "guestDashboard") {
+        res.render("guestDashboard.ejs", { itemList });
+      } //If you started at dashboard, redirect to dashboard
+      else if (view == "dashboard") {
         res.render("dashboard.ejs", { itemList, user: req.user });
         //if you started at profile, redirect to profile
       } else if (view == "profile") {
@@ -211,10 +218,13 @@ module.exports = {
       const { sort } = req.query;
       const profileId = req.params.id;
       const view = req.params.view;
-      const userId = req.user.id;
-      const user = await User.findById(userId);
 
-      let query = ItemList.find();
+      if (view != "guestDashboard") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
+      }
+
+      let query = ItemList.find().populate("postedBy");
       if (view == "profile") {
         query = query.where("postedBy").equals(profileId);
       } else if (view == "likedPosts") {
@@ -255,6 +265,9 @@ module.exports = {
 
       const itemList = await query.exec();
       console.log("sort");
+      if (view == "guestDashboard") {
+        res.render("guestDashboard.ejs", { itemList });
+      }
       if (view == "dashboard") {
         res.render("dashboard.ejs", { itemList, user: req.user });
       } else if (view == "profile") {
@@ -282,8 +295,11 @@ module.exports = {
       const profileId = req.params.id;
       const view = req.params.view;
 
+      if (view == "guestDashboard") {
+        res.redirect("/guestDashboard");
+      }
       //If you started at dashboard, redirect to dashboard
-      if (view == "dashboard") {
+      else if (view == "dashboard") {
         res.redirect("/dashboard");
 
         //if you started at profile, redirect to profile
@@ -302,6 +318,7 @@ module.exports = {
   getViewPost: async (req, res) => {
     try {
       const itemId = req.params.id;
+      const view = req.params.view;
       const item = await ItemList.findById(itemId).populate("postedBy");
       const comments = await Comment.find({ post: itemId })
         .populate("postedBy")
@@ -313,7 +330,15 @@ module.exports = {
         return res.status(404).render("error/404");
       }
 
-      res.render("viewPost.ejs", { item, comments: comments, user: req.user });
+      if (view == "guestDashboard") {
+        res.render("guestViewPost.ejs", { item, comments: comments });
+      } else {
+        res.render("viewPost.ejs", {
+          item,
+          comments: comments,
+          user: req.user,
+        });
+      }
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");

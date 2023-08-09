@@ -15,10 +15,27 @@ module.exports = {
       const items = await ItemList.find({
         postedBy: profileId, // Only select items posted by the specified user
       }).populate("postedBy");
-
       res.render("profile.ejs", {
         itemList: items,
         user: req.user,
+        profile: profile,
+      });
+    } catch (err) {
+      if (err) return res.status(500).send(err);
+    }
+  },
+  getGuestProfile: async (req, res) => {
+    try {
+      const profileId = req.params.id;
+
+      //Retrieve the profile document to get postCount and commentCount
+      const profile = await User.findById(profileId);
+      // Fetch the posts posted by the user indicated in the router
+      const items = await ItemList.find({
+        postedBy: profileId, // Only select items posted by the specified user
+      }).populate("postedBy");
+      res.render("GuestProfile.ejs", {
+        itemList: items,
         profile: profile,
       });
     } catch (err) {
