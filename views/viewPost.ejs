@@ -10,7 +10,6 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
     />
-    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
     <h1>Climate-Health Impact Tracker POST VIEW</h1>
@@ -33,7 +32,12 @@
         <div>Subregion affected: <%= item.regioninput %></div>
         <div>Countries affected: <%= item.countryinput %></div>
         <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
-        <div>Posted by <%= item.postedBy?.displayName %></div>
+        <div>
+          Posted by
+          <a href="/profile/<%= item.postedBy._id%>"
+            ><%= item.postedBy?.displayName%></a
+          >
+        </div>
         <form action="/likePost/<%= item._id %>">
           <button type="submit">Like this post</button>
         </form>
@@ -49,7 +53,7 @@
         <a href="/edit/remove/<%= item._id %>">Remove</a>
         <%}%>
 
-        <a href="/viewPost/<%= item._id %>">View Post</a>
+        <a href="/viewPost/dashboard/<%= item._id %>">View Post</a>
       </li>
     </ul>
 
@@ -63,7 +67,8 @@
         name="commentinput"
         maxlength="40000"
       ></textarea>
-      <span id="word-count1"></span>
+      <text id="update_chars3"></text>
+      <text id="update_words3"></text>
   
       <button type="submit" id="submitButton">Add comment</button>
     </form>
@@ -78,7 +83,13 @@
           <div>Posted by <%= comments[i].postedBy?.displayName %></div>
           <div>This comment has <%= comments[i].likes %> likes</div>
           <div>posted on <%= comments[i].createdAt %></div>
-          <div>user ID<%= comments[i].postedBy._id%> </div>
+          <div>
+            Posted by
+            <a href="/profile/<%= comments[i].postedBy._id%>"
+              ><%= comments[i].postedBy?.displayName%></a
+            >
+          </div>
+          
           <%if(comments[i].postedBy._id == user.id){ %>
             <a href="/comment/editComment/<%=item._id %>/comments/<%= comments[i]._id %>">Edit</a>
             <a href="/comment/deleteComment/<%=item._id %>/comments/<%= comments[i]._id %> %>">Remove</a>
@@ -115,30 +126,58 @@
     <script type="text/javascript" src="\ckeditor5\build\ckeditor.js"></script>
     <script type="text/javascript">
       const sendButton = document.querySelector("#submitButton");
+
+      const maxCharacters1 = 4000;
+      const charactersBox = document.querySelector("#update_chars3");
+      const wordsBox = document.querySelector("#update_words3");
+
       ClassicEditor.create(document.querySelector("#commentinput"), {
-        licenseKey: "",
-      })
-        .then((editor) => {
-          window.editor = editor;
-          const wordCountPlugin = editor.plugins.get("WordCount");
-          const wordCountWrapper = document.getElementById("word-count1");
-          wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        wordCount: {
+          onUpdate: (stats) => {
+            const textLength = stats.characters;
+            const isLimitExceeded = textLength > maxCharacters1;
 
-          // charlimit practice
-          const maxCharacters = 30;
+            wordsBox.textContent = `Words in the comment: ${stats.words}`;
 
-          editor.model.document.on("change", () => {
-            const textLength = editor.getData().length;
+            // Display the number of characters in the progress chart. When the limit is exceeded,
+            // display how many characters should be removed.
+            if (isLimitExceeded) {
+              charactersBox.textContent = `Characters remaining: -${
+                stats.characters - maxCharacters1
+              }`;
+            } else {
+              charactersBox.textContent = `Total characters: ${stats.characters}`;
+            }
 
-            if (textLength >= maxCharacters) {
+            if (textLength > maxCharacters1) {
               sendButton.setAttribute("disabled", "disabled");
             } else {
               sendButton.removeAttribute("disabled");
             }
-          });
+          },
+        },
+      })
+        // .then((editor) => {
+        //   window.editor = editor;
+        //   const wordCountPlugin = editor.plugins.get("WordCount");
+        //   const wordCountWrapper = document.getElementById("word-count1");
+        //   wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
-          // charlimit practice
-        })
+        //   // charlimit practice
+        //   const maxCharacters = 30;
+
+        //   editor.model.document.on("change", () => {
+        //     const textLength = editor.getData().length;
+
+        //     if (textLength >= maxCharacters) {
+        //       sendButton.setAttribute("disabled", "disabled");
+        //     } else {
+        //       sendButton.removeAttribute("disabled");
+        //     }
+        //   });
+
+        //   // charlimit practice
+        // })
         .catch((error) => {
           console.error("Oops, something went wrong!");
           console.error(

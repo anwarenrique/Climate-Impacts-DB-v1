@@ -22,7 +22,7 @@ module.exports = {
       await User.findByIdAndUpdate(req.user.id, { $inc: { commentCount: 1 } });
 
       console.log(newComment);
-      res.redirect("/viewPost/" + req.params.id);
+      res.redirect("/viewPost/dashboard/" + req.params.id);
     } catch (err) {
       if (err) return res.status(500).send(err);
       res.redirect("error/500");
@@ -58,7 +58,7 @@ module.exports = {
       }
 
       // res.redirect("/dashboard");
-      res.redirect("/viewPost/" + postId);
+      res.redirect("/viewPost/dashboard/" + postId);
     } catch (err) {
       if (err) return res.status(500).send(err);
     }
@@ -103,7 +103,7 @@ module.exports = {
         post: req.params.id,
         postedBy: req.user.id,
       });
-      res.redirect("/viewPost/" + Postid);
+      res.redirect("/viewPost/dashboard/" + Postid);
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");
@@ -121,7 +121,7 @@ module.exports = {
       await User.findByIdAndUpdate(userId, { $inc: { commentCount: -1 } });
 
       console.log(result);
-      res.redirect("/viewPost/" + Postid);
+      res.redirect("/viewPost/dashboard" + Postid);
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");
