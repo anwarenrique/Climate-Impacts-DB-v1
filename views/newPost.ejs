@@ -24,7 +24,8 @@
       <label for="titleinput">Input Title*</label>
       <textarea type="text" name="titleinput" maxlength="280" id="titleinput">
       </textarea>
-      <span id="word-count1"></span>
+      <text id="update_words1"></text>
+      <text id="update_chars1"></text>
       <br />
       <label for="textinput">Input Text*</label>
       <textarea
@@ -33,7 +34,9 @@
         name="textinput"
         maxlength="40000"
       ></textarea>
-      <span id="word-count2"></span>
+      <!-- <span id="word-count2"></span> -->
+      <text id="update_words2"></text>
+      <text id="update_chars2"></text>
 
       <br />
       <label for="linkinput">Paste Link*</label>
@@ -173,30 +176,61 @@
     <script type="text/javascript" src="\ckeditor5\build\ckeditor.js"></script>
     <script type="text/javascript">
       const sendButton = document.querySelector("#submitButton");
+      const maxCharacters1 = 280;
+      const maxCharacters2 = 4000;
+      const charactersBox = document.querySelector("#update_chars1");
+      const wordsBox = document.querySelector("#update_words1");
+      const charactersBox2 = document.querySelector("#update_chars2");
+      const wordsBox2 = document.querySelector("#update_words2");
+
       ClassicEditor.create(document.querySelector("#titleinput"), {
-        licenseKey: "",
-      })
-        .then((editor) => {
-          window.editor = editor;
-          const wordCountPlugin = editor.plugins.get("WordCount");
-          const wordCountWrapper = document.getElementById("word-count1");
-          wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        wordCount: {
+          onUpdate: (stats) => {
+            const textLength = stats.characters;
+            const isLimitExceeded = textLength > maxCharacters1;
 
-          // charlimit practice
-          const maxCharacters = 30;
+            wordsBox.textContent = `Words in the post: ${stats.words}`;
 
-          editor.model.document.on("change", () => {
-            const textLength = editor.getData().length;
+            // Display the number of characters in the progress chart. When the limit is exceeded,
+            // display how many characters should be removed.
+            if (isLimitExceeded) {
+              charactersBox.textContent = `Characters remaining: -${
+                stats.characters - maxCharacters1
+              }`;
+            } else {
+              charactersBox.textContent = `Total characters: ${stats.characters}`;
+            }
 
-            if (textLength >= maxCharacters) {
+            if (textLength > maxCharacters1) {
               sendButton.setAttribute("disabled", "disabled");
             } else {
               sendButton.removeAttribute("disabled");
             }
-          });
+          },
+        },
+      })
+        // .then((editor) => {
+        //   window.editor = editor;
+        //   const wordCountPlugin = editor.plugins.get("WordCount");
+        //   const wordCountWrapper = document.getElementById("word-count1");
+        //   wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
 
-          // charlimit practice
-        })
+        //   // charlimit practice
+        //   const maxCharacters1 = 30;
+        //   const maxCharacters2 = 10;
+
+        //   editor.model.document.on("change", () => {
+        //     const textLength = editor.getData().length;
+
+        //     if (textLength >= maxCharacters) {
+        //       sendButton.setAttribute("disabled", "disabled");
+        //     } else {
+        //       sendButton.removeAttribute("disabled");
+        //     }
+        //   });
+
+        //   // charlimit practice
+        // })
         .catch((error) => {
           console.error("Oops, something went wrong!");
           console.error(
@@ -207,15 +241,38 @@
         });
 
       ClassicEditor.create(document.querySelector("#textinput"), {
-        licenseKey: "",
-      })
-        .then((editor) => {
-          window.editor = editor;
-          const wordCountPlugin = editor.plugins.get("WordCount");
-          const wordCountWrapper = document.getElementById("word-count2");
+        wordCount: {
+          onUpdate: (stats) => {
+            const textLength = stats.characters;
+            const isLimitExceeded = textLength > maxCharacters2;
 
-          wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
-        })
+            wordsBox2.textContent = `Words in the post: ${stats.words}`;
+
+            // Display the number of characters in the progress chart. When the limit is exceeded,
+            // display how many characters should be removed.
+            if (isLimitExceeded) {
+              charactersBox.textContent = `Characters remaining: -${
+                stats.characters - maxCharacters2
+              }`;
+            } else {
+              charactersBox2.textContent = `Total characters: ${stats.characters}`;
+            }
+
+            if (textLength > maxCharacters2) {
+              sendButton.setAttribute("disabled", "disabled");
+            } else {
+              sendButton.removeAttribute("disabled");
+            }
+          },
+        },
+      })
+        // .then((editor) => {
+        //   window.editor = editor;
+        //   const wordCountPlugin = editor.plugins.get("WordCount");
+        //   const wordCountWrapper = document.getElementById("word-count2");
+
+        //   wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+        // })
         .catch((error) => {
           console.error("Oops, something went wrong!");
           console.error(
