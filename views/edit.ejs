@@ -13,6 +13,8 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
     <section>
       <h1><h1>This is the Edit Page!</h1></h1>
       <section>
@@ -176,18 +178,62 @@
             <div>
               Climate-sensitive health risks: <%= item.healthriskinput %>
             </div>
-            <div>Posted by <%= item.postedBy?.displayName %></div>
+            <div>
+              Posted by
+              <a href="/profile/<%= item.postedBy._id%>"
+                ><%= item.postedBy?.displayName%></a
+              >
+            </div>
+
             <form action="/likePost/<%= item._id %>">
+              <% if (user.likedPosts.includes(item._id)) { %>
+              <!-- If post is already saved by the user, display "Unsave this post" -->
+              <button type="submit">Unlike this post</button>
+              <% } else { %>
+              <!-- If post is not saved by the user, display "Save this post" -->
               <button type="submit">Like this post</button>
+              <% } %>
             </form>
+
+            <form action="/savePost/<%= item._id %>">
+              <% if (user.savedPosts.includes(item._id)) { %>
+              <!-- If post is already saved by the user, display "Unsave this post" -->
+              <button type="submit">Unsave this post</button>
+              <% } else { %>
+              <!-- If post is not saved by the user, display "Save this post" -->
+              <button type="submit">Save this post</button>
+              <% } %>
+            </form>
+
+            <!-- If the post has 1 like, ensure the grammar fits accordingly -->
+            <% if (item.likes == 1) {%>
+            <div>This post has <%= item.likes %> like</div>
+            <% } else { %>
             <div>This post has <%= item.likes %> likes</div>
+            <% } %>
+
+            <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
+            <% if (item.comments == 1) {%>
+            <div>This post has <%= item.comments %> comment</div>
+            <% } else { %>
             <div>This post has <%= item.comments %> comments</div>
+            <% } %>
+
             <div>Posted on <%= item.createdAt %></div>
 
+            <!-- If post was made by the logged in user, provide options to edit and delete posts -->
             <%if(item.postedBy.id == user.id){ %>
             <a href="/edit/<%= item._id %>">Edit</a>
-            <a href="/edit/remove/<%= item._id %>">Remove</a>
+            <!-- Pop up confirmation to make sure you don't accidentally delete -->
+            <button
+              onclick="showConfirmation('<%= item._id %>')"
+              class="text-red-500 cursor-pointer"
+            >
+              Delete
+            </button>
             <%}%>
+
+            <a href="/viewPost/dashboard/<%= item._id %>">View Post</a>
           </li>
           <% }}) %>
         </ul>
@@ -203,6 +249,16 @@
       // CKEDITOR.replace('textinput', {
       //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
       // }, {placeholder: 'Welcome to CKEditor 5!'})
+
+      function showConfirmation(itemId) {
+        console.log("Button clicked!");
+        const result = confirm(
+          "Are you sure you want to delete this post/comment?"
+        );
+        if (result) {
+          window.location.href = `/edit/remove/${itemId}`;
+        }
+      }
     </script>
     <script>
       ClassicEditor.create(document.querySelector("#textinput")).catch(

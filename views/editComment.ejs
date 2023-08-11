@@ -13,15 +13,9 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
-    <h1>Climate-Health Impact Tracker POST VIEW</h1>
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google
-    </a>
-    <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
-    <br />
-    <a href="/dashboard">go back to dashboard</a>
-    <br>
-    <a href="/newPost">Add a new post!</a>
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
+    <h1>Climate-Health Impact Tracker EDIT COMMENT VIEW</h1>
 
     <!-- display selected post -->
     <ul>
@@ -32,29 +26,70 @@
         <div>Year: <%= item.numinput %></div>
         <div>Subregion affected: <%= item.regioninput %></div>
         <div>Countries affected: <%= item.countryinput %></div>
-        <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
-        <div>Posted by <%= item.postedBy?.displayName %></div>
+        <div>
+          Climate-sensitive health risks: <%= item.healthriskinput %>
+        </div>
+        <div>
+          Posted by
+          <a href="/profile/<%= item.postedBy._id%>"
+            ><%= item.postedBy?.displayName%></a
+          >
+        </div>
+
         <form action="/likePost/<%= item._id %>">
+          <% if (user.likedPosts.includes(item._id)) { %>
+          <!-- If post is already saved by the user, display "Unsave this post" -->
+          <button type="submit">Unlike this post</button>
+          <% } else { %>
+          <!-- If post is not saved by the user, display "Save this post" -->
           <button type="submit">Like this post</button>
+          <% } %>
         </form>
+
+        <form action="/savePost/<%= item._id %>">
+          <% if (user.savedPosts.includes(item._id)) { %>
+          <!-- If post is already saved by the user, display "Unsave this post" -->
+          <button type="submit">Unsave this post</button>
+          <% } else { %>
+          <!-- If post is not saved by the user, display "Save this post" -->
+          <button type="submit">Save this post</button>
+          <% } %>
+        </form>
+
+        <!-- If the post has 1 like, ensure the grammar fits accordingly -->
+        <% if (item.likes == 1) {%>
+        <div>This post has <%= item.likes %> like</div>
+        <% } else { %>
         <div>This post has <%= item.likes %> likes</div>
+        <% } %>
+
+        <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
+        <% if (item.comments == 1) {%>
+        <div>This post has <%= item.comments %> comment</div>
+        <% } else { %>
         <div>This post has <%= item.comments %> comments</div>
+        <% } %>
+
         <div>Posted on <%= item.createdAt %></div>
 
-        <div>posted user ID <%= item.postedBy.id %></div>
-        <div>Logged in user ID <%= user.id %></div>
-
+        <!-- If post was made by the logged in user, provide options to edit and delete posts -->
         <%if(item.postedBy.id == user.id){ %>
         <a href="/edit/<%= item._id %>">Edit</a>
-        <a href="/edit/remove/<%= item._id %>">Remove</a>
+        <!-- Pop up confirmation to make sure you don't accidentally delete -->
+        <button
+          onclick="showConfirmation('<%= item._id %>')"
+          class="text-red-500 cursor-pointer"
+        >
+          Delete
+        </button>
         <%}%>
 
-        <a href="/viewPost/<%= item._id %>">View Post</a>
+        <a href="/viewPost/dashboard/<%= item._id %>">View Post</a>
       </li>
     </ul>
 
     <!-- comment form prefilled with comment text -->
-    <% commentsList.forEach(comment => { %> <% if (comment._id==commentId) { %>
+    <% comments.forEach(comment => { %> <% if (comment._id==commentId) { %>
       <form action="/comment/updateComment/<%= item._id%>/comments/<%= comment._id%>" method="POST">
         <label for="commentinput">Comment</label>
         <textarea
@@ -72,17 +107,35 @@
 
     <!-- feed of all other remaining comments-->
     <ul>
-      <% for (let i=0; i<commentsList.length; i++) { %>
+      <% for (let i=0; i<comments.length; i++) { %>
 
-        <% if (commentsList[i]._id!=commentId) { %>
+        <% if (comments[i]._id!=commentId) { %>
         <li>
-          <%- commentsList[i].comment%>
-          <form action="/comment/likeComment/<%= item._id%>/comments/<%= commentsList[i]._id %>">
+          <%- comments[i].comment%>
+          <form action="/comment/likeComment/<%= item._id%>/comments/<%= comments[i]._id %>">
             <button type="submit">Like this comment</button>
           </form>
-          <div>Posted by <%= commentsList[i].postedBy?.displayName %></div>
-          <div>This comment has <%= commentsList[i].likes %> likes</div>
-          <div>posted on <%= commentsList[i].createdAt %></div>
+          <div>Posted by <%= comments[i].postedBy?.displayName %></div>
+          <div>This comment has <%= comments[i].likes %> likes</div>
+          <div>posted on <%= comments[i].createdAt %></div>
+          <div>
+            Posted by
+            <a href="/profile/<%= comments[i].postedBy._id%>"
+              ><%= comments[i].postedBy?.displayName%></a
+            >
+          </div>
+
+          <%if(comments[i].postedBy._id == user.id){ %>
+            <a href="/comment/editComment/<%=item._id %>/comments/<%= comments[i]._id %>">Edit</a>
+            <!-- Pop up confirmation to make sure you don't accidentally delete the post-->
+        <button
+        onclick="showConfirmationComment('<%= item._id %>', '<%= comments[i]._id %>')"
+        class="text-red-500 cursor-pointer"
+      >
+        Delete
+      </button>
+            
+          <%}%>
         </li>
       <% } }%>
     </ul>
@@ -101,6 +154,27 @@
       // CKEDITOR.replace('textinput', {
       //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
       // })
+
+      function showConfirmation(itemId) {
+        console.log("Button clicked!");
+        const result = confirm(
+          "Are you sure you want to delete this post/comment?"
+        );
+        if (result) {
+          window.location.href = `/edit/remove/${itemId}`;
+        }
+      }
+
+      function showConfirmationComment(itemId, commentId) {
+        console.log("Button clicked!");
+        const result = confirm(
+          "Are you sure you want to delete this post/comment?"
+        );
+        if (result) {
+          
+          window.location.href = `/comment/deleteComment/${itemId}/comments/${commentId}`;
+        }
+      }
     </script>
 
     <!-- OLD COMMENT SCRIPT WHICH ACTUALLY MIGHT WORK -->

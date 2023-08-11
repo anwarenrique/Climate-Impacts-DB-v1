@@ -12,14 +12,10 @@
     />
   </head>
   <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
     <h1>Climate-Health Impact Tracker POST VIEW</h1>
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google
-    </a>
-    <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
-    <br />
-    <a href="/dashboard">go back to dashboard</a>
-    <br>
+
     <a href="/newPost">Add a new post!</a>
 
     <!-- display selected post -->
@@ -39,18 +35,41 @@
           >
         </div>
         <form action="/likePost/<%= item._id %>">
+          <% if (user.likedPosts.includes(item._id)) { %>
+          <!-- If post is already saved by the user, display "Unsave this post" -->
+          <button type="submit">Unlike this post</button>
+          <% } else { %>
+          <!-- If post is not saved by the user, display "Save this post" -->
           <button type="submit">Like this post</button>
+          <% } %>
         </form>
-        <div>This post has <%= item.likes %> likes</div>
-        <div>This post has <%= item.comments %> comments</div>
+        <form action="/savePost/<%= item._id %>">
+          <% if (user.savedPosts.includes(item._id)) { %>
+          <!-- If post is already saved by the user, display "Unsave this post" -->
+          <button type="submit">Unsave this post</button>
+          <% } else { %>
+          <!-- If post is not saved by the user, display "Save this post" -->
+          <button type="submit">Save this post</button>
+          <% } %>
+        </form>
+        <!-- If the post has 1 like, ensure the grammar fits accordingly -->
+    <% if (item.likes == 1) {%>
+      <div>This post has <%= item.likes %> like</div>
+      <% } else { %>
+      <div>This post has <%= item.likes %> likes</div>
+      <% } %>
+        <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
+    <% if (item.comments == 1) {%>
+      <div>This post has <%= item.comments %> comment</div>
+      <% } else { %>
+      <div>This post has <%= item.comments %> comments</div>
+      <% } %>
         <div>Posted on <%= item.createdAt %></div>
 
-        <div>posted user ID <%= item.postedBy.id %></div>
-        <div>Logged in user ID <%= user.id %></div>
 
         <%if(item.postedBy.id == user.id){ %>
         <a href="/edit/<%= item._id %>">Edit</a>
-        <!-- Pop up confirmation to make sure you don't accidentally delete -->
+        <!-- Pop up confirmation to make sure you don't accidentally delete the post-->
         <button
           onclick="showConfirmation('<%= item._id %>')"
           class="text-red-500 cursor-pointer"
@@ -98,7 +117,14 @@
           
           <%if(comments[i].postedBy._id == user.id){ %>
             <a href="/comment/editComment/<%=item._id %>/comments/<%= comments[i]._id %>">Edit</a>
-            <a href="/comment/deleteComment/<%=item._id %>/comments/<%= comments[i]._id %> %>">Remove</a>
+            <!-- Pop up confirmation to make sure you don't accidentally delete the post-->
+        <button
+        onclick="showConfirmationComment('<%= item._id %>', '<%= comments[i]._id %>')"
+        class="text-red-500 cursor-pointer"
+      >
+        Delete
+      </button>
+            
           <%}%>
         </li>
       <% } %>
@@ -127,6 +153,17 @@
         if (result) {
           
           window.location.href = `/edit/remove/${itemId}`;
+        }
+      }
+
+      function showConfirmationComment(itemId, commentId) {
+        console.log("Button clicked!");
+        const result = confirm(
+          "Are you sure you want to delete this post/comment?"
+        );
+        if (result) {
+          
+          window.location.href = `/comment/deleteComment/${itemId}/comments/${commentId}`;
         }
       }
     </script>

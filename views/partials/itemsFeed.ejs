@@ -1,0 +1,71 @@
+<h1>this is where the partial items feed begins</h1>
+
+<ul>
+  <% itemList.forEach(item => { %>
+  <li>
+    <h3><%- item.titleinput %></h3>
+    <p><%- item.textinput %></p>
+    <a href="<%= item.linkinput %>" target="_blank">Link</a>
+    <div>Year: <%= item.numinput %></div>
+    <div>Subregion affected: <%= item.regioninput %></div>
+    <div>Countries affected: <%= item.countryinput %></div>
+    <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
+    <div>
+      Posted by
+      <a href="/profile/<%= item.postedBy._id%>"
+        ><%= item.postedBy?.displayName%></a
+      >
+    </div>
+
+    <form action="/likePost/<%= item._id %>">
+      <% if (user.likedPosts.includes(item._id)) { %>
+      <!-- If post is already saved by the user, display "Unsave this post" -->
+      <button type="submit">Unlike this post</button>
+      <% } else { %>
+      <!-- If post is not saved by the user, display "Save this post" -->
+      <button type="submit">Like this post</button>
+      <% } %>
+    </form>
+
+    <form action="/savePost/<%= item._id %>">
+      <% if (user.savedPosts.includes(item._id)) { %>
+      <!-- If post is already saved by the user, display "Unsave this post" -->
+      <button type="submit">Unsave this post</button>
+      <% } else { %>
+      <!-- If post is not saved by the user, display "Save this post" -->
+      <button type="submit">Save this post</button>
+      <% } %>
+    </form>
+
+    <!-- If the post has 1 like, ensure the grammar fits accordingly -->
+    <% if (item.likes == 1) {%>
+    <div>This post has <%= item.likes %> like</div>
+    <% } else { %>
+    <div>This post has <%= item.likes %> likes</div>
+    <% } %>
+
+    <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
+    <% if (item.comments == 1) {%>
+    <div>This post has <%= item.comments %> comment</div>
+    <% } else { %>
+    <div>This post has <%= item.comments %> comments</div>
+    <% } %>
+
+    <div>Posted on <%= item.createdAt %></div>
+
+    <!-- If post was made by the logged in user, provide options to edit and delete posts -->
+    <%if(item.postedBy.id == user.id){ %>
+    <a href="/edit/<%= item._id %>">Edit</a>
+    <!-- Pop up confirmation to make sure you don't accidentally delete -->
+    <button
+      onclick="showConfirmation('<%= item._id %>')"
+      class="text-red-500 cursor-pointer"
+    >
+      Delete
+    </button>
+    <%}%>
+
+    <a href="/viewPost/dashboard/<%= item._id %>">View Post</a>
+  </li>
+  <% }) %>
+</ul>

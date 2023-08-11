@@ -12,12 +12,9 @@
     />
   </head>
   <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
     <h1>Share your climate and health story!</h1>
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google
-    </a>
-    <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
-    <a href="/dashboard">go back to dashboard</a>
 
     <!-- Form for adding new posts -->
     <form action="/new" method="POST">
@@ -139,38 +136,8 @@
       <button type="submit" id="submitButton">Add item</button>
     </form>
 
-    <ul>
-      <% itemList.forEach(item => { %>
-      <li>
-        <h3><%- item.titleinput %></h3>
-        <p><%- item.textinput %></p>
-        <a href="<%= item.linkinput %>" target="_blank">Link</a>
-        <div>Year: <%= item.numinput %></div>
-        <div>Subregion affected: <%= item.regioninput %></div>
-        <div>Countries affected: <%= item.countryinput %></div>
-        <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
-        <div>Posted by <%= item.postedBy?.displayName %></div>
-        <form action="/likePost/<%= item._id %>">
-          <button type="submit">Like this post</button>
-        </form>
-        <div>This post has <%= item.likes %> likes</div>
-        <div>This post has <%= item.comments %> comments</div>
-        <div>Posted on <%= item.createdAt %></div>
-
-        <!-- If post was made by the logged in user, provide options to edit and delete posts -->
-        <%if(item.postedBy.id == user.id){ %>
-        <a href="/edit/<%= item._id %>">Edit</a>
-        <!-- Pop up confirmation to make sure you don't accidentally delete -->
-        <button
-          onclick="showConfirmation('<%= item._id %>')"
-          class="text-red-500 cursor-pointer"
-        >
-          Delete
-        </button>
-        <%}%>
-      </li>
-      <% }) %>
-    </ul>
+    <!-- PARTIAL FOR ITEMS LIST FEED -->
+    <%- include('partials/itemsFeed') %>
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
     <script>

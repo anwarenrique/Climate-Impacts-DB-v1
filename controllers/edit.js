@@ -6,7 +6,7 @@ module.exports = {
     const id = req.params.id;
     console.log(id);
     try {
-      const items = await ItemList.find();
+      const items = await ItemList.find().populate("postedBy");
       res.render("edit.ejs", { itemList: items, idItem: id, user: req.user });
     } catch (err) {
       if (err) return res.status(500).send(err);

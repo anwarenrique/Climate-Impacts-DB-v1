@@ -13,15 +13,13 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
     <h1>My liked posts</h1>
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google
-    </a>
-    <a href="/dashboard">go back to dashboard</a>
-    <br />
-    <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
-    <br />
+
     <a href="/newPost">Add a new post!</a>
+    <br />
+    <a href="/savedPosts">My saved posts</a>
 
     <h2>Filter</h2>
     <form action="/getFilteredItems/likedPosts/1" method="GET">
@@ -134,44 +132,8 @@
       <button type="submit">Sort</button>
     </form>
 
-    <ul>
-      <% itemList.forEach(item => { %>
-      <li>
-        <h3><%- item.titleinput %></h3>
-        <p><%- item.textinput %></p>
-        <a href="<%= item.linkinput %>" target="_blank">Link</a>
-        <div>Year: <%= item.numinput %></div>
-        <div>Subregion affected: <%= item.regioninput %></div>
-        <div>Countries affected: <%= item.countryinput %></div>
-        <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
-        <div>
-          Posted by
-          <a href="/profile/<%= item.postedBy._id%>"
-            ><%= item.postedBy?.displayName%></a
-          >
-        </div>
-        <form action="/likePost/<%= item._id %>">
-          <button type="submit">Like this post</button>
-        </form>
-        <div>This post has <%= item.likes %> likes</div>
-        <div>This post has <%= item.comments %> comments</div>
-        <div>Posted on <%= item.createdAt %></div>
-
-        <%if(item.postedBy.id == user.id){ %>
-        <a href="/edit/<%= item._id %>">Edit</a>
-        <!-- Pop up confirmation to make sure you don't accidentally delete -->
-        <button
-          onclick="showConfirmation('<%= item._id %>')"
-          class="text-red-500 cursor-pointer"
-        >
-          Delete
-        </button>
-        <%}%>
-
-        <a href="/viewPost/<%= item._id %>">View Post</a>
-      </li>
-      <% }) %>
-    </ul>
+    <!-- PARTIAL FOR ITEMS LIST FEED -->
+    <%- include('partials/itemsFeed') %>
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
