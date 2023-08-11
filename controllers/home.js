@@ -25,7 +25,7 @@ module.exports = {
   getNewPost: async (req, res) => {
     try {
       const items = await ItemList.find().populate("postedBy");
-      res.render("newPost.ejs", { itemList: items });
+      res.render("newPost.ejs", { itemList: items, user: req.user });
     } catch (err) {
       res.render("error/500");
       if (err) return res.status(500).send(err);
@@ -46,6 +46,7 @@ module.exports = {
       comments: 0,
       // User: req.body.User,
     });
+
     try {
       await newItem.save();
       // Update the user's postCount
