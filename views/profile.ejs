@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="Tagify" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Climate-Health Impacts Database</title>
-    <link rel="stylesheet" href="/style.css" />
+    <!-- <link rel="stylesheet" href="/css/output.css" /> -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
@@ -204,7 +204,10 @@
         <!-- If post was made by the logged in user, provide options to edit and delete posts -->
         <%if(item.postedBy.id == user.id){ %>
         <a href="/edit/<%= item._id %>">Edit</a>
-        <a href="/edit/remove/<%= item._id %>">Remove</a>
+
+        <!-- Pop up confirmation to make sure you don't accidentally delete -->
+        <button onclick="showConfirmation('<%= item._id %>')" class="text-red-500 cursor-pointer">Delete</button>
+  </li>
         <%}%>
 
         <a href="/viewPost/<%= item._id %>">View Post</a>
@@ -226,6 +229,17 @@
       // CKEDITOR.replace('textinput', {
       //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
       // })
+
+      function showConfirmation(itemId) {
+        console.log("Button clicked!");
+        const result = confirm(
+          "Are you sure you want to delete this post/comment?"
+        );
+        if (result) {
+          
+          window.location.href = `/edit/remove/${itemId}`;
+        }
+      }
     </script>
     <script>
       ClassicEditor.create(document.querySelector("#textinput")).catch(

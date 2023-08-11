@@ -50,7 +50,13 @@
 
         <%if(item.postedBy.id == user.id){ %>
         <a href="/edit/<%= item._id %>">Edit</a>
-        <a href="/edit/remove/<%= item._id %>">Remove</a>
+        <!-- Pop up confirmation to make sure you don't accidentally delete -->
+        <button
+          onclick="showConfirmation('<%= item._id %>')"
+          class="text-red-500 cursor-pointer"
+        >
+          Delete
+        </button>
         <%}%>
 
         <a href="/viewPost/dashboard/<%= item._id %>">View Post</a>
@@ -112,6 +118,17 @@
       // CKEDITOR.replace('textinput', {
       //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
       // })
+
+      function showConfirmation(itemId) {
+        console.log("Button clicked!");
+        const result = confirm(
+          "Are you sure you want to delete this post/comment?"
+        );
+        if (result) {
+          
+          window.location.href = `/edit/remove/${itemId}`;
+        }
+      }
     </script>
 
     <!-- OLD COMMENT SCRIPT WHICH ACTUALLY MIGHT WORK -->
