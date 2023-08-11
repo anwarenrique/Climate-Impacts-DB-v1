@@ -13,14 +13,9 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbarGuest') %>
     <h1>ClimaTracker - GUEST profile view</h1>
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google to add posts, save
-      posts, comment, and more!
-    </a>
-    <br />
-
-    <a href="/guestDashboard">go back to dashboard</a>
 
     <section>
       <h2>display name: <%= profile.displayName%></h2>
@@ -161,13 +156,13 @@
         <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
         <div>
           Posted by
-          <a href="/profile/<%= item.postedBy._id%>"
+          <a href="/profile/guestDashboard/<%= item.postedBy._id%>"
             ><%= item.postedBy?.displayName%></a
           >
         </div>
 
         <form action="/auth/google">
-          <button type="submit">Log in to like posts</button>
+          <button type="submit">Log in to like and save posts!</button>
         </form>
 
         <!-- If the post has 1 like, ensure the grammar fits accordingly -->
@@ -186,7 +181,7 @@
 
         <div>Posted on <%= item.createdAt %></div>
 
-        <a href="/viewPost/<%= item._id %>">View Post</a>
+        <a href="/viewPost/guestDashboard/<%= item._id %>">View Post</a>
       </li>
       <% }) %>
     </ul>

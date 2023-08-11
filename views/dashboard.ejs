@@ -13,125 +13,11 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
+
     <h1>Climate-Health Impact Tracker DASHBOARD</h1>
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google
-    </a>
-    <a href="/auth/logout"> <i class="fab fa-google left"></i> Log Out </a>
-    <br />
     <a href="/newPost">Add a new post!</a>
-    <!-- <a href="/likedPosts">View liked posts</a>
-    <a href="/savedPosts">View saved posts</a> -->
-    <br />
-    <a href="/profile/<%= user._id%>">My profile</a>
-
-    <!-- <form action="/new" method="POST">
-      <label for="titleinput">Input Title*</label>
-      <input type="text" name="titleinput" maxlength="280"/>
-      <br />
-      <label for="textinput">Input Text*</label>
-      <textarea id="textinput" type="text" name="textinput" maxlength="40000"></textarea>
-
-      <br />
-      <label for="linkinput">Paste Link*</label>
-      <input type="url" name="linkinput" maxlength="2100"/>
-      <br />
-      <label for="numinput">Input Year*</label>
-      <input type="number" name="numinput" value="2023" />
-      <br />
-
-      <label for="regioninput">Select a subregion:*</label>
-      <select name="regioninput" id="regioninput" type="text" multiple>
-        <option value="">--Please choose an option--</option>
-        <option value="The Americas (all subregions)">
-          The Americas (full region)
-        </option>
-        <option value="North America">North America</option>
-        <option value="Central America">Central America</option>
-        <option value="Caribbean">Caribbean</option>
-        <option value="South America">South America</option>
-      </select>
-
-      <br />
-      <label for="countryinput">Please input affected country(s)*</label>
-      <select type="text" name="countryinput" id="countryinput" multiple>
-        <option value="All countries">All countries</option>
-        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-        <option value="Argentina">Argentina</option>
-        <option value="Bahamas">Bahamas</option>
-        <option value="Barbados">Barbados</option>
-        <option value="Belize">Belize</option>
-        <option value="Bolivia">Bolivia</option>
-        <option value="Brazil">Brazil</option>
-        <option value="Canada">Canada</option>
-        <option value="Chile">Chile</option>
-        <option value="Colombia">Colombia</option>
-        <option value="CostaRica">Costa Rica</option>
-        <option value="Cuba">Cuba</option>
-        <option value="Dominica">Dominica</option>
-        <option value="Dominican Republic">Dominican Republic</option>
-        <option value="Ecuador">Ecuador</option>
-        <option value="El Salvador">El Salvador</option>
-        <option value="Grenada">Grenada</option>
-        <option value="Guatemala">Guatemala</option>
-        <option value="Guyana">Guyana</option>
-        <option value="Haiti">Haiti</option>
-        <option value="Honduras">Honduras</option>
-        <option value="Jamaica">Jamaica</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Nicaragua">Nicaragua</option>
-        <option value="Panama">Panama</option>
-        <option value="Paraguay">Paraguay</option>
-        <option value="Peru">Peru</option>
-        <option value="Saint Lucia">Saint Lucia</option>
-        <option value="St Vincent and the Grenadines">
-          St. Vincent and the Grenadines
-        </option>
-        <option value="St Kitts and Nevis">St. Kitts and Nevis</option>
-        <option value="Suriname">Suriname</option>
-        <option value="Trinida and Tobago">Trinidad and Tobago</option>
-        <option value="United States">United States</option>
-        <option value="Uruguay">Uruguay</option>
-        <option value="Venezuela">Venezuela</option>
-      </select>
-
-      <br />
-      <label for="healthriskinput"
-        >Please input relevant climate-sensitive health risks</label
-      >
-      <select name="healthriskinput" id="healthriskinput" multiple>
-        <option value="General">General</option>
-        <option value="Air-borne and respiratory illnesses">
-          Air-borne and respiratory illnesses
-        </option>
-        <option value="Heat-related illness">Heat-related illness</option>
-        <option value="Injury and mortality from extreme weather events">
-          Injury and mortality from extreme weather events
-        </option>
-        <option value="Malnutrition and food-borne diseases">
-          Malnutrition and food-borne diseases
-        </option>
-        <option value="Mental and psychosocial health">
-          Mental and psychosocial health
-        </option>
-        <option value="Noncommunicable diseases (NCDs)">
-          Noncommunicable diseases (NCDs)
-        </option>
-        <option value="Vector-borne diseases">Vector-borne diseases</option>
-        <option
-          value="Water-borne diseases and other water-related health outcomes"
-        >
-          Water-borne diseases and other water-related health outcomes
-        </option>
-        <option value="Zoonoses">Zoonoses</option>
-      </select>
-
-      <br />
-      <label for="citationinput">Input Citation</label>
-      <input type="text" name="citationinput" />
-
-      <button type="submit">Add item</button>
-    </form> -->
 
     <!-- FILTER BUTTON -->
     <h2>Filter</h2>
@@ -247,75 +133,8 @@
       <button type="submit">Sort</button>
     </form>
 
-    <ul>
-      <% itemList.forEach(item => { %>
-      <li>
-        <h3><%- item.titleinput %></h3>
-        <p><%- item.textinput %></p>
-        <a href="<%= item.linkinput %>" target="_blank">Link</a>
-        <div>Year: <%= item.numinput %></div>
-        <div>Subregion affected: <%= item.regioninput %></div>
-        <div>Countries affected: <%= item.countryinput %></div>
-        <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
-        <div>
-          Posted by
-          <a href="/profile/<%= item.postedBy._id%>"
-            ><%= item.postedBy?.displayName%></a
-          >
-        </div>
-
-        <form action="/likePost/<%= item._id %>">
-          <% if (user.likedPosts.includes(item._id)) { %>
-          <!-- If post is already saved by the user, display "Unsave this post" -->
-          <button type="submit">Unlike this post</button>
-          <% } else { %>
-          <!-- If post is not saved by the user, display "Save this post" -->
-          <button type="submit">Like this post</button>
-          <% } %>
-        </form>
-
-        <form action="/savePost/<%= item._id %>">
-          <% if (user.savedPosts.includes(item._id)) { %>
-          <!-- If post is already saved by the user, display "Unsave this post" -->
-          <button type="submit">Unsave this post</button>
-          <% } else { %>
-          <!-- If post is not saved by the user, display "Save this post" -->
-          <button type="submit">Save this post</button>
-          <% } %>
-        </form>
-
-        <!-- If the post has 1 like, ensure the grammar fits accordingly -->
-        <% if (item.likes == 1) {%>
-        <div>This post has <%= item.likes %> like</div>
-        <% } else { %>
-        <div>This post has <%= item.likes %> likes</div>
-        <% } %>
-
-        <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
-        <% if (item.comments == 1) {%>
-        <div>This post has <%= item.comments %> comment</div>
-        <% } else { %>
-        <div>This post has <%= item.comments %> comments</div>
-        <% } %>
-
-        <div>Posted on <%= item.createdAt %></div>
-
-        <!-- If post was made by the logged in user, provide options to edit and delete posts -->
-        <%if(item.postedBy.id == user.id){ %>
-        <a href="/edit/<%= item._id %>">Edit</a>
-        <!-- Pop up confirmation to make sure you don't accidentally delete -->
-        <button
-          onclick="showConfirmation('<%= item._id %>')"
-          class="text-red-500 cursor-pointer"
-        >
-          Delete
-        </button>
-        <%}%>
-
-        <a href="/viewPost/dashboard/<%= item._id %>">View Post</a>
-      </li>
-      <% }) %>
-    </ul>
+    <!-- PARTIAL FOR ITEMS LIST FEED -->
+    <%- include('partials/itemsFeed') %>
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 

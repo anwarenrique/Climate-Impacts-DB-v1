@@ -13,13 +13,9 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
   <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbarGuest') %>
     <h1>Climate-Health Impact Tracker GUEST VIEW</h1>
-    <a href="/auth/google">
-      <i class="fab fa-google left"></i> Log In With Google to add posts, save
-      posts, comment, and more!
-    </a>
-
-    <a href="/">back to home page</a>
 
     <!-- FILTER BUTTON -->
     <h2>Filter</h2>
@@ -152,7 +148,7 @@
         </div>
 
         <form action="/auth/google">
-          <button type="submit">Log in to like posts!</button>
+          <button type="submit">Log in to like and save posts!</button>
         </form>
 
         <!-- If the post has 1 like, ensure the grammar fits accordingly -->

@@ -144,10 +144,10 @@ module.exports = {
       const view = req.params.view;
       const profileId = req.params.id;
 
-      if (view != "guestDashboard") {
-        const userId = req.user.id;
-        const user = await User.findById(userId);
-      }
+      // if (view != "guestDashboard") {
+      //   const userId = req.user.id;
+      //   const user = await User.findById(userId);
+      // }
 
       // Apply filters
       if (regionfilter) {
@@ -172,11 +172,17 @@ module.exports = {
       }
 
       if (view == "profile") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
         query = query.where("postedBy").equals(profileId);
       } else if (view == "likedPosts") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
         // Modify the query to filter liked posts
         query = query.where("_id").in(user.likedPosts);
       } else if (view == "savedPosts") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
         // Modify the query to filter liked posts
         query = query.where("_id").in(user.savedPosts);
       }
@@ -221,17 +227,23 @@ module.exports = {
       const view = req.params.view;
 
       if (view != "guestDashboard") {
-        const userId = req.user.id;
-        const user = await User.findById(userId);
+        // const userId = req.user.id;
+        // const user = await User.findById(userId);
       }
 
       let query = ItemList.find().populate("postedBy");
       if (view == "profile") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
         query = query.where("postedBy").equals(profileId);
       } else if (view == "likedPosts") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
         // Modify the query to filter liked posts
         query = query.where("_id").in(user.likedPosts);
       } else if (view == "savedPosts") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
         // Modify the query to filter saved posts
         query = query.where("_id").in(user.savedPosts);
       }

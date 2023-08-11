@@ -83,7 +83,7 @@ module.exports = {
 
       res.render("editComment.ejs", {
         item,
-        commentsList: comments,
+        comments: comments,
         commentId: Commentid,
         user: req.user,
       });
@@ -121,7 +121,7 @@ module.exports = {
       await User.findByIdAndUpdate(userId, { $inc: { commentCount: -1 } });
 
       console.log(result);
-      res.redirect("/viewPost/dashboard" + Postid);
+      res.redirect("/viewPost/dashboard/" + Postid);
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");
