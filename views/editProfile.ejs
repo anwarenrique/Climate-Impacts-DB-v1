@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="Tagify" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate-Health Impacts Database</title>
+    <!-- <link rel="stylesheet" href="/css/output.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
+    />
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+  </head>
+  <body>
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
+
+    <h1>ClimaTracker - EDIT profile view</h1>
+
+    <%if(profile.id == user.id){ %>
+    <a href="/savedPosts">My saved posts</a>
+    <br />
+    <a href="/likedPosts">My liked posts</a>
+    <br />
+    <a href="/newPost">Add a new post!</a>
+    <%}%>
+
+    <section>
+      <h2>display name: <%= profile.displayName%></h2>
+      <img src="<%- profile.image%>" alt="user image" />
+      <p>account created on: <%= profile.createdAt%></p>
+      <h3>Number of posts: <%= profile.postCount%></h3>
+      <h3>Number of comments: <%= profile.commentCount%></h3>
+    </section>
+
+    <form action="/profile/editDisplayName/<%=profile._id %>" method="post">
+      <h3>Edit your displayName</h3>
+      <textarea
+        name="newDisplayName"
+        id="newDisplayName"
+        cols="30"
+        placeholder="enter your new displayName"
+      ></textarea>
+      <button class="text-red-500 cursor-pointer" type="submit">
+        Submit changes
+      </button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
+    <script>
+      // new MultiSelectTag("regioninput"); // id
+      // new MultiSelectTag("countryinput"); // id
+      // new MultiSelectTag("healthriskinput"); // id
+
+      new MultiSelectTag("regionfilter"); // id
+      new MultiSelectTag("countryfilter"); // id
+      new MultiSelectTag("healthriskfilter"); // id
+
+      // CKEDITOR.replace('textinput', {
+      //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
+      // })
+
+      //   function showConfirmation(userId, newDisplayName) {
+      //     console.log("Button clicked!");
+      //     const result = confirm(
+      //       "Are you sure you want to edit your display name?"
+      //     );
+      //     if (result) {
+      //       window.location.href = `/profile/editDisplayName/${userId}/${newDisplayName}`;
+      //     }
+      //   }
+    </script>
+    <script>
+      ClassicEditor.create(document.querySelector("#textinput")).catch(
+        (error) => {
+          console.error(error);
+        }
+      );
+    </script>
+  </body>
+</html>
