@@ -7,5 +7,11 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
 router.get("/:id", profileController.getProfile); //read
 router.get("/guestDashboard/:id", profileController.getGuestProfile); //read
+router.get("/getEditProfile/:id", ensureAuth, profileController.getEditProfile); //access the edit profile page
+router.post(
+  "/editDisplayName/:id",
+  ensureAuth,
+  profileController.editDisplayName
+); //edit the display name
 
 module.exports = router;
