@@ -20,6 +20,9 @@ module.exports = {
       backgroundImage: {
         "trees-cut": "url('/img/mattpalmer.jpg')",
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+      },
     },
   },
   plugins: [],
