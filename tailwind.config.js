@@ -16,6 +16,8 @@ module.exports = {
         "primary-color": "#10B981",
         "secondary-color": "r#111827",
         "dark-primary": "#031E15",
+        navblack: "#0F1419",
+        climagray: "#F0F0F0",
       },
       backgroundImage: {
         "trees-cut": "url('/img/mattpalmer.jpg')",
