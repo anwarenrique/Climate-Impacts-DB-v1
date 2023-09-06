@@ -13,7 +13,7 @@
       >
         <li class="text-navblack">
           <button
-            class="font-roboto font-semibold mr-4 flex gap-3 leading-tight"
+            class="font-roboto font-semibold mr-4 flex gap-3 leading-none"
             href="/dashboard"
           >
             <i class="fa-solid fa-house text-lg"></i>Dashboard
@@ -21,19 +21,29 @@
         </li>
 
         <li class="">
-          <i class="fa-solid fa-circle-info"></i>
-          <a class="font-roboto font-semibold" href="#">About</a>
+          <button
+            class="font-roboto font-semibold flex gap-3 leading-none"
+            href="#"
+          >
+            <i class="fa-solid fa-circle-info"></i>About
+          </button>
         </li>
 
         <li class="">
-          <i class="fa-solid fa-book"></i>
-          <a class="font-roboto font-semibold" href="#">Resources</a>
+          <button
+            class="font-roboto font-semibold flex gap-3 leading-none"
+            href="#"
+          >
+            <i class="fa-solid fa-book"></i>Resources
+          </button>
         </li>
         <li class="">
-          <i class="fa-solid fa-user"></i>
-          <a class="font-roboto font-semibold" href="/profile/<%= user._id%>"
-            >My profile</a
+          <button
+            class="font-roboto font-semibold flex gap-3 leading-none"
+            href="/profile/<%= user._id%>"
           >
+            <i class="fa-solid fa-user"></i>My profile
+          </button>
         </li>
 
         <!-- <a href="/auth/google">
@@ -44,7 +54,7 @@
     </div>
     <div class="flex items-center gap-6 text-xl">
       <button
-        class="px-5 py-2 rounded-full font-roboto font-semibold"
+        class="px-5 py-2 rounded-full font-roboto font-semibold flex gap-3 leading-none"
         href="/profile/<%= user._id%>"
       >
         <i class="fa-solid fa-user"></i>
