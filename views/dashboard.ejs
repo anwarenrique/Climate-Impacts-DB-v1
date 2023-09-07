@@ -29,6 +29,7 @@
     <!-- Nav bar -->
     <%- include('partials/navbar') %>
 
+    <!-- Page title section -->
     <section class="flex justify-between w-7/12 mx-auto h-14 flex items-center">
       <div class="">
         <h3
@@ -40,19 +41,39 @@
       <div class="flex justify-items-end flex gap-x-2">
         <a
           href="/newPost"
-          class="w-36 h-12 text-white font-roboto rounded-3xl text-base font-medium bg-gradient-to-r from-[#34D398] to-[#077F59] flex gap-x-2.5 leading-none items-center justify-center tracking-wide"
+          class="w-40 h-12 text-white font-roboto rounded-3xl text-base font-medium bg-gradient-to-r from-[#077F59] to-[#34D398] flex gap-x-2.5 leading-none items-center justify-center tracking-wide px-3"
         >
-          <i class="fa-solid fa-plus"></i>Create a Post
+          Create a Post<i class="fa-solid fa-plus"></i>
         </a>
-        <button
-          class="h-12 w-24 font-roboto rounded-3xl text-base font-bold bg-[#CACACA]"
-        >
-          Sort
-        </button>
+        <form class="" action="/getSortedItems/dashboard/sort">
+          <!-- <label for="sort">Sort By:</label> -->
+          <select
+            class="h-12 w-24 font-roboto rounded-3xl text-base font-bold bg-[#CACACA] border-0 focus:ring-slate-500"
+            name="sort"
+            id="sortSelect"
+            onchange="this.form.submit()"
+          >
+            <option class="" value="">Sort</option>
+            <option class="" value="yearDecreasing">
+              Year published (most recent first)
+            </option>
+            <option class="" value="yearIncreasing">
+              Year published (oldest first)
+            </option>
+            <option class="" value="createdAtDecreasing">
+              Date posted (most recent first)
+            </option>
+            <option class="" value="createdAtIncreasing">
+              Date posted (oldest first)
+            </option>
+            <option class="" value="likes">Likes</option>
+            <option class="" value="comments">Comments</option>
+          </select>
+
+          <!-- <button type="submit">Sort</button> -->
+        </form>
       </div>
     </section>
-
-    <a href="/newPost">Add a new post!</a>
 
     <!-- FILTER BUTTON -->
     <h2>Filter</h2>
