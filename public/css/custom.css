@@ -3,3 +3,7 @@ body::before {
   content: "";
   height: 1rem;
 }
+.mult-select-tag {
+  min-width: 8rem !important;
+  --border-color: red !important;
+}
