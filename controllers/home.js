@@ -154,7 +154,7 @@ module.exports = {
         console.log("regioninput");
         query = query
           .where("regioninput")
-          .in(["The Americas (all subregions)", regionfilter])
+          .in(regionfilter)
           .sort({
             regioninput:
               regionfilter === "The Americas (all subregions)" ? -1 : 1,
@@ -163,7 +163,7 @@ module.exports = {
       if (countryfilter) {
         query = query
           .where("countryinput")
-          .in(["All countries", countryfilter])
+          .in(countryfilter)
           .sort({ countryinput: countryfilter === "All countries" ? 1 : -1 });
       }
 

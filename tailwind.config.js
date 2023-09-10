@@ -5,7 +5,10 @@ module.exports = {
     // "**/*.{html, js, ejs}",
     // "**/**/*.{html, js, ejs}",
     "./views/**/*.ejs",
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
+  plugins: [require("tw-elements/dist/plugin.cjs")],
+  darkMode: "class",
   theme: {
     screens: {
       xs: "361px",
@@ -27,5 +30,4 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms")],
 };

@@ -78,7 +78,158 @@
     <div class="flex">
       <!-- FILTER BUTTON -->
       <section class="w-1/4 text-xl flex flex-col">
-        <form class="" action="/getFilteredItems/dashboard/filter" method="GET">
+        <!-- Tailwind-elements multi select -->
+        <div>
+          <form action="/getFilteredItems/dashboard/filter" method="GET">
+            <div
+              class="w-64 mx-auto mb-6 flex items-center flex-col justify-center rounded-3xl text-navblack"
+            >
+              <select
+                class="rounded-3xl border-1 border-red-600 text-red-600"
+                id="regionfilter"
+                name="regionfilter"
+                data-te-select-init
+                data-te-select-selectAll="false"
+                data-te-select-filter="true"
+                multiple
+                data-te-class-formCheckInput="rounded-3xl border-1 border-red-600 text-red-600 bg-red-600 bg-[#BEEDC0]"
+                data-te-class-selectInput="rounded-3xl bg-red-600"
+                data-te-class-dropdown="bg-[#BEEDC0] rounded-2xl"
+                data-te-class-inputGroup="text-red-600 bg-red-600"
+                data-te-class-form-outline="relative bg-[#BEEDC0] rounded-full border-1 border-red-600"
+                data-te-class-formOutline="relative rounded-full"
+              >
+                >
+                <option value="The Americas (all subregions)">
+                  The Americas (full region)
+                </option>
+                <option value="North America">North America</option>
+                <option value="Central America">Central America</option>
+                <option value="Caribbean">Caribbean</option>
+                <option value="South America">South America</option>
+              </select>
+              <label
+                data-te-select-label-ref
+                class="text-navblack text-roboto font-bold"
+                >Filter by Subregion</label
+              >
+            </div>
+
+            <div
+              class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl bg-[#C6E8F0] text-navblack"
+            >
+              <select
+                class=""
+                id="countryfilter"
+                name="countryfilter"
+                data-te-select-init
+                data-te-select-filter="true"
+                multiple
+              >
+                <option value="All countries">All countries</option>
+                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Bahamas">Bahamas</option>
+                <option value="Barbados">Barbados</option>
+                <option value="Belize">Belize</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Canada">Canada</option>
+                <option value="Chile">Chile</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Costa Rica">Costa Rica</option>
+                <option value="Cuba">Cuba</option>
+                <option value="Dominica">Dominica</option>
+                <option value="Dominican Republic">Dominican Republic</option>
+                <option value="Ecuador">Ecuador</option>
+                <option value="El Salvador">El Salvador</option>
+                <option value="Grenada">Grenada</option>
+                <option value="Guatemala">Guatemala</option>
+                <option value="Guyana">Guyana</option>
+                <option value="Haiti">Haiti</option>
+                <option value="Honduras">Honduras</option>
+                <option value="Jamaica">Jamaica</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Nicaragua">Nicaragua</option>
+                <option value="Panama">Panama</option>
+                <option value="Paraguay">Paraguay</option>
+                <option value="Peru">Peru</option>
+                <option value="Saint Lucia">Saint Lucia</option>
+                <option value="St Vincent and the Grenadines">
+                  St. Vincent and the Grenadines
+                </option>
+                <option value="St Kitts and Nevis">St. Kitts and Nevis</option>
+                <option value="Suriname">Suriname</option>
+                <option value="Trinida and Tobago">Trinidad and Tobago</option>
+                <option value="United States">United States</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Venezuela">Venezuela</option>
+              </select>
+              <label
+                class="text-navblack text-roboto font-bold"
+                data-te-select-label-ref
+                >Filter by Country</label
+              >
+            </div>
+
+            <div
+              class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl bg-[#E7C6B2] text-navblack"
+            >
+              <select
+                class=""
+                id="healthriskfilter"
+                name="healthriskfilter"
+                data-te-select-init
+                data-te-select-filter="true"
+                multiple
+              >
+                <option value="General">General</option>
+                <option value="Air-borne and respiratory illnesses">
+                  Air-borne and respiratory illnesses
+                </option>
+                <option value="Heat-related illness">
+                  Heat-related illness
+                </option>
+                <option
+                  value="Injury and mortality from extreme weather events"
+                >
+                  Injury and mortality from extreme weather events
+                </option>
+                <option value="Malnutrition and food-borne diseases">
+                  Malnutrition and food-borne diseases
+                </option>
+                <option value="Mental and psychosocial health">
+                  Mental and psychosocial health
+                </option>
+                <option value="Noncommunicable diseases (NCDs)">
+                  Noncommunicable diseases (NCDs)
+                </option>
+                <option value="Vector-borne diseases">
+                  Vector-borne diseases
+                </option>
+                <option
+                  value="Water-borne diseases and other water-related health outcomes"
+                >
+                  Water-borne diseases and other water-related health outcomes
+                </option>
+                <option value="Zoonoses">Zoonoses</option>
+              </select>
+              <label
+                class="text-navblack text-roboto font-bold"
+                data-te-select-label-ref
+                >Filter by Health Impact</label
+              >
+            </div>
+
+            <div
+              class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold my-6"
+            >
+              <button type="submit">Apply filter</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- <form class="" action="/getFilteredItems/dashboard/filter" method="GET">
           <div
             class="w-64 bg-[#BEEDC0] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold"
           >
@@ -193,7 +344,7 @@
           >
             <button type="submit">Apply filter</button>
           </div>
-        </form>
+        </form> -->
 
         <!-- CLEAR SORT BUTTON -->
         <form action="/clearFilter/dashboard/1">
@@ -228,18 +379,40 @@
       <!-- PARTIAL FOR ITEMS LIST FEED -->
       <section class=""><%- include('partials/itemsFeed') %></section>
     </div>
-    <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
+
+    <!-- Tailwind Elements stuff -->
+    <script
+      type="text/javascript"
+      src="/tw-elements/dist/js/tw-elements.umd.min.js"
+    ></script>
+
+    <script>
+      const regionfilter = document.querySelector("#regionfilter");
+      const multiSelectInstance1 = te.Select.getInstance(regionfilter);
+      multiSelectInstance1.setValue([]);
+
+      const countryfilter = document.querySelector("#countryfilter");
+      const multiSelectInstance2 = te.Select.getInstance(countryfilter);
+      multiSelectInstance2.setValue([]);
+
+      const healthriskfilter = document.querySelector("#healthriskfilter");
+      const multiSelectInstance3 = te.Select.getInstance(healthriskfilter);
+      multiSelectInstance3.setValue([]);
+    </script>
+
+    <!-- OLD multi select stuff -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 
     <script>
       // new MultiSelectTag("regioninput"); // id
       // new MultiSelectTag("countryinput"); // id
       // new MultiSelectTag("healthriskinput"); // id
 
-      new MultiSelectTag("regionfilter", {
-        rounded: true,
-      }); // id
-      new MultiSelectTag("countryfilter"); // id
-      new MultiSelectTag("healthriskfilter"); // id
+      // new MultiSelectTag("regionfilter", {
+      //   rounded: true,
+      // }); // id
+      // new MultiSelectTag("countryfilter"); // id
+      // new MultiSelectTag("healthriskfilter"); // id
 
       // CKEDITOR.replace('textinput', {
       //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
