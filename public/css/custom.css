@@ -7,3 +7,10 @@ body::before {
   min-width: 8rem !important;
   --border-color: red !important;
 }
+#select-wrapper-824006 {
+  border-radius: 1.5rem !important;
+}
+
+#regionfilter {
+  border-radius: 1.5rem !important;
+}
