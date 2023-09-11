@@ -222,7 +222,11 @@ module.exports = {
   },
   getSortedItems: async (req, res) => {
     try {
-      const { sort } = req.query;
+      //Exctracting second item of sort array because Tailwind-Elements gives array of [first item, item selected]
+      const sort = Array.isArray(req.query.sort)
+        ? req.query.sort[1]
+        : req.query.sort;
+      // const { sort } = req.query;
       const profileId = req.params.id;
       const view = req.params.view;
 
@@ -282,6 +286,7 @@ module.exports = {
         res.render("guestDashboard.ejs", { itemList });
       }
       if (view == "dashboard") {
+        console.log(sort);
         res.render("dashboard.ejs", { itemList, user: req.user });
       } else if (view == "profile") {
         //Retrieve the profile document to get postCount and commentCount

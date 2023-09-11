@@ -30,7 +30,7 @@
     <%- include('partials/navbar') %>
 
     <!-- Page title section -->
-    <section class="flex justify-between w-7/12 mx-auto h-14 flex items-center">
+    <section class="flex justify-between w-6/12 mx-auto h-14 flex items-center">
       <div class="">
         <h3
           class="h-12 leading-10 flex font-roboto text-xl text-navblack font-bold flex items-center"
@@ -47,7 +47,7 @@
         </a>
         <form class="" action="/getSortedItems/dashboard/sort">
           <!-- <label for="sort">Sort By:</label> -->
-          <select
+          <!-- <select
             class="h-12 w-24 font-roboto rounded-3xl text-base font-bold bg-[#CACACA] border-0 focus:ring-slate-500"
             name="sort"
             id="sortSelect"
@@ -68,7 +68,36 @@
             </option>
             <option class="" value="likes">Likes</option>
             <option class="" value="comments">Comments</option>
-          </select>
+          </select> -->
+
+          <div
+            class="w-20 bg-[#CACACA] font-roboto font-bold rounded-3xl text-navblack"
+          >
+            <select
+              data-te-select-init
+              class="h-12 w-12 font-roboto rounded-3xl text-base font-bold bg-[#CACACA]"
+              name="sort"
+              id="sortSelect"
+              onchange="this.form.submit()"
+            >
+              <option hidden selected></option>
+              <option value="yearDecreasing">
+                Year Published (increasing)
+              </option>
+              <option value="yearIncreasing">
+                Year Published (decreasing)
+              </option>
+              <option value="createdAtDecreasing">
+                Date posted (decreasing)
+              </option>
+              <option value="createdAtIncreasing">
+                Date posted (increasing)
+              </option>
+              <option value="likes">Likes</option>
+              <option value="comments">Comments</option>
+            </select>
+            <label data-te-select-label-ref class="text-navblack">Sort</label>
+          </div>
 
           <!-- <button type="submit">Sort</button> -->
         </form>
@@ -398,6 +427,10 @@
       const healthriskfilter = document.querySelector("#healthriskfilter");
       const multiSelectInstance3 = te.Select.getInstance(healthriskfilter);
       multiSelectInstance3.setValue([]);
+
+      const sortSelect = document.querySelector("#sortSelect");
+      const sortInstance = te.Select.getInstance(sortSelect);
+      sortInstance.setValue([]);
     </script>
 
     <!-- OLD multi select stuff -->
