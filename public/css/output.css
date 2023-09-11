@@ -1412,12 +1412,20 @@ body::before {
   width: 2.5rem;
 }
 
+.w-12 {
+  width: 3rem;
+}
+
 .w-2 {
   width: 0.5rem;
 }
 
 .w-2\/4 {
   width: 50%;
+}
+
+.w-20 {
+  width: 5rem;
 }
 
 .w-24 {
@@ -1452,16 +1460,16 @@ body::before {
   width: 1.5rem;
 }
 
+.w-6\/12 {
+  width: 50%;
+}
+
 .w-64 {
   width: 16rem;
 }
 
 .w-7 {
   width: 1.75rem;
-}
-
-.w-7\/12 {
-  width: 58.333333%;
 }
 
 .w-8 {
@@ -2403,6 +2411,11 @@ body::before {
   background-color: rgb(231 198 178 / var(--tw-bg-opacity));
 }
 
+.bg-\[\#FFFCFC\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 252 252 / var(--tw-bg-opacity));
+}
+
 .bg-\[\#aaa\] {
   --tw-bg-opacity: 1;
   background-color: rgb(170 170 170 / var(--tw-bg-opacity));
@@ -3327,6 +3340,12 @@ body::before {
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
