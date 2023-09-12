@@ -1112,6 +1112,14 @@ body::before {
   margin-right: auto;
 }
 
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-1\.5 {
+  margin-top: 0.375rem;
+}
+
 .mt-10 {
   margin-top: 2.5rem;
 }
@@ -1470,6 +1478,10 @@ body::before {
 
 .w-7 {
   width: 1.75rem;
+}
+
+.w-7\/12 {
+  width: 58.333333%;
 }
 
 .w-8 {
@@ -1947,6 +1959,10 @@ body::before {
   align-items: center;
 }
 
+.justify-start {
+  justify-content: flex-start;
+}
+
 .justify-end {
   justify-content: flex-end;
 }
@@ -1987,6 +2003,16 @@ body::before {
   gap: 2rem;
 }
 
+.gap-x-1 {
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
+}
+
+.gap-x-1\.5 {
+  -moz-column-gap: 0.375rem;
+       column-gap: 0.375rem;
+}
+
 .gap-x-2 {
   -moz-column-gap: 0.5rem;
        column-gap: 0.5rem;
@@ -2018,6 +2044,10 @@ body::before {
 .divide-gray-100 > :not([hidden]) ~ :not([hidden]) {
   --tw-divide-opacity: 1;
   border-color: rgb(243 244 246 / var(--tw-divide-opacity));
+}
+
+.self-start {
+  align-self: flex-start;
 }
 
 .self-center {
@@ -2573,6 +2603,14 @@ body::before {
   padding: 0px;
 }
 
+.p-1 {
+  padding: 0.25rem;
+}
+
+.p-1\.5 {
+  padding: 0.375rem;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -2802,6 +2840,10 @@ body::before {
 
 .pr-\[24px\] {
   padding-right: 24px;
+}
+
+.pt-1 {
+  padding-top: 0.25rem;
 }
 
 .pt-10 {
