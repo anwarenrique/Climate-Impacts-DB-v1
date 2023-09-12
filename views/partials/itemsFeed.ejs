@@ -1,8 +1,18 @@
 <ul>
   <% itemList.forEach(item => { %>
-  <div class="w-full bg-[#FFFCFC] rounded-3xl mb-3 shadow-xl">
+  <div
+    class="w-full bg-[#FFFCFC] rounded-3xl mb-3 shadow-xl flex justify-start"
+  >
+    <div class="flex w-20">
+      <a href="/profile/<%= item.postedBy._id%>"
+        ><img
+          class="self-start mx-auto mt-1.5 rounded-full w-7/12"
+          src="<%- item.postedBy?.image%>"
+          alt="user image"
+      /></a>
+    </div>
     <li>
-      <div class="flex">
+      <div class="flex gap-x-1.5 pt-1">
         <a
           href="/profile/<%= item.postedBy._id%>"
           class="underline font-roboto text-sm"
@@ -10,57 +20,88 @@
         >
 
         <div class="text-sm text-neutral-500">
-          Posted on <%= item.createdAt.toLocaleDateString('en-US', { month:
+          posted <%= item.createdAt.toLocaleDateString('en-US', { month:
           'short', day: 'numeric' }) %>
         </div>
+
         <a
-          class="text-primary text-sm"
+          class="text-primary text-sm hover:underline"
           href="<%= item.linkinput %>"
           target="_blank"
           ><%= item.linkinput.slice(12, 28) %><%= item.linkinput.length > 16 ?
-          '...' : '' %></a
-        >
+          '...' : '' %><i
+            class="fa-solid fa-link fa-xs"
+            style="color: #3b71ca"
+          ></i
+        ></a>
       </div>
       <h3 class="text-base"><%- item.titleinput %></h3>
       <p><%- item.textinput %></p>
-      <div>Year: <%= item.numinput %></div>
-      <div>Subregion affected: <%= item.regioninput %></div>
-      <div>Countries affected: <%= item.countryinput %></div>
-      <div>Climate-sensitive health risks: <%= item.healthriskinput %></div>
+      <div class="flex gap-x-1.5">
+        <div class="bg-[#CACACA] p-1.5 rounded-3xl font-roboto text-sm">
+          <%= item.numinput %>
+        </div>
+        <div class="bg-[#BEEDC0] p-1.5 rounded-3xl font-roboto text-sm">
+          <%= item.regioninput %>
+        </div>
+        <div class="bg-[#C6E8F0] p-1.5 rounded-3xl font-roboto text-sm">
+          <%= item.countryinput %>
+        </div>
+        <div class="bg-[#E7C6B2] p-1.5 rounded-3xl font-roboto text-sm">
+          <%= item.healthriskinput %>
+        </div>
+      </div>
 
-      <form action="/likePost/<%= item._id %>">
-        <% if (user.likedPosts.includes(item._id)) { %>
-        <!-- If post is already saved by the user, display "Unsave this post" -->
-        <button type="submit">Unlike this post</button>
+      <div class="flex justify-between">
+        <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
+        <% if (item.comments == 1) {%>
+        <div>
+          <i class="fa-regular fa-comment"></i><%= item.comments %> comment
+        </div>
         <% } else { %>
-        <!-- If post is not saved by the user, display "Save this post" -->
-        <button type="submit">Like this post</button>
+        <div>
+          <i class="fa-regular fa-comment"></i><%= item.comments %> comments
+        </div>
         <% } %>
-      </form>
 
-      <form action="/savePost/<%= item._id %>">
-        <% if (user.savedPosts.includes(item._id)) { %>
-        <!-- If post is already saved by the user, display "Unsave this post" -->
-        <button type="submit">Unsave this post</button>
-        <% } else { %>
-        <!-- If post is not saved by the user, display "Save this post" -->
-        <button type="submit">Save this post</button>
-        <% } %>
-      </form>
+        <form action="/likePost/<%= item._id %>" class="flex">
+          <% if (user.likedPosts.includes(item._id)) { %>
+          <!-- If post is already saved by the user, display "Unsave this post" -->
+          <button type="submit" title="Unlike post">
+            <i class="fa-solid fa-heart" style="color: #f91880"></i>
+          </button>
 
-      <!-- If the post has 1 like, ensure the grammar fits accordingly -->
-      <% if (item.likes == 1) {%>
-      <div>This post has <%= item.likes %> like</div>
-      <% } else { %>
-      <div>This post has <%= item.likes %> likes</div>
-      <% } %>
+          <% if (item.likes == 1) {%>
+          <div><%= item.likes %> like</div>
+          <% } else { %>
+          <div><%= item.likes %> likes</div>
+          <% } %> <% } else { %>
+          <!-- If post is not saved by the user, display "Save this post" -->
+          <button type="submit" title="Like post">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <!-- If the post has 1 like, ensure the grammar fits accordingly -->
+          <% if (item.likes == 1) {%>
+          <div><%= item.likes %> like</div>
+          <% } else { %>
+          <div><%= item.likes %> likes</div>
+          <% } %> <% } %>
+        </form>
 
-      <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
-      <% if (item.comments == 1) {%>
-      <div>This post has <%= item.comments %> comment</div>
-      <% } else { %>
-      <div>This post has <%= item.comments %> comments</div>
-      <% } %>
+        <form action="/savePost/<%= item._id %>">
+          <% if (user.savedPosts.includes(item._id)) { %>
+          <!-- If post is already saved by the user, display "Unsave this post" -->
+          <button type="submit" title="Unsave post">
+            <i class="fa-solid fa-bookmark" alt="Unsave"></i>
+          </button>
+          <% } else { %>
+          <!-- If post is not saved by the user, display "Save this post" -->
+          <button type="submit" title="Save post">
+            <i class="fa-regular fa-bookmark" alt="Save"></i>
+          </button>
+          <% } %>
+        </form>
+      </div>
 
       <!-- If post was made by the logged in user, provide options to edit and delete posts -->
       <%if(item.postedBy.id == user.id){ %>
