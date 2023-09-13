@@ -21,7 +21,7 @@ const itemListSchema = new mongoose.Schema({
     required: true,
   },
   regioninput: {
-    type: String,
+    type: [String],
   },
   countryinput: {
     type: [String],
