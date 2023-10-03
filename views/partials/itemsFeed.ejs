@@ -31,8 +31,8 @@
             class="text-primary text-sm hover:underline"
             href="<%= item.linkinput %>"
             target="_blank"
-            ><%= item.linkinput.slice(12, 28) %><%= item.linkinput.length > 16 ?
-            '...' : '' %><i
+            ><%= item.linkinput.replace(/(^\w+:|^)\/\/(www\.)?/, '').slice(0,
+            16) + (item.linkinput.length > 16 ? '...' : '') %><i
               class="fa-solid fa-link fa-xs"
               style="color: #3b71ca"
             ></i
