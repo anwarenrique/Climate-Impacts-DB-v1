@@ -1648,6 +1648,10 @@ body::before {
   min-width: max-content;
 }
 
+.max-w-\[1240px\] {
+  max-width: 1240px;
+}
+
 .max-w-\[200px\] {
   max-width: 200px;
 }
@@ -1658,6 +1662,10 @@ body::before {
 
 .max-w-\[325px\] {
   max-width: 325px;
+}
+
+.max-w-\[625px\] {
+  max-width: 625px;
 }
 
 .max-w-\[90\%\] {
@@ -5519,8 +5527,37 @@ body::before {
 }
 
 @media (min-width: 1536px) {
+  .\32xl\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .\32xl\:flex {
+    display: flex;
+  }
+
   .\32xl\:w-3\/4 {
     width: 75%;
+  }
+
+  .\32xl\:w-\[315px\] {
+    width: 315px;
+  }
+
+  .\32xl\:w-\[625px\] {
+    width: 625px;
+  }
+
+  .\32xl\:min-w-\[315px\] {
+    min-width: 315px;
+  }
+
+  .\32xl\:max-w-\[315px\] {
+    max-width: 315px;
+  }
+
+  .\32xl\:flex-col {
+    flex-direction: column;
   }
 
   .\32xl\:rounded-3xl {
