@@ -83,6 +83,9 @@
                 name="sort"
                 id="sortSelect"
                 onchange="this.form.submit()"
+                data-te-class-select-label="!ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
+                data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
+                data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
               >
                 <option hidden selected></option>
                 <option value="yearDecreasing">
@@ -117,22 +120,20 @@
           <div>
             <form action="/getFilteredItems/dashboard/filter" method="GET">
               <div
-                class="w-64 mx-auto mb-6 flex items-center flex-col justify-center rounded-3xl text-navblack"
+                class="w-64 mx-auto mb-6 flex items-center flex-col justify-center text-navblack"
               >
                 <select
-                  class="rounded-3xl border-1 border-red-600 text-red-600"
                   id="regionfilter"
                   name="regionfilter"
                   data-te-select-init
-                  data-te-select-selectAll="false"
-                  data-te-select-filter="true"
                   multiple
-                  data-te-class-formCheckInput="rounded-3xl border-1 border-red-600 text-red-600 bg-red-600 bg-[#BEEDC0]"
-                  data-te-class-selectInput="rounded-3xl bg-red-600"
-                  data-te-class-dropdown="bg-[#BEEDC0] rounded-2xl"
-                  data-te-class-inputGroup="text-red-600 bg-red-600"
-                  data-te-class-form-outline="relative bg-[#BEEDC0] rounded-full border-1 border-red-600"
-                  data-te-class-formOutline="relative rounded-full"
+                  data-te-select-all="false"
+                  data-te-select-filter="true"
+                  data-te-class-select-label="!ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
+                  data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
+                  data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
+                  data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
+                  data-te-class-form-outline="relative bg-[#BEEDC0] rounded-full"
                 >
                   >
                   <option value="The Americas (all subregions)">
@@ -151,7 +152,7 @@
               </div>
 
               <div
-                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl bg-[#C6E8F0] text-navblack"
+                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack"
               >
                 <select
                   class=""
@@ -160,6 +161,12 @@
                   data-te-select-init
                   data-te-select-filter="true"
                   multiple
+                  data-te-select-all="false"
+                  data-te-class-select-label="!ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
+                  data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
+                  data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
+                  data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
+                  data-te-class-form-outline="relative bg-[#C6E8F0] rounded-full"
                 >
                   <option value="All countries">All countries</option>
                   <option value="Antigua and Barbuda">
@@ -214,7 +221,7 @@
               </div>
 
               <div
-                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl bg-[#E7C6B2] text-navblack"
+                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack"
               >
                 <select
                   class=""
@@ -223,6 +230,13 @@
                   data-te-select-init
                   data-te-select-filter="true"
                   multiple
+                  data-te-select-all="false"
+                  data-te-class-select-label="!ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
+                  data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
+                  data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
+                  data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
+                  data-te-class-form-outline="relative bg-[#E7C6B2] rounded-full"
+                  data-te-class-select-option="flex flex-row items-center justify-between w-full px-4 truncate text-gray-700 bg-transparent select-none cursor-pointer data-[te-input-multiple-active]:bg-black/5 hover:[&:not([data-te-select-option-disabled])]:bg-black/5 data-[te-input-state-active]:bg-black/5 data-[te-select-option-selected]:data-[te-input-state-active]:bg-black/5 data-[te-select-selected]:data-[te-select-option-disabled]:cursor-default data-[te-select-selected]:data-[te-select-option-disabled]:text-gray-400 data-[te-select-selected]:data-[te-select-option-disabled]:bg-transparent data-[te-select-option-selected]:bg-black/[0.02] data-[te-select-option-disabled]:text-gray-400 data-[te-select-option-disabled]:cursor-default group-data-[te-select-option-group-ref]/opt:pl-7 dark:text-gray-200 dark:hover:[&:not([data-te-select-option-disabled])]:bg-white/30 dark:data-[te-input-state-active]:bg-white/30 dark:data-[te-select-option-selected]:data-[te-input-state-active]:bg-white/30 dark:data-[te-select-option-disabled]:text-gray-400 dark:data-[te-input-multiple-active]:bg-white/30"
                 >
                   <option value="General">General</option>
                   <option value="Air-borne and respiratory illnesses">
