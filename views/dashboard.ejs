@@ -33,59 +33,53 @@
     <div id="containerForAll" class="2xl:flex 2xl:flex-col">
       <!-- Page title section -->
       <section
-        class="flex justify-between w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
+        class="flex justify-start w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       >
         <div class="">
+          <h3
+            class="h-12 leading-10 flex font-roboto text-2xl text-navblack font-bold flex items-center"
+          >
+            Climate Change and Health Impacts Feed
+          </h3>
+        </div>
+      </section>
+      <section
+        class="flex justify-end w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
+      >
+        <!-- <div class="">
           <h3
             class="h-12 leading-10 flex font-roboto text-xl text-navblack font-bold flex items-center"
           >
             Climate Change and Health Impacts Feed
           </h3>
-        </div>
+        </div> -->
         <div class="flex justify-items-end flex gap-x-2">
           <a
+            type="button"
+            data-te-ripple-init
+            data-te-ripple-color="light"
             href="/newPost"
-            class="w-40 h-12 text-white font-roboto rounded-3xl text-base font-medium bg-gradient-to-r from-[#077F59] to-[#34D398] flex gap-x-2.5 leading-none items-center justify-center tracking-wide px-3"
+            class="h-12 rounded-full flex gap-x-2.5 items-center inline-block rounded bg-gradient-to-r from-[#077F59] to-[#34D398] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white transition duration-150 ease-in-out hover:shadow-[100px 100px 100px #077F59] focus:outline-none active:shadow-[100px 100px 100px #077F59] dark:shadow-md"
           >
-            Create a Post<i class="fa-solid fa-plus"></i>
+            <button class="flex gap-x-2.5 items-center">
+              Create a Post<i class="fa-solid fa-plus"></i>
+            </button>
           </a>
           <form class="" action="/getSortedItems/dashboard/sort">
-            <!-- <label for="sort">Sort By:</label> -->
-            <!-- <select
-            class="h-12 w-24 font-roboto rounded-3xl text-base font-bold bg-[#CACACA] border-0 focus:ring-slate-500"
-            name="sort"
-            id="sortSelect"
-            onchange="this.form.submit()"
-          >
-            <option class="" value="">Sort</option>
-            <option class="" value="yearDecreasing">
-              Year published (most recent first)
-            </option>
-            <option class="" value="yearIncreasing">
-              Year published (oldest first)
-            </option>
-            <option class="" value="createdAtDecreasing">
-              Date posted (most recent first)
-            </option>
-            <option class="" value="createdAtIncreasing">
-              Date posted (oldest first)
-            </option>
-            <option class="" value="likes">Likes</option>
-            <option class="" value="comments">Comments</option>
-          </select> -->
-
             <div
-              class="w-20 bg-[#CACACA] font-roboto font-bold rounded-3xl text-navblack"
+              class="w-24 bg-[#CACACA] font-roboto font-bold rounded-3xl text-navblack text-base"
             >
               <select
                 data-te-select-init
-                class="h-12 w-12 font-roboto rounded-3xl text-base font-bold bg-[#CACACA]"
+                class=""
                 name="sort"
                 id="sortSelect"
                 onchange="this.form.submit()"
-                data-te-class-select-label="!ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
+                data-te-class-select-label="flex items-center justify-center !ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
                 data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                 data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
+                data-te-class-dropdown="w-64 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
+                data-te-class-form-outline="w-24 relative bg-[#CACACA] rounded-full"
               >
                 <option hidden selected></option>
                 <option value="yearDecreasing">
@@ -120,7 +114,7 @@
           <div>
             <form action="/getFilteredItems/dashboard/filter" method="GET">
               <div
-                class="w-64 mx-auto mb-6 flex items-center flex-col justify-center text-navblack"
+                class="w-64 mx-auto mb-6 flex items-center flex-col justify-center text-navblack text-lg"
               >
                 <select
                   id="regionfilter"
@@ -133,7 +127,7 @@
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                   data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
-                  data-te-class-form-outline="relative bg-[#BEEDC0] rounded-full"
+                  data-te-class-form-outline="w-64 relative bg-[#BEEDC0] rounded-full"
                 >
                   >
                   <option value="The Americas (all subregions)">
@@ -152,7 +146,7 @@
               </div>
 
               <div
-                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack"
+                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack text-lg"
               >
                 <select
                   class=""
@@ -165,8 +159,8 @@
                   data-te-class-select-label="!ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
-                  data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
-                  data-te-class-form-outline="relative bg-[#C6E8F0] rounded-full"
+                  data-te-class-dropdown="rounded-xl w-72 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
+                  data-te-class-form-outline="w-64 relative bg-[#C6E8F0] rounded-full"
                 >
                   <option value="All countries">All countries</option>
                   <option value="Antigua and Barbuda">
@@ -221,7 +215,7 @@
               </div>
 
               <div
-                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack"
+                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack text-lg"
               >
                 <select
                   class=""
@@ -234,9 +228,10 @@
                   data-te-class-select-label="!ml-4 pointer-events-none absolute top-0 left-3 mb-0 max-w-[90%] origin-[0_0] truncate text-gray-500 transition-all duration-200 ease-out peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-gray-200 dark:peer-focus:text-gray-200 data-[te-input-state-active]:scale-[0.8]"
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
-                  data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
-                  data-te-class-form-outline="relative bg-[#E7C6B2] rounded-full"
-                  data-te-class-select-option="flex flex-row items-center justify-between w-full px-4 truncate text-gray-700 bg-transparent select-none cursor-pointer data-[te-input-multiple-active]:bg-black/5 hover:[&:not([data-te-select-option-disabled])]:bg-black/5 data-[te-input-state-active]:bg-black/5 data-[te-select-option-selected]:data-[te-input-state-active]:bg-black/5 data-[te-select-selected]:data-[te-select-option-disabled]:cursor-default data-[te-select-selected]:data-[te-select-option-disabled]:text-gray-400 data-[te-select-selected]:data-[te-select-option-disabled]:bg-transparent data-[te-select-option-selected]:bg-black/[0.02] data-[te-select-option-disabled]:text-gray-400 data-[te-select-option-disabled]:cursor-default group-data-[te-select-option-group-ref]/opt:pl-7 dark:text-gray-200 dark:hover:[&:not([data-te-select-option-disabled])]:bg-white/30 dark:data-[te-input-state-active]:bg-white/30 dark:data-[te-select-option-selected]:data-[te-input-state-active]:bg-white/30 dark:data-[te-select-option-disabled]:text-gray-400 dark:data-[te-input-multiple-active]:bg-white/30"
+                  data-te-class-dropdown="rounded-xl w-96 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
+                  data-te-class-form-outline="w-64 relative bg-[#E7C6B2] rounded-full"
+                  data-te-class-select-arrow="absolute right-3 text-[0.4rem] cursor-pointer peer-focus:text-primary peer-data-[te-input-focused]:text-primary group-data-[te-was-validated]/validation:peer-valid:text-green-600 group-data-[te-was-validated]/validation:peer-invalid:text-[rgb(220,76,100)] w-5 h-5"
+                  data-te-class-options-wrapper="overflow-y-auto overflow-x-auto"
                 >
                   <option value="General">General</option>
                   <option value="Air-borne and respiratory illnesses">

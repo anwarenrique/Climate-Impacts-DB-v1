@@ -9,6 +9,7 @@ module.exports = {
   ],
   plugins: [require("tw-elements/dist/plugin.cjs")],
   darkMode: "class",
+  // safelist: ["animate-[tada_1s]"],
   theme: {
     screens: {
       xs: "361px",
