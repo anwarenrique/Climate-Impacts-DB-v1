@@ -204,7 +204,8 @@
       </a>
       <p><%- item.textinput %></p>
       <div class="flex gap-1.5 flex-wrap">
-        <div class="bg-[#CACACA] py-1 px-3 rounded-3xl font-roboto text-sm">
+        <!-- year bubble -->
+        <div class="bg-[#CACACA] py-1.5 px-3 rounded-3xl font-roboto text-sm">
           <%= item.numinput %>
         </div>
 
@@ -213,7 +214,7 @@
         item.regioninput.forEach(region => { %>
 
         <a
-          class="rounded-3xl h-full"
+          class="rounded-3xl h-full hover:underline"
           href="/getFilteredItems/dashboard/filter?regionfilter=<%= region %>&countryfilter=&healthriskfilter="
         >
           <div class="bg-[#BEEDC0] p-1.5 px-2 rounded-3xl font-roboto text-sm">
@@ -227,7 +228,7 @@
         <% if (item.countryinput.length > 0) { %> <%
         item.countryinput.forEach(country => { %>
         <a
-          class="rounded-3xl h-full"
+          class="rounded-3xl h-full hover:underline"
           href="/getFilteredItems/dashboard/filter?regionfilter=&countryfilter=<%= country %>&healthriskfilter="
         >
           <div class="bg-[#C6E8F0] p-1.5 px-2 rounded-3xl font-roboto text-sm">
@@ -240,7 +241,7 @@
         <% if (item.healthriskinput.length > 0) { %> <%
         item.healthriskinput.forEach(healthRisk => { %>
         <a
-          class="rounded-3xl h-full"
+          class="rounded-3xl h-full hover:underline"
           href="/getFilteredItems/dashboard/filter?regionfilter=&countryfilter=&healthriskfilter=<%= healthRisk %>"
         >
           <div class="bg-[#E7C6B2] p-1.5 px-2 rounded-3xl font-roboto text-sm">
@@ -254,12 +255,12 @@
         <div class="flex justify-between w-4/6 my-2.5">
           <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
           <% if (item.comments == 1) {%>
-          <div title="<%= item.comments %> comment">
+          <div title="<%= item.comments %> comment" class="text-neutral-500">
             <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i><%=
             item.comments %>
           </div>
           <% } else { %>
-          <div title="<%= item.comments %> comments">
+          <div title="<%= item.comments %> comments" class="text-neutral-500">
             <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i><%=
             item.comments %>
           </div>
@@ -273,9 +274,13 @@
             </button>
 
             <% if (item.likes == 1) {%>
-            <div title="<%= item.likes %> like"><%= item.likes %></div>
+            <div title="<%= item.likes %> like" class="text-neutral-500">
+              <%= item.likes %>
+            </div>
             <% } else { %>
-            <div title="<%= item.likes %> likes"><%= item.likes %></div>
+            <div title="<%= item.likes %> likes" class="text-neutral-500">
+              <%= item.likes %>
+            </div>
             <% } %> <% } else { %>
             <!-- If post is not saved by the user, display "Save this post" -->
             <button type="submit" title="Like post">
@@ -283,9 +288,13 @@
             </button>
             <!-- If the post has 1 like, ensure the grammar fits accordingly -->
             <% if (item.likes == 1) {%>
-            <div title="<%= item.likes %> like"><%= item.likes %></div>
+            <div class="text-neutral-500" title="<%= item.likes %> like">
+              <%= item.likes %>
+            </div>
             <% } else { %>
-            <div title="<%= item.likes %> likes"><%= item.likes %></div>
+            <div class="text-neutral-500" title="<%= item.likes %> likes">
+              <%= item.likes %>
+            </div>
             <% } %> <% } %>
           </form>
 
