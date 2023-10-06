@@ -271,11 +271,14 @@
                 >
               </div>
 
-              <div
+              <button
                 class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold my-6"
+                type="submit"
+                data-te-ripple-init
+                data-te-ripple-color="light"
               >
-                <button type="submit">Apply filter</button>
-              </div>
+                Apply filter
+              </button>
             </form>
           </div>
 
@@ -398,11 +401,14 @@
 
           <!-- CLEAR SORT BUTTON -->
           <form action="/clearFilter/dashboard/1">
-            <div
+            <button
+              type="submit"
               class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold"
+              data-te-ripple-init
+              data-te-ripple-color="light"
             >
-              <button type="submit">clear filter</button>
-            </div>
+              clear filter
+            </button>
           </form>
         </section>
 
