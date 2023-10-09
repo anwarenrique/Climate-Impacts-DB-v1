@@ -43,6 +43,16 @@
           </h3>
         </div>
       </section>
+      <!--insert filter parameters here, but only if filters have been applied -->
+      <% if (filterParameters) { %>
+      <section
+        class="flex justify-start w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
+      >
+        <div class="filter-parameters">
+          <h4>Filtered by: <%= filterParameters %></h4>
+        </div>
+      </section>
+      <% } %>
       <section
         class="flex justify-end w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       >
@@ -59,7 +69,7 @@
             data-te-ripple-init
             data-te-ripple-color="light"
             href="/newPost"
-            class="h-12 rounded-full flex gap-x-2.5 items-center inline-block rounded bg-gradient-to-r from-[#077F59] to-[#34D398] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white transition duration-150 ease-in-out hover:shadow-[100px 100px 100px #077F59] focus:outline-none active:shadow-[100px 100px 100px #077F59] dark:shadow-md"
+            class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59]"
           >
             <button class="flex gap-x-2.5 items-center">
               Create a Post<i class="fa-solid fa-plus"></i>
@@ -79,7 +89,7 @@
                 data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                 data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                 data-te-class-dropdown="w-64 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
-                data-te-class-form-outline="w-24 relative bg-[#CACACA] rounded-full"
+                data-te-class-form-outline="w-24 relative bg-[#CACACA] rounded-full hover:bg-[#bdbdbd] transition duration-150"
               >
                 <option hidden selected></option>
                 <option value="yearDecreasing">
@@ -127,7 +137,7 @@
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                   data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
-                  data-te-class-form-outline="w-64 relative bg-[#BEEDC0] rounded-full"
+                  data-te-class-form-outline="w-64 relative bg-[#BEEDC0] rounded-full hover:bg-[#a0e5a3] transition duration-150"
                 >
                   >
                   <option value="The Americas (all subregions)">
@@ -160,7 +170,7 @@
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                   data-te-class-dropdown="rounded-xl w-72 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
-                  data-te-class-form-outline="w-64 relative bg-[#C6E8F0] rounded-full"
+                  data-te-class-form-outline="w-64 relative bg-[#C6E8F0] rounded-full hover:bg-[#9ED8E5] transition duration-150"
                 >
                   <option value="All countries">All countries</option>
                   <option value="Antigua and Barbuda">
@@ -229,7 +239,7 @@
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                   data-te-class-dropdown="rounded-xl w-96 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
-                  data-te-class-form-outline="w-64 relative bg-[#E7C6B2] rounded-full"
+                  data-te-class-form-outline="w-64 relative bg-[#E7C6B2] rounded-full hover:bg-[#DBA98B] transition duration-150"
                   data-te-class-select-arrow="absolute right-3 text-[0.4rem] cursor-pointer peer-focus:text-primary peer-data-[te-input-focused]:text-primary group-data-[te-was-validated]/validation:peer-valid:text-green-600 group-data-[te-was-validated]/validation:peer-invalid:text-[rgb(220,76,100)] w-5 h-5"
                   data-te-class-options-wrapper="overflow-y-auto overflow-x-auto"
                 >
@@ -272,7 +282,7 @@
               </div>
 
               <button
-                class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold my-6"
+                class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold my-6 hover:bg-[#bdbdbd] transition duration-150"
                 type="submit"
                 data-te-ripple-init
                 data-te-ripple-color="light"
@@ -403,7 +413,7 @@
           <form action="/clearFilter/dashboard/1">
             <button
               type="submit"
-              class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold"
+              class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold hover:bg-[#bdbdbd] transition duration-150"
               data-te-ripple-init
               data-te-ripple-color="light"
             >
