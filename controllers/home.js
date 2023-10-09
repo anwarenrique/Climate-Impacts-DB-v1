@@ -15,8 +15,13 @@ module.exports = {
   getDashboard: async (req, res) => {
     try {
       const items = await ItemList.find().populate("postedBy");
+      let filterParameters = [];
 
-      res.render("dashboard.ejs", { itemList: items, user: req.user });
+      res.render("dashboard.ejs", {
+        itemList: items,
+        user: req.user,
+        filterParameters,
+      });
     } catch (err) {
       res.render("error/500");
       if (err) return res.status(500).send(err);
@@ -143,10 +148,30 @@ module.exports = {
       let query = ItemList.find().populate("postedBy");
       const view = req.params.view;
       const profileId = req.params.id;
+      let filterParameters = [];
 
-      // if (view != "guestDashboard") {
-      //   const userId = req.user.id;
-      //   const user = await User.findById(userId);
+      // // Populate the filterParameters array
+      // if (regionfilter) {
+      //   filterParameters.push(`Region: ${regionfilter}`);
+      // }
+      // if (countryfilter) {
+      //   filterParameters.push(`Country: ${countryfilter}`);
+      // }
+      // if (healthriskfilter) {
+      //   filterParameters.push(`Health Risk: ${healthriskfilter}`);
+      // }
+
+      // // Remove duplicate strings
+      // filterParameters = filterParameters.filter(
+      //   (value, index, self) => self.indexOf(value) === index
+      // );
+
+      // // Convert the array to a string with comma separation
+      // filterParameters = filterParameters.join(", ");
+
+      // // Remove trailing comma
+      // if (filterParameters.endsWith(", ")) {
+      //   filterParameters = filterParameters.slice(0, -2); // Remove the last two characters (", ")
       // }
 
       // Apply filters
@@ -196,7 +221,11 @@ module.exports = {
         res.render("guestDashboard.ejs", { itemList });
       } //If you started at dashboard, redirect to dashboard
       else if (view == "dashboard") {
-        res.render("dashboard.ejs", { itemList, user: req.user });
+        res.render("dashboard.ejs", {
+          itemList,
+          user: req.user,
+          filterParameters,
+        });
         //if you started at profile, redirect to profile
       } else if (view == "profile") {
         //Retrieve the profile document to get postCount and commentCount
