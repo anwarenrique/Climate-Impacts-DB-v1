@@ -44,12 +44,13 @@
         </div>
       </section>
       <!--insert filter parameters here, but only if filters have been applied -->
-      <% if (filterParameters) { %>
+      <% if (filterParameters.length >= 1) { %>
       <section
-        class="flex justify-start w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
+        class="flex justify-start w-6/12 mx-auto flex items-center max-w-[625px]"
       >
         <div class="filter-parameters">
-          <h4>Filtered by: <%= filterParameters %></h4>
+          <h4 class="font-bold">Showing filtered results for:</h4>
+          <p class=""><%= filterParameters %></p>
         </div>
       </section>
       <% } %>

@@ -150,29 +150,27 @@ module.exports = {
       const profileId = req.params.id;
       let filterParameters = [];
 
-      // // Populate the filterParameters array
-      // if (regionfilter) {
-      //   filterParameters.push(`Region: ${regionfilter}`);
-      // }
-      // if (countryfilter) {
-      //   filterParameters.push(`Country: ${countryfilter}`);
-      // }
-      // if (healthriskfilter) {
-      //   filterParameters.push(`Health Risk: ${healthriskfilter}`);
-      // }
+      // Populate the filterParameters array using region, country, and healthrisk inputs
+      if (regionfilter) {
+        filterParameters.push(`${regionfilter}`);
+      }
+      if (countryfilter) {
+        filterParameters.push(`${countryfilter}`);
+      }
+      if (healthriskfilter) {
+        filterParameters.push(`${healthriskfilter}`);
+      }
 
-      // // Remove duplicate strings
-      // filterParameters = filterParameters.filter(
-      //   (value, index, self) => self.indexOf(value) === index
-      // );
+      //Flatten the array and remove leading/trailing spaces
+      const flatArray = filterParameters
+        .map((item) => item.split(",").map((subItem) => subItem.trim()))
+        .flat();
 
-      // // Convert the array to a string with comma separation
-      // filterParameters = filterParameters.join(", ");
+      // Remove duplicates
+      const uniqueItems = [...new Set(flatArray)];
 
-      // // Remove trailing comma
-      // if (filterParameters.endsWith(", ")) {
-      //   filterParameters = filterParameters.slice(0, -2); // Remove the last two characters (", ")
-      // }
+      // Join items into a single string with commas and spaces
+      filterParameters = uniqueItems.join(", ");
 
       // Apply filters
       if (regionfilter) {
@@ -213,7 +211,7 @@ module.exports = {
       }
 
       const itemList = await query.exec();
-      console.log("filter");
+      console.log(`filter by ${filterParameters}`);
 
       //If you started at dashboard, redirect to dashboard
 
