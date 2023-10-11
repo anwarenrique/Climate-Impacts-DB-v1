@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("./User");
 
-const itemListSchema = new mongoose.Schema({
+const ReportedPost = new mongoose.Schema({
   titleinput: {
     type: String,
     required: true,
@@ -40,10 +40,6 @@ const itemListSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
-  // user: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "User",
-  // },
   likes: {
     type: Number,
     required: true,
@@ -65,4 +61,4 @@ const itemListSchema = new mongoose.Schema({
     default: [],
   },
 });
-module.exports = mongoose.model("ItemList", itemListSchema, "items");
+module.exports = mongoose.model("ReportedPost", ReportedPost, "reportedposts");

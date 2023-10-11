@@ -1,8 +1,26 @@
 const ItemList = require("../models/ItemList");
 const User = require("../models/User");
 const Comment = require("../models/Comment");
+const ReportedPost = require("../models/reportedPost");
+const { post } = require("../routes/home");
 
 let filteredItems = []; //declare this variable that will store filtered results
+
+const movePostToReportedCollection = async (post) => {
+  const reportedPost = new ReportedPost(post.toObject());
+
+  try {
+    // Save the reported post to the "reportedposts" collection
+    await reportedPost.save();
+
+    // Remove the post from the regular post collection
+    await ItemList.findByIdAndDelete(post._id);
+
+    console.log(`Post with ID ${post._id} moved to reportedposts collection.`);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 module.exports = {
   getLogin: async (req, res) => {
@@ -419,6 +437,41 @@ module.exports = {
     } catch (err) {
       res.render("error/500");
       if (err) return res.status(500).send(err);
+    }
+  },
+  reportPost: async (req, res) => {
+    const postId = req.params.id;
+    const userId = req.user.id;
+    try {
+      // Find the post by ID
+      const post = await ItemList.findById(postId);
+
+      if (!post) {
+        return res.status(404).render("error/404");
+      }
+
+      if (post.reportedBy.includes(userId)) {
+        // User has already reported this post
+        return res.status(400).send("You've already reported this post.");
+      }
+
+      // Add the user's ID to the reportedBy array
+      post.reportedBy.push(userId);
+
+      // Increment the report count
+      post.reportCount++;
+
+      await post.save();
+
+      if (post.reportCount >= 2) {
+        // Call a function to move the post to a new collection
+        movePostToReportedCollection(post);
+      }
+
+      res.redirect("back");
+    } catch (error) {
+      console.error(error);
+      res.status(500).render("error/500");
     }
   },
 };

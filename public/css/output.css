@@ -5181,6 +5181,11 @@ body::before {
   color: rgb(163 163 163 / var(--tw-text-opacity));
 }
 
+:is(.dark .dark\:text-neutral-500) {
+  --tw-text-opacity: 1;
+  color: rgb(115 115 115 / var(--tw-text-opacity));
+}
+
 :is(.dark .dark\:text-primary-400) {
   --tw-text-opacity: 1;
   color: rgb(143 174 224 / var(--tw-text-opacity));
