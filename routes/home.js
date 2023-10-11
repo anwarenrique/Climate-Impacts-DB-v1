@@ -19,5 +19,6 @@ router.get("/clearFilter/:view/:id", homeController.clearFilter); //clear the fi
 router.get("/viewPost/:view/:id", homeController.getViewPost); //view single post in detail
 router.get("/likedPosts", ensureAuth, homeController.getLikedPosts); //view page with posts you have liked
 router.get("/savedPosts", ensureAuth, homeController.getSavedPosts); //view page with posts you have saved
+router.get("/reportPost/:id", ensureAuth, homeController.reportPost); //reports a post
 
 module.exports = router;
