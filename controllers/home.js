@@ -5,6 +5,7 @@ const ReportedPost = require("../models/reportedPost");
 const { post } = require("../routes/home");
 
 let filteredItems = []; //declare this variable that will store filtered results
+let filterParameters = [];
 
 const movePostToReportedCollection = async (post) => {
   const reportedPost = new ReportedPost(post.toObject());
@@ -33,7 +34,7 @@ module.exports = {
   getDashboard: async (req, res) => {
     try {
       const items = await ItemList.find().populate("postedBy");
-      let filterParameters = [];
+      // let filterParameters = [];
 
       res.render("dashboard.ejs", {
         itemList: items,
@@ -332,7 +333,11 @@ module.exports = {
       }
       if (view == "dashboard") {
         console.log(sort);
-        res.render("dashboard.ejs", { itemList, user: req.user });
+        res.render("dashboard.ejs", {
+          itemList,
+          user: req.user,
+          filterParameters,
+        });
       } else if (view == "profile") {
         //Retrieve the profile document to get postCount and commentCount
         const profile = await User.findById(profileId);
