@@ -1,7 +1,7 @@
 <ul>
   <% itemList.forEach(item => { %>
   <div
-    class="w-full bg-[#FFFCFC] rounded-3xl mb-3 shadow-xl flex justify-start"
+    class="w-full bg-[#FFFCFC] rounded-3xl mb-3 shadow-xl flex justify-start hover:bg-[#F2F3F5] transition duration-150"
   >
     <div class="flex w-20">
       <a
@@ -83,7 +83,7 @@
               <li>
                 <button
                   type="button"
-                  class="inline-block rounded bg-light px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-danger shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-secondary-200 focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] shadow-none"
+                  class="inline-block rounded bg-light px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-danger transition duration-150 ease-in-out hover:bg-secondary-200 focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] shadow-none"
                   data-te-dropdown-item-ref
                   data-te-toggle="modal"
                   data-te-target="#reportModal<%= item._id %>"
@@ -302,12 +302,22 @@
 
       <a
         href="/viewPost/dashboard/<%= item._id %>"
-        class="block text-base font-medium font-roboto pt-2 pb-1.5"
+        class="block text-base font-medium font-roboto pt-2 pb-1.5 mr-3.5 border border-sky-500"
       >
         <%- item.titleinput %>
       </a>
-      <p><%- item.textinput %></p>
-      <div class="flex gap-1.5 flex-wrap">
+
+      <% if (item.textinput && item.textinput.length > 0) { %>
+      <a
+        class="block text-neutral-700 text-sm pb-1.5 mr-3.5 hover:underline transition duration-150"
+        href="/viewPost/dashboard/<%= item._id %>"
+      >
+        <%- item.textinput.length > 145 ? item.textinput.slice(0, 145) + ' ...'
+        : item.textinput %>
+      </a>
+      <% } %>
+
+      <div class="flex gap-1.5 flex-wrap pb-1.5">
         <!-- year bubble -->
         <div class="bg-[#CACACA] py-1.5 px-3 rounded-3xl font-roboto text-sm">
           <%= item.numinput %>
