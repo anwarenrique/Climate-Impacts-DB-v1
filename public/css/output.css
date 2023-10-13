@@ -1127,6 +1127,10 @@ body::before {
   margin-right: 0.75rem;
 }
 
+.mr-3\.5 {
+  margin-right: 0.875rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
 }
@@ -3955,6 +3959,11 @@ body::before {
 .hover\:bg-\[\#DBA98B\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 169 139 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#F2F3F5\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 243 245 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-\[\#a0e5a3\]:hover {
