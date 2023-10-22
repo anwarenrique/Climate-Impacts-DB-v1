@@ -6,7 +6,7 @@ const { post } = require("../routes/home");
 
 let filteredItems = []; //declare this variable that will store filtered results
 let filterParameters = [];
-const ITEMS_PER_PAGE = 3; // Number of items per page
+const ITEMS_PER_PAGE = 5; // Number of items per page
 
 const movePostToReportedCollection = async (post) => {
   const reportedPost = new ReportedPost(post.toObject());

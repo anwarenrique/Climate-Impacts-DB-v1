@@ -330,7 +330,7 @@
 
         <a
           class="rounded-3xl h-full hover:underline"
-          href="/getFilteredItems/dashboard/filter?regionfilter=<%= region %>&countryfilter=&healthriskfilter="
+          href="/dashboard?regionfilter=<%= region%>&&countryfilter=&healthriskfilter="
         >
           <div
             class="bg-[#BEEDC0] p-1.5 px-2 rounded-3xl font-roboto text-sm hover:bg-[#a0e5a3] transition duration-150"
@@ -346,7 +346,7 @@
         item.countryinput.forEach(country => { %>
         <a
           class="rounded-3xl h-full hover:underline"
-          href="/getFilteredItems/dashboard/filter?regionfilter=&countryfilter=<%= country %>&healthriskfilter="
+          href="/dashboard?regionfilter=&&countryfilter=<%= country%>&healthriskfilter="
         >
           <div
             class="bg-[#C6E8F0] p-1.5 px-2 rounded-3xl font-roboto text-sm hover:bg-[#9ED8E5] transition duration-150"
@@ -361,7 +361,7 @@
         item.healthriskinput.forEach(healthRisk => { %>
         <a
           class="rounded-3xl h-full hover:underline"
-          href="/getFilteredItems/dashboard/filter?regionfilter=&countryfilter=&healthriskfilter=<%= healthRisk %>"
+          href="/dashboard?regionfilter=&&countryfilter=&healthriskfilter=<%=healthRisk%>"
         >
           <div
             class="bg-[#E7C6B2] p-1.5 px-2 rounded-3xl font-roboto text-sm hover:bg-[#DBA98B] transition duration-150"
