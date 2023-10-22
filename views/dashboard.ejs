@@ -59,12 +59,20 @@
         <section
         class="flex justify-start w-6/12 mx-auto flex items-center max-w-[625px]"
       >
-        <div class="filter-parameters">
+        <div class="">
           <h4 class="font-bold">No posts were found for: </h4>
           <p class=""><%= filterParameters %></p>
         </div>
       </section>
-        <% }%>
+        <% } else { %>
+          <section
+        class="flex justify-start w-6/12 mx-auto flex items-center max-w-[625px]"
+      >
+        <div class="">
+          <h4>Showing <%= itemList.length %> out of <%= totalItems%> posts</h4>
+        </div>
+      </section>
+          <% } %>
       <section
         class="flex justify-end w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       >
