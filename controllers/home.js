@@ -6,6 +6,7 @@ const { post } = require("../routes/home");
 
 let filteredItems = []; //declare this variable that will store filtered results
 let filterParameters = [];
+const ITEMS_PER_PAGE = 3; // Number of items per page
 
 const movePostToReportedCollection = async (post) => {
   const reportedPost = new ReportedPost(post.toObject());
@@ -31,15 +32,168 @@ module.exports = {
       if (err) return res.status(500).send(err);
     }
   },
+  getUnifiedDashboard: async (req, res) => {
+    try {
+      // Fundamental states (req.params)
+      const view = req.params.view || "dashboard";
+      const profileId = req.params.id;
+
+      // Optional states (req.query)
+      const {
+        page = 1,
+        sort = "defaultSort",
+        regionfilter,
+        countryfilter,
+        healthriskfilter,
+      } = req.query;
+
+      // Helper function to process filters
+      const processFilter = (filter) => {
+        if (Array.isArray(filter)) {
+          return filter
+            .map((item) => item.split(",").map((subItem) => subItem.trim()))
+            .flat();
+        }
+        return filter.split(",").map((subItem) => subItem.trim());
+      };
+
+      let filterParameters = [];
+
+      // Process filters
+      if (regionfilter) filterParameters.push(...processFilter(regionfilter));
+      if (countryfilter) filterParameters.push(...processFilter(countryfilter));
+      if (healthriskfilter)
+        filterParameters.push(...processFilter(healthriskfilter));
+
+      const uniqueItems = [...new Set(filterParameters)];
+      // Maintain filterParameters as an array
+      filterParameters = [...uniqueItems];
+
+      let query = ItemList.find().populate("postedBy");
+
+      // Apply filters to the query
+      if (regionfilter) query = query.where("regioninput").in(regionfilter);
+      if (countryfilter) query = query.where("countryinput").in(countryfilter);
+      if (healthriskfilter)
+        query = query.where("healthriskinput").in(healthriskfilter);
+
+      //if regionfilter, countryfilter, or healthriskfilter were applied, copy the filtered query to a variable called filteredItems
+
+      if (regionfilter || countryfilter || healthriskfilter) {
+        let cloneQuery = query.clone();
+        filteredItems = await cloneQuery.exec();
+      }
+      console.log("Filtered Items:", filteredItems);
+
+      // View-specific queries
+      if (view === "profile") query = query.where("postedBy").equals(profileId);
+      if (view === "likedPosts" || view === "savedPosts") {
+        const userId = req.user.id;
+        const user = await User.findById(userId);
+        query = query
+          .where("_id")
+          .in(view === "likedPosts" ? user.likedPosts : user.savedPosts);
+      }
+
+      //If items have been filtered already, maintain those while sorting
+      if (filteredItems && filteredItems.length > 0) {
+        query = ItemList.find({
+          _id: { $in: filteredItems.map((item) => item._id) },
+        }).populate("postedBy");
+      }
+
+      // Sorting
+      if (sort) {
+        let sortString = Array.isArray(sort) ? sort.join(",") : sort;
+        const sanitizedSort = sortString.startsWith(",")
+          ? sortString.slice(1)
+          : sortString;
+        const sortOptions = {
+          yearDecreasing: { numinput: -1 },
+          yearIncreasing: { numinput: 1 },
+          createdAtDecreasing: { createdAt: -1 },
+          createdAtIncreasing: { createdAt: 1 },
+          likes: { likes: -1 },
+          comments: { comments: -1 },
+        };
+        query = query.sort(sortOptions[sanitizedSort] || {});
+        console.log(`sorting by ${sanitizedSort}`);
+      }
+
+      // Pagination
+      const totalItems = await ItemList.countDocuments(query.getQuery());
+
+      // Set minimum totalPages and page to 1
+      const totalPages = Math.max(Math.ceil(totalItems / ITEMS_PER_PAGE), 1);
+      const sanitizedPage = Math.max(page, 1);
+
+      // Check if page number is valid
+      if (sanitizedPage > totalPages) {
+        return res.redirect(
+          `/dashboard?page=${totalPages}&sort=${sort}&regionfilter=${regionfilter}&countryfilter=${countryfilter}&healthriskfilter=${healthriskfilter}`
+        );
+      }
+
+      const skip = (sanitizedPage - 1) * ITEMS_PER_PAGE;
+
+      query = query.skip(skip).limit(ITEMS_PER_PAGE);
+
+      // Execute Query
+      const itemList = await query.exec();
+      console.log(`Final Query: ${query}`);
+
+      // Render appropriate view
+      const renderData = {
+        itemList,
+        user: req.user,
+        regionfilter,
+        countryfilter,
+        healthriskfilter,
+        filterParameters,
+        currentPage: page,
+        totalPages,
+        totalItems,
+        currentSort: sort,
+      };
+
+      if (view === "profile") {
+        const profile = await User.findById(profileId);
+        renderData.profile = profile;
+        return res.render("profile.ejs", renderData);
+      }
+
+      return res.render(view + ".ejs", renderData);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send("Server Error");
+    }
+  },
   getDashboard: async (req, res) => {
     try {
-      const items = await ItemList.find().populate("postedBy");
-      // let filterParameters = [];
+      const page = parseInt(req.query.page) || 1; // Default to page 1 if no page parameter is provided
+
+      const totalItems = await ItemList.countDocuments();
+      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+      // Calculate the number of items to skip
+      const skip = (page - 1) * ITEMS_PER_PAGE;
+
+      // Assuming sort parameter is in the request query
+      const currentSort = req.query.sort || "defaultSort";
+
+      // Fetch items for the current page
+      const items = await ItemList.find()
+        .skip(skip)
+        .limit(ITEMS_PER_PAGE)
+        .populate("postedBy");
 
       res.render("dashboard.ejs", {
         itemList: items,
         user: req.user,
+        totalPages: totalPages,
+        currentPage: page,
         filterParameters,
+        currentSort,
       });
     } catch (err) {
       res.render("error/500");
@@ -163,11 +317,13 @@ module.exports = {
   getFilteredItems: async (req, res) => {
     try {
       const { regionfilter, countryfilter, healthriskfilter } = req.query;
+      const page = req.query.page || 1; // Get the current page or default to page 1
 
       let query = ItemList.find().populate("postedBy");
       const view = req.params.view;
       const profileId = req.params.id;
       let filterParameters = [];
+      const currentSort = req.query.sort || "defaultSort";
 
       // Populate the filterParameters array using region, country, and healthrisk inputs
       if (regionfilter) {
@@ -229,6 +385,14 @@ module.exports = {
         query = query.where("_id").in(user.savedPosts);
       }
 
+      // Paginate the results
+      const countQuery = query.clone();
+      const totalItems = await countQuery.countDocuments();
+      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+      const skip = (page - 1) * ITEMS_PER_PAGE;
+
+      query = query.skip(skip).limit(ITEMS_PER_PAGE);
+
       const itemList = await query.exec();
       console.log(`filter by ${filterParameters}`);
 
@@ -242,6 +406,9 @@ module.exports = {
           itemList,
           user: req.user,
           filterParameters,
+          currentPage: page,
+          totalPages,
+          currentSort,
         });
         //if you started at profile, redirect to profile
       } else if (view == "profile") {
@@ -269,12 +436,17 @@ module.exports = {
   getSortedItems: async (req, res) => {
     try {
       //Exctracting second item of sort array because Tailwind-Elements gives array of [first item, item selected]
-      const sort = Array.isArray(req.query.sort)
-        ? req.query.sort[1]
-        : req.query.sort;
-      // const { sort } = req.query;
+      const sortArray = Array.isArray(req.query.sort)
+        ? req.query.sort
+        : [req.query.sort];
+      const sort = sortArray.find((s) => s !== "") || "defaultSort";
+      // ? req.query.sort[1]
+      // : req.query.sort;
+
+      const currentSort = req.query.sort || "defaultSort";
       const profileId = req.params.id;
       const view = req.params.view;
+      const page = req.query.page || 1; // Get the current page or default to page 1
 
       if (view != "guestDashboard") {
         // const userId = req.user.id;
@@ -326,6 +498,19 @@ module.exports = {
         }
       }
 
+      // Paginate the results
+      const totalItems = await ItemList.countDocuments(query.getQuery());
+      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+      const skip = (page - 1) * ITEMS_PER_PAGE;
+      query = query.skip(skip).limit(ITEMS_PER_PAGE);
+
+      console.log(
+        `Page: ${page}, Sort: ${sort}, totalItems: ${totalItems}. totalPages: ${totalPages}, skip:${skip} Query: ${JSON.stringify(
+          query.getQuery()
+        )}`
+      );
+
       const itemList = await query.exec();
       console.log("sort");
       if (view == "guestDashboard") {
@@ -333,10 +518,14 @@ module.exports = {
       }
       if (view == "dashboard") {
         console.log(sort);
+        console.log(query.getQuery());
         res.render("dashboard.ejs", {
           itemList,
           user: req.user,
           filterParameters,
+          currentPage: page,
+          totalPages,
+          currentSort,
         });
       } else if (view == "profile") {
         //Retrieve the profile document to get postCount and commentCount
