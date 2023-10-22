@@ -953,6 +953,10 @@ body::before {
   margin: -1px !important;
 }
 
+.-m-px {
+  margin: -1px;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -1395,6 +1399,10 @@ body::before {
   height: 100%;
 }
 
+.h-px {
+  height: 1px;
+}
+
 .h-screen {
   height: 100vh;
 }
@@ -1629,6 +1637,10 @@ body::before {
 
 .w-full {
   width: 100%;
+}
+
+.w-px {
+  width: 1px;
 }
 
 .w-screen {
@@ -3710,6 +3722,10 @@ body::before {
 
 .\!\[clip\:rect\(0\2c 0\2c 0\2c 0\)\] {
   clip: rect(0,0,0,0) !important;
+}
+
+.\[clip\:rect\(0\2c 0\2c 0\2c 0\)\] {
+  clip: rect(0,0,0,0);
 }
 
 .\[direction\:ltr\] {
