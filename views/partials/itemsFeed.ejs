@@ -291,6 +291,11 @@
         : item.textinput %>
       </a>
       <% } %>
+      <a
+        href="/viewPost/dashboard/<%= item._id %>"
+        class="block text-[#3b71ca] text-primary text-sm hover:underline py-2"
+        >VIEW FULL POST</a
+      >
 
       <div class="flex gap-1.5 flex-wrap pb-1.5">
         <!-- year bubble -->
@@ -354,16 +359,20 @@
             <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i><%=
             item.comments %>
           </div>
-          <% } else { %>
+          <% } else if (item.comments > 1) { %>
           <div title="<%= item.comments %> comments" class="text-neutral-500">
             <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i><%=
             item.comments %>
+          </div>
+          <% } else {%>
+          <div title="<%= item.comments %> comments" class="text-neutral-500">
+            <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i>
           </div>
           <% } %>
 
           <form action="/likePost/<%= item._id %>" class="flex">
             <% if (user.likedPosts.includes(item._id)) { %>
-            <!-- If post is already saved by the user, display "Unsave this post" -->
+            <!-- If post is already liked by the user, display "Unlike this post" -->
             <button type="submit" title="Unlike post">
               <i class="fa-solid fa-heart mr-1" style="color: #f91880"></i>
             </button>
@@ -372,7 +381,7 @@
             <div title="<%= item.likes %> like" class="text-neutral-500">
               <%= item.likes %>
             </div>
-            <% } else { %>
+            <% } else if (item.likes > 1){ %>
             <div title="<%= item.likes %> likes" class="text-neutral-500">
               <%= item.likes %>
             </div>
@@ -386,7 +395,7 @@
             <div class="text-neutral-500" title="<%= item.likes %> like">
               <%= item.likes %>
             </div>
-            <% } else { %>
+            <% } else if (item.likes > 1){ %>
             <div class="text-neutral-500" title="<%= item.likes %> likes">
               <%= item.likes %>
             </div>
