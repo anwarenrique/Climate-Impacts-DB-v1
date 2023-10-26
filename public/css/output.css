@@ -1063,6 +1063,10 @@ body::before {
   margin-bottom: 0.75rem;
 }
 
+.mb-3\.5 {
+  margin-bottom: 0.875rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -1581,6 +1585,10 @@ body::before {
 
 .w-\[30px\] {
   width: 30px;
+}
+
+.w-\[30rem\] {
+  width: 30rem;
 }
 
 .w-\[328px\] {
@@ -3971,11 +3979,6 @@ body::before {
 .hover\:bg-\[\#DBA98B\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 169 139 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-\[\#F2F3F5\]:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(242 243 245 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-\[\#a0e5a3\]:hover {
