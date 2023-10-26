@@ -357,52 +357,88 @@
         <% }); %> <% } %>
       </div>
 
-      <div class="flex justify-start">
-        <div class="flex justify-between w-4/6 my-2.5">
-          <!-- If the post has 1 comment, ensure the grammar fits accordingly -->
-          <% if (item.comments == 1) {%>
-          <div title="<%= item.comments %> comment" class="text-neutral-500">
-            <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i><%=
-            item.comments %>
-          </div>
-          <% } else if (item.comments > 1) { %>
-          <div title="<%= item.comments %> comments" class="text-neutral-500">
-            <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i><%=
-            item.comments %>
-          </div>
-          <% } else {%>
-          <div title="<%= item.comments %> comments" class="text-neutral-500">
-            <i class="fa-regular fa-comment mr-1" style="color: #5b7083"></i>
-          </div>
-          <% } %>
+      <div class="flex justify-start w-[30rem] py-1">
+        <div class="flex justify-between w-4/6">
+          <!-- comments -->
+          <form
+            action="/viewPost/dashboard/<%= item._id %>"
+            class="flex justify-center"
+          >
+            <button
+              type="submit"
+              class="w-9 h-9 rounded-full hover:bg-[#e2e7eb] transition duration-150"
+            >
+              <i class="fa-regular fa-comment" style="color: #5b7083"></i>
+            </button>
+            <% if (item.comments == 1) {%>
+            <div
+              title="<%= item.comments %> comment"
+              class="text-neutral-500 flex items-center"
+            >
+              <%= item.comments %>
+            </div>
+            <% } else if (item.comments > 1) { %>
+            <div
+              title="<%= item.comments %> comments"
+              class="text-neutral-500 flex items-center"
+            >
+              <%= item.comments %>
+            </div>
+            <% } else {%>
+            <div
+              title="<%= item.comments %> comments"
+              class="text-neutral-500 flex items-center"
+            ></div>
+            <% } %>
+          </form>
 
-          <form action="/likePost/<%= item._id %>" class="flex">
+          <form action="/likePost/<%= item._id %>" class="flex justify-center">
             <% if (user.likedPosts.includes(item._id)) { %>
             <!-- If post is already liked by the user, display "Unlike this post" -->
-            <button type="submit" title="Unlike post">
-              <i class="fa-solid fa-heart mr-1" style="color: #f91880"></i>
+            <button
+              type="submit"
+              title="Unlike post"
+              class="w-9 h-9 rounded-full hover:bg-[#fee4f0] transition duration-150"
+            >
+              <i class="fa-solid fa-heart" style="color: #f91880"></i>
             </button>
 
             <% if (item.likes == 1) {%>
-            <div title="<%= item.likes %> like" class="text-neutral-500">
+            <div
+              title="<%= item.likes %> like"
+              class="text-neutral-500 flex items-center"
+            >
               <%= item.likes %>
             </div>
             <% } else if (item.likes > 1){ %>
-            <div title="<%= item.likes %> likes" class="text-neutral-500">
+            <div
+              title="<%= item.likes %> likes"
+              class="text-neutral-500 flex items-center"
+            >
               <%= item.likes %>
             </div>
             <% } %> <% } else { %>
             <!-- If post is not saved by the user, display "Save this post" -->
-            <button type="submit" title="Like post" class="">
-              <i class="fa-regular fa-heart mr-1" style="color: #5b7083"></i>
+            <button
+              type="submit"
+              title="Like post"
+              class="w-9 h-9 rounded-full hover:bg-[#fee4f0] transition duration-150"
+            >
+              <i class="fa-regular fa-heart" style="color: #5b7083"></i>
             </button>
             <!-- If the post has 1 like, ensure the grammar fits accordingly -->
             <% if (item.likes == 1) {%>
-            <div class="text-neutral-500" title="<%= item.likes %> like">
+            <div
+              class="text-neutral-500 flex items-center"
+              title="<%= item.likes %> like"
+            >
               <%= item.likes %>
             </div>
             <% } else if (item.likes > 1){ %>
-            <div class="text-neutral-500" title="<%= item.likes %> likes">
+            <div
+              class="text-neutral-500 flex items-center"
+              title="<%= item.likes %> likes"
+            >
               <%= item.likes %>
             </div>
             <% } %> <% } %>
@@ -411,7 +447,11 @@
           <form action="/savePost/<%= item._id %>">
             <% if (user.savedPosts.includes(item._id)) { %>
             <!-- If post is already saved by the user, display "Unsave this post" -->
-            <button type="submit" title="Unsave post">
+            <button
+              type="submit"
+              title="Unsave post"
+              class="w-9 h-9 rounded-full hover:bg-[#e2e7eb] transition duration-150"
+            >
               <i
                 class="fa-solid fa-bookmark"
                 alt="Unsave"
@@ -420,7 +460,11 @@
             </button>
             <% } else { %>
             <!-- If post is not saved by the user, display "Save this post" -->
-            <button type="submit" title="Save post">
+            <button
+              type="submit"
+              title="Save post"
+              class="w-9 h-9 rounded-full hover:bg-[#e2e7eb] transition duration-150"
+            >
               <i
                 class="fa-regular fa-bookmark"
                 alt="Save"

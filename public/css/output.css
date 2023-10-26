@@ -1005,11 +1005,6 @@ body::before {
   margin-bottom: 0.5rem;
 }
 
-.my-2\.5 {
-  margin-top: 0.625rem;
-  margin-bottom: 0.625rem;
-}
-
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -3990,6 +3985,11 @@ body::before {
 .hover\:bg-\[\#e2e7eb\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(226 231 235 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#fee4f0\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(254 228 240 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-\[unset\]:hover {
