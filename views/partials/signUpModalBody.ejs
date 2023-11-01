@@ -1,0 +1,89 @@
+<div
+  data-te-modal-dialog-ref
+  class="pointer-events-none relative flex justify-center min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
+>
+  <div
+    class="pointer-events-auto relative flex w-full flex-col rounded-xl border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+  >
+    <div
+      class="flex flex-shrink-0 items-center justify-between rounded-t-md p-4 dark:border-opacity-50"
+    >
+      <!--Modal title-->
+      <h5
+        class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+      ></h5>
+      <h1
+        class="text-3xl font-medium leading-normal text-neutral-800 dark:text-neutral-200 pt-4"
+        id="exampleModalCenterTitle"
+      >
+        Sign Up
+      </h1>
+      <!--Close button-->
+      <button
+        type="button"
+        class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none pb-8"
+        data-te-modal-dismiss
+        aria-label="Close"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-6 w-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!--Modal body-->
+    <div
+      class="relative w-6/12 flex flex-wrap items-center justify-center self-center pb-12 pt-12"
+    >
+      <h5
+        class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+      ></h5>
+      <p class="text-center text-lg">
+        Create an account to easily save, like, add comments, and submit your
+        own posts.
+      </p>
+    </div>
+
+    <!--Modal footer-->
+    <div
+      class="flex flex-shrink-0 flex-wrap items-center justify-center rounded-b-md p-4 pb-12 dark:border-opacity-50"
+    >
+      <!-- <button
+        type="button"
+        class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
+        data-te-modal-dismiss
+        data-te-ripple-init
+        data-te-ripple-color="light">
+        Close
+      </button> -->
+      <a
+        href="/auth/google"
+        type="button"
+        data-te-ripple-init
+        data-te-ripple-color="light"
+        class="ml-1 inline-block rounded-xl px-6 pb-2 pt-2.5 font-medium leading-normal border border-[#28bb85] hover:text-white sshadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] active:text-white dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+      >
+        <button type="button" class="">
+          <img
+            class="h-6 w-6 inline-block"
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            loading="lazy"
+            alt=""
+          />
+          Sign up with Google
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

@@ -38,6 +38,15 @@ module.exports = {
       const view = req.params.view || "dashboard";
       const profileId = req.params.id;
 
+      //Guest or logged in user (req.user)
+      let user = req.user;
+      if (!req.user) {
+        user = {
+          _id: "guest",
+          likedPosts: [],
+          savedPosts: [],
+        };
+      }
       // Optional states (req.query)
       const {
         page = 1,
@@ -145,7 +154,7 @@ module.exports = {
       // Render appropriate view
       const renderData = {
         itemList,
-        user: req.user,
+        user,
         regionfilter,
         countryfilter,
         healthriskfilter,
