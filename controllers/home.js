@@ -352,6 +352,16 @@ module.exports = {
   },
   getViewPost: async (req, res) => {
     try {
+      //Guest or logged in user (req.user)
+      let user = req.user;
+      if (!req.user) {
+        user = {
+          _id: "guest",
+          likedPosts: [],
+          savedPosts: [],
+        };
+      }
+
       const itemId = req.params.id;
       const view = req.params.view;
       const item = await ItemList.findById(itemId).populate("postedBy");
@@ -365,15 +375,21 @@ module.exports = {
         return res.status(404).render("error/404");
       }
 
-      if (view == "guestDashboard") {
-        res.render("guestViewPost.ejs", { item, comments: comments });
-      } else {
-        res.render("viewPost.ejs", {
-          item,
-          comments: comments,
-          user: req.user,
-        });
-      }
+      res.render("viewPost.ejs", {
+        item,
+        comments: comments,
+        user,
+      });
+
+      // if (view == "guestDashboard") {
+      //   res.render("guestViewPost.ejs", { item, comments: comments });
+      // } else {
+      //   res.render("viewPost.ejs", {
+      //     item,
+      //     comments: comments,
+      //     user: req.user,
+      //   });
+      // }
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");
