@@ -1470,6 +1470,10 @@ body::before {
   width: 2.5rem;
 }
 
+.w-11\/12 {
+  width: 91.666667%;
+}
+
 .w-2 {
   width: 0.5rem;
 }
@@ -2892,9 +2896,19 @@ body::before {
   padding-bottom: 0.5rem;
 }
 
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.py-3\.5 {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
 }
 
 .py-4 {
@@ -2995,6 +3009,14 @@ body::before {
 
 .pr-2 {
   padding-right: 0.5rem;
+}
+
+.pr-3 {
+  padding-right: 0.75rem;
+}
+
+.pr-3\.5 {
+  padding-right: 0.875rem;
 }
 
 .pr-4 {
@@ -3992,6 +4014,11 @@ body::before {
   background-color: rgb(158 216 229 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#CACACA\]:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(202 202 202 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-\[\#DBA98B\]:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 169 139 / var(--tw-bg-opacity));
@@ -4068,6 +4095,11 @@ body::before {
 .hover\:text-\[\#8b8b8b\]:hover {
   --tw-text-opacity: 1;
   color: rgb(139 139 139 / var(--tw-text-opacity));
+}
+
+.hover\:text-navblack:hover {
+  --tw-text-opacity: 1;
+  color: rgb(15 20 25 / var(--tw-text-opacity));
 }
 
 .hover\:text-primary:hover {
@@ -4194,6 +4226,11 @@ body::before {
 .focus\:bg-\[\#077F59\]:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(7 127 89 / var(--tw-bg-opacity));
+}
+
+.focus\:bg-\[\#CACACA\]:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(202 202 202 / var(--tw-bg-opacity));
 }
 
 .focus\:bg-\[\#e2e7eb\]:focus {
@@ -4473,6 +4510,11 @@ body::before {
 .active\:bg-\[\#077F59\]:active {
   --tw-bg-opacity: 1;
   background-color: rgb(7 127 89 / var(--tw-bg-opacity));
+}
+
+.active\:bg-\[\#CACACA\]:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(202 202 202 / var(--tw-bg-opacity));
 }
 
 .active\:bg-\[\#cacfd1\]:active {
@@ -5352,6 +5394,12 @@ body::before {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+:is(.dark .dark\:hover\:shadow-\[0_8px_9px_-4px_\#CACACA\]:hover) {
+  --tw-shadow: 0 8px 9px -4px #CACACA;
+  --tw-shadow-colored: 0 8px 9px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 :is(.dark .dark\:hover\:shadow-\[0_8px_9px_-4px_rgba\(59\2c 113\2c 202\2c 0\.2\)\2c 0_4px_18px_0_rgba\(59\2c 113\2c 202\2c 0\.1\)\]:hover) {
   --tw-shadow: 0 8px 9px -4px rgba(59,113,202,0.2),0 4px 18px 0 rgba(59,113,202,0.1);
   --tw-shadow-colored: 0 8px 9px -4px var(--tw-shadow-color), 0 4px 18px 0 var(--tw-shadow-color);
@@ -5410,6 +5458,12 @@ body::before {
 
 :is(.dark .dark\:active\:shadow-\[0_8px_9px_-4px_\#077F59\]:active) {
   --tw-shadow: 0 8px 9px -4px #077F59;
+  --tw-shadow-colored: 0 8px 9px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+:is(.dark .dark\:active\:shadow-\[0_8px_9px_-4px_\#CACACA\]:active) {
+  --tw-shadow: 0 8px 9px -4px #CACACA;
   --tw-shadow-colored: 0 8px 9px -4px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }

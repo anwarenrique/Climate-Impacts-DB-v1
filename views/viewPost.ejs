@@ -31,34 +31,25 @@
     <!-- container div for feed, sort, title, filter -->
     <div id="containerForAll" class="2xl:flex 2xl:flex-col"> 
       <!-- Page title section -->
-      <section
-        class="flex justify-start w-6/12 mx-auto h-14 flex items-center max-w-[625px] border border-sky-500"
-      >
-        <div class="">
-          <h3
-            class="h-12 leading-10 flex font-roboto text-2xl text-navblack font-bold flex items-center"
-          >
-            Climate Change and Health Post View
-          </h3>
-        </div>
-      </section>
+      
 
       <!-- SECTION FOR POST AND BACK BUTTON  -->
       
-      <div class="flex justify-between w-6/12 mx-auto h-14 flex items-center max-w-[625px] border border-sky-500"> 
+      <div class="flex justify-between w-6/12 mx-auto h-14 flex items-center max-w-[625px]"> 
 
         <!-- BACK TO LAST PAGE BUTTON -->
        
-        <a
-          href="/viewPost/dashboard/<%= item._id %>"
-          class="self-center rounded-3xl hover:underline border border-sky-500 bg-[#28bb85] text-white mb-3.5 px-6 py-1.5 rounded-3xl font-roboto text-sm transition duration-150 shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59]"
+        <button
+          class="text-neutral-500 rounded-3xl underline hover:underline px-6 py-1.5 rounded-3xl font-roboto text-md transition duration-150 transition duration-150 ease-in-out  hover:bg-[#CACACA] hover:text-navblack focus:bg-[#CACACA] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#CACACA] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#CACACA] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#CACACA]"
+          type="button"
+          id="backButton"
         >
           <div
             class=""
           >
-          <i class="fa-solid fa-arrow-left"></i> Back to feed 
+          <i class="fa-solid fa-arrow-left mr-2"></i>Back to feed 
           </div>
-        </a>
+        </button>
       
 
       <!-- CREATE POST BUTTON  -->
@@ -188,7 +179,7 @@ class="pointer-events-none relative flex justify-center min-h-[calc(100%-1rem)] 
 
     <!-- LEFT SIDE BAR -->
 
-    <div class="flex max-w-[1240px] 2xl:mx-auto mx-auto border border-sky-500">
+    <div class="flex max-w-[1240px] 2xl:mx-auto mx-auto ">
       <!-- FILTER BUTTON -->
       <section
         class="w-1/4 text-xl flex flex-col 2xl:max-w-[315px] 2xl:min-w-[315px]"
@@ -202,9 +193,9 @@ class="pointer-events-none relative flex justify-center min-h-[calc(100%-1rem)] 
 
       <!-- PARTIAL FOR ITEMS LIST FEED VIEW OF POST --> 
       <section class="w-1/2 max-w-[625px] 2xl:w-[625px]">
-        <div class="border border-sky-500"> 
+        <div class=""> 
           <div
-    class="block w-full bg-[#FFFCFC] rounded-3xl mb-3 shadow-xl flex justify-start transition duration-150"
+    class="block w-full bg-[#FFFCFC] rounded-3xl shadow-xl flex justify-start transition duration-150"
     href="#"
   >
     <div class="flex w-20">
@@ -481,7 +472,7 @@ class="pointer-events-none relative flex justify-center min-h-[calc(100%-1rem)] 
       <!-- Main text of post -->
       <a
         href="/viewPost/dashboard/<%= item._id %>"
-        class="block text-base font-medium font-roboto pt-2 pb-1.5 mr-3.5 w-[30rem] hover:underline"
+        class="block text-xl font-medium font-roboto pt-2 pb-1.5 mr-3.5 w-[30rem] hover:underline"
       >
         <%- item.titleinput %>
       </a>
@@ -920,23 +911,35 @@ class="pointer-events-none relative flex justify-center min-h-[calc(100%-1rem)] 
         </div>
 
         <!-- COMMENTS SECTION START -->
-        <div class="max-w-[625px] 2xl:w-[625px] border border-sky-500"> 
+        <div class="max-w-[625px] 2xl:w-[625px]"> 
+          <div class="flex justify-end text-neutral-500 pr-3.5 py-2.5 border-neutral-300 border-b-2"> 
+            <% if (item.comments == 0) { %>
+            <p>No comments</p>
+            <%} else if (item.comments == 1) {%>
+              <p><%= item.comments %> comment</p>
+              <%} else {%>
+                <p><%= item.comments %> comments</p>
+              <% }%>
+          </div>
       
           <!-- form to add comments -->
           
-          <form action="/comment/createComment/<%= item._id%>" method="POST">
-            <label for="commentinput">Comment</label>
+          <form action="/comment/createComment/<%= item._id%>" method="POST" class="py-3.5 w-11/12 mx-auto">
+            <label for="commentinput"></label>
             <textarea
               id="commentinput"
               type="text"
               name="commentinput"
               maxlength="40000"
             ></textarea>
-            <text id="update_chars3"></text>
-            <text id="update_words3"></text>
-        
-            <button type="submit" id="submitButton">Add comment</button>
+
+            <text id="update_chars3" class="block py-3.5"></text>
+       
+            <button type="submit" id="submitButton" class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center">Add comment <i class="fa-solid fa-plus"></i></button>
           </form>
+
+          <text id="update_chars3"></text>
+            <text id="update_words3"></text>
           <!-- comments feed-->
           <ul>
             <% for (let i=0; i<comments.length; i++) {%>
@@ -993,6 +996,9 @@ class="pointer-events-none relative flex justify-center min-h-[calc(100%-1rem)] 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
     <script>
+      document.getElementById("backButton").addEventListener("click", function() {
+    window.history.back(); // takes the user back to the previous page in their browser history
+});
       // new MultiSelectTag("regioninput"); // id
       // new MultiSelectTag("countryinput"); // id
       // new MultiSelectTag("healthriskinput"); // id
