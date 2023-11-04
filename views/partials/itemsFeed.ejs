@@ -4,6 +4,7 @@
     class="block w-full bg-[#FFFCFC] rounded-3xl mb-3 shadow-xl flex justify-start transition duration-150"
     href="#"
   >
+    <!-- Div for profile pic on the left START-->
     <div class="flex w-20">
       <a
         class="self-start mx-auto mt-1.5 rounded-full w-7/12"
@@ -15,6 +16,9 @@
         />
       </a>
     </div>
+    <!-- Div for profile pic on the left END-->
+
+    <!-- box for all other POST contents START-->
     <li class="w-full">
       <div class="flex justify-between pt-2">
         <div class="flex gap-x-1.5">
@@ -41,6 +45,7 @@
           ></a>
         </div>
 
+        <!-- 3 BUTTONS DROP DOWN START-->
         <div class="justify-self-end pr-2">
           <div class="relative" data-te-dropdown-ref>
             <button
@@ -273,6 +278,7 @@
             <!-- MODAL END  -->
           </div>
         </div>
+        <!-- 3 BUTTONS DROP DOWN END -->
       </div>
 
       <!-- Main text of post -->
@@ -282,7 +288,7 @@
       >
         <%- item.titleinput %>
       </a>
-
+      <!-- Show preview of extended text body -->
       <% if (item.textinput && item.textinput.length > 0) { %>
       <a
         class="block text-neutral-700 text-sm pb-1.5 w-[30rem] hover:underline transition duration-150"
@@ -292,6 +298,8 @@
         : item.textinput %>
       </a>
       <% } %>
+
+      <!-- View full post button -->
       <div class="flex justify-center w-[30rem]">
         <a
           href="/viewPost/dashboard/<%= item._id %>"
@@ -304,6 +312,8 @@
           </div>
         </a>
       </div>
+
+      <!-- Tag buttons for year, region, country, and health risk START -->
       <div class="flex gap-1.5 flex-wrap pb-1.5">
         <!-- year bubble -->
         <div class="bg-[#CACACA] py-1.5 px-3 rounded-3xl font-roboto text-sm">
@@ -357,10 +367,12 @@
         </a>
         <% }); %> <% } %>
       </div>
+      <!-- Tag buttons for year, region, country, and health risk END -->
 
+      <!-- Like, Comment, and save buttons - with logic for guest users vs logged in START -->
       <div class="flex justify-start w-[30rem] py-1">
         <div class="flex justify-between w-4/6">
-          <!-- comments -->
+          <!-- comments icon with link to post START-->
           <form
             action="/viewPost/dashboard/<%= item._id %>"
             class="flex justify-center"
@@ -392,12 +404,14 @@
             ></div>
             <% } %>
           </form>
+          <!-- comments icon with link to post END-->
 
+          <!-- If guest, like button triggers a modal -->
           <% if (user._id === 'guest') { %>
           <div class="flex justify-center">
             <button
               type="button"
-              title="Unlike post"
+              title="Like post"
               class="w-9 h-9 rounded-full hover:bg-[#fee4f0] transition duration-150"
               data-te-toggle="modal"
               data-te-target="#exampleModalCenterLike"
@@ -423,7 +437,7 @@
             <% } %>
           </div>
 
-          <!--Verically centered modal-->
+          <!--LIKE BUTTON MODAL START-->
           <div
             data-te-modal-init
             class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
@@ -494,14 +508,6 @@
                 <div
                   class="flex flex-shrink-0 flex-wrap items-center justify-center rounded-b-md p-4 pb-12 dark:border-opacity-50"
                 >
-                  <!-- <button
-                type="button"
-                class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-                data-te-modal-dismiss
-                data-te-ripple-init
-                data-te-ripple-color="light">
-                Close
-              </button> -->
                   <a
                     href="/auth/google"
                     type="button"
@@ -523,12 +529,13 @@
               </div>
             </div>
           </div>
+          <!--LIKE BUTTON MODAL END-->
 
+          <!-- Like button logic for logged in users START-->
           <%} else { %>
-
           <form action="/likePost/<%= item._id %>" class="flex justify-center">
-            <% if (user.likedPosts.includes(item._id)) { %>
             <!-- If post is already liked by the user, display "Unlike this post" -->
+            <% if (user.likedPosts.includes(item._id)) { %>
             <button
               type="submit"
               title="Unlike post"
@@ -552,7 +559,7 @@
               <%= item.likes %>
             </div>
             <% } %> <% } else { %>
-            <!-- If post is not saved by the user, display "Save this post" -->
+            <!-- If post is not liked by the user, display "Like this post" -->
             <button
               type="submit"
               title="Like post"
@@ -579,7 +586,9 @@
           </form>
           <% }%>
 
+          <!-- Save button logic start -->
           <form action="/savePost/<%= item._id %>">
+            <!-- logic for logged in user that has already saved the post -->
             <% if (user.savedPosts.includes(item._id)) { %>
             <!-- If post is already saved by the user, display "Unsave this post" -->
             <button
@@ -593,8 +602,9 @@
                 style="color: #5b7083"
               ></i>
             </button>
+            <!-- logic for logged in user that has not saved the post -->
             <% } else if (user._id != "guest"){ %>
-            <!-- If post is not saved by the user, display "Save this post" -->
+
             <button
               type="submit"
               title="Save post"
@@ -606,6 +616,8 @@
                 style="color: #5b7083"
               ></i>
             </button>
+
+            <!-- save button logic for guests -->
             <% } else {%>
             <button
               type="button"
@@ -625,7 +637,7 @@
             <% }%>
           </form>
 
-          <!--Verically centered modal-->
+          <!--SAVE BUTTON MODAL START-->
           <div
             data-te-modal-init
             class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
@@ -725,11 +737,12 @@
               </div>
             </div>
           </div>
+          <!-- SAVE BUTTON MODAL END -->
         </div>
       </div>
-
-      <!-- <a href="/viewPost/dashboard/<%= item._id %>">View Post</a> -->
+      <!-- Like, Comment, and save buttons - with logic for guest users vs logged in END -->
     </li>
+    <!-- box for all other POST contents END-->
   </div>
 
   <% }) %>
