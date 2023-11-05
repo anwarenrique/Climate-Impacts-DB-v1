@@ -26,5 +26,10 @@ router.get(
   ensureAuth,
   commentController.deleteComment
 ); //delete comment
+router.get(
+  "/reportComment/:Postid?/comments/:Commentid?",
+  ensureAuth,
+  commentController.reportComment
+); //report a comment
 
 module.exports = router;
