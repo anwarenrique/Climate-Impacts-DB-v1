@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const CommentSchema = new mongoose.Schema({
+const ReportedComment = new mongoose.Schema({
   comment: {
     type: String,
     required: true,
-    maxlength: 4000,
+    maxlength: 280,
   },
   createdAt: {
     type: Date,
@@ -35,4 +35,8 @@ const CommentSchema = new mongoose.Schema({
     default: [],
   },
 });
-module.exports = mongoose.model("Comment", CommentSchema);
+module.exports = mongoose.model(
+  "ReportedComment",
+  ReportedComment,
+  "reportedComments"
+);

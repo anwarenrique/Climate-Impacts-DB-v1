@@ -211,6 +211,8 @@
     </div>
     <div class="w-full">
       <div class="flex justify-between pt-2">
+
+        <!-- Top bar with username, date posted, and link -->
         <div class="flex gap-x-1.5">
           <a
             href="/profile/<%= item.postedBy._id%>"
@@ -235,6 +237,7 @@
           ></a>
         </div>
 
+        <!-- 3 dots menu start for posts START -->
         <div class="justify-self-end pr-2">
           <div class="relative" data-te-dropdown-ref>
             <button
@@ -467,17 +470,18 @@
             <!-- Report MODAL END  -->
           </div>
         </div>
+        <!-- 3 dots menu start for posts END-->
       </div>
 
       <!-- Main text of post -->
-      <a
-        href="/viewPost/dashboard/<%= item._id %>"
-        class="block text-xl font-medium font-roboto pt-2 pb-1.5 mr-3.5 w-[30rem] hover:underline"
+      <h1
+        
+        class="block text-xl font-medium font-roboto pt-2 pb-1.5 mr-3.5 w-[30rem]"
       >
         <%- item.titleinput %>
-      </a>
+    </h1>
 
-        <div class="block text-neutral-700 text-sm pb-1.5 w-[30rem] hover:underline transition duration-150"> 
+        <div class="block text-neutral-700 text-sm pb-1.5 w-[30rem]"> 
           <%- item.textinput%>
         </div>
       
@@ -537,17 +541,16 @@
 
       <div class="flex justify-start w-[30rem] py-1">
         <div class="flex justify-between w-4/6">
-          <!-- comments -->
-          <form
-            action="/viewPost/dashboard/<%= item._id %>"
+          <!-- comments icon -->
+          <div
+            
             class="flex justify-center"
           >
-            <button
-              type="submit"
-              class="w-9 h-9 rounded-full hover:bg-[#e2e7eb] transition duration-150"
+            <span
+              class="grid flex items-center w-9 h-9 rounded-full hover:bg-[#e2e7eb] transition duration-150"
             >
-              <i class="fa-regular fa-comment" style="color: #5b7083"></i>
-            </button>
+              <i class="fa-regular fa-comment justify-self-center " style="color: #5b7083"></i>
+            </span>
             <% if (item.comments == 1) {%>
             <div
               title="<%= item.comments %> comment"
@@ -568,7 +571,7 @@
               class="text-neutral-500 flex items-center"
             ></div>
             <% } %>
-          </form>
+            </div>
 
           <!-- Like button logic for guests -->
           <% if (user._id === 'guest') { %>
@@ -927,7 +930,8 @@
       
           <!-- form to add comments -->
           
-          <form action="/comment/createComment/<%= item._id%>" method="POST" class="py-3.5 w-11/12 mx-auto">
+          <% if (user._id != 'guest') {%>
+          <form action="/comment/createComment/<%= item._id%>" method="POST" class="py-3.5 w-11/12 mx-auto ">
             <label for="commentinput"></label>
             <textarea
               id="commentinput"
@@ -938,10 +942,124 @@
 
             <text id="update_chars3" class="block py-3.5 text-neutral-500 text-base"></text>
        
-            <button type="submit" id="submitButton" class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"><i class="fa-solid fa-plus"></i> Add comment</button>
+            <button 
+            type="submit" 
+            id="submitButton" 
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"><i class="fa-solid fa-plus"></i> Add comment</button>
           </form>
 
           <text id="update_chars3"></text>
+
+          <%} else {%>
+
+            <div class="py-3.5">
+            <button type="button" 
+            data-te-toggle="modal"
+            data-te-target="#AddCommentButtonModal"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            id="submitButton" 
+            class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"><i class="fa-solid fa-plus"></i> Add comment</button>
+          </div>
+            <!--ADD COMMENT BUTTON MODAL START-->
+            <div
+            data-te-modal-init
+            class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
+            id="AddCommentButtonModal"
+            tabindex="-1"
+            aria-labelledby="AddCommentButtonModal"
+            aria-modal="true"
+            role="dialog"
+          >
+            <div
+              data-te-modal-dialog-ref
+              class="pointer-events-none relative flex justify-center min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]"
+            >
+              <div
+                class="pointer-events-auto relative flex w-full flex-col rounded-xl border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600"
+              >
+                <div
+                  class="flex flex-shrink-0 items-center justify-between rounded-t-md p-4 dark:border-opacity-50"
+                >
+                  <!--Modal title-->
+                  <h5
+                    class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+                  ></h5>
+                  <h1
+                    class="text-3xl font-medium leading-normal text-neutral-800 dark:text-neutral-200 pt-4"
+                    id="exampleModalCenterTitle"
+                  >
+                    Sign Up
+                  </h1>
+                  <!--Close button-->
+                  <button
+                    type="button"
+                    class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none pb-8"
+                    data-te-modal-dismiss
+                    aria-label="Close"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="h-6 w-6"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <!--Modal body-->
+                <div
+                  class="relative w-6/12 flex flex-wrap items-center justify-center self-center pb-12 pt-12"
+                >
+                  <h5
+                    class="text-xl font-medium leading-normal text-neutral-800 dark:text-neutral-200"
+                  ></h5>
+                  <p class="text-center text-lg">
+                    Create an account to easily save, like, add comments, and
+                    submit your own posts.
+                  </p>
+                </div>
+
+                <!--Modal footer-->
+                <div
+                  class="flex flex-shrink-0 flex-wrap items-center justify-center rounded-b-md p-4 pb-12 dark:border-opacity-50"
+                >
+                  
+                  <a
+                    href="/auth/google"
+                    type="button"
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    class="ml-1 inline-block rounded-xl px-6 pb-2 pt-2.5 font-medium leading-normal border border-[#28bb85] hover:text-white sshadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] active:text-white dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                  >
+                    <button type="button" class="">
+                      <img
+                        class="h-6 w-6 inline-block"
+                        src="https://www.svgrepo.com/show/475656/google-color.svg"
+                        loading="lazy"
+                        alt=""
+                      />
+                      Sign up with Google
+                    </button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ADD COMMENT MODAL END -->
+
+            <% }%>
+
           <!-- comments feed-->
           <ul>
             <% for (let i=0; i<comments.length; i++) {%>
@@ -949,9 +1067,9 @@
               <!-- Comment outer box -->
                 <div class="block w-full flex justify-start border-neutral-300 border-t-2"> 
                   <!-- Div for profile pic on the left START-->
-                  <div class="flex w-20">
+                  <div class="flex w-20 pt-2">
                     <a
-                      class="self-start mx-auto mt-1.5 rounded-full w-7/12"
+                      class="self-start mx-auto pt-2.5 rounded-full w-7/12"
                       href="/profile/<%= comments[i].postedBy._id%>"
                       ><img
                         class="self-start mx-auto rounded-full w-full"
@@ -963,8 +1081,8 @@
                   <!-- Div for profile pic on the left END-->
 
                   <!-- box for all other comment contents START-->
-                  <div class="w-full"> 
-                    <div class="flex justify-between pt-2">
+                  <div class="w-full pt-2"> 
+                    <div class="flex justify-between pt-2.5">
                       <div class="flex gap-x-1.5 ">
                         <a
                           href="/profile/<%= comments[i].postedBy._id%>"
@@ -978,7 +1096,7 @@
                         </div>
                       </div>
 
-                      <!-- 3 BUTTONS DROP DOWN START -->
+                      <!-- 3 BUTTONS DROP DOWN START FOR COMMENTS -->
                       <div class="justify-self-end pr-2"> 
                         <div class="relative" data-te-dropdown-ref>
                           <button
@@ -997,14 +1115,15 @@
                             aria-labelledby="dropdownMenuSmallButton"
                             data-te-dropdown-menu-ref
                           >
-                            <% if (item.reportedBy.includes(user.id) || user._id === 'guest')
+                          
+                            <% if (comments[i].reportedBy.toString().includes(user._id.toString()) || user._id.toString() === 'guest')
                             { %>
                             <li>
                               <a
                                 class="pointer-events-none block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-neutral-400 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400 dark:text-neutral-500 dark:hover:bg-neutral-600"
                                 href="#"
                                 data-te-dropdown-item-ref
-                                >Report post</a
+                                >Report comment</a
                               >
                             </li>
                             <% } else { %>
@@ -1014,11 +1133,11 @@
                                 class="inline-block rounded bg-light px-6 pb-2 pt-2.5 text-sm font-medium leading-normal text-danger transition duration-150 ease-in-out hover:bg-secondary-200 focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] shadow-none"
                                 data-te-dropdown-item-ref
                                 data-te-toggle="modal"
-                                data-te-target="#reportModal<%= item._id %>"
+                                data-te-target="#reportCommentModal<%= comments[i]._id %>"
                                 data-te-ripple-init
                                 data-te-ripple-color="light"
                               >
-                                Report post
+                                Report comment
                               </button>
                             </li>
                             <%comments[i].postedBy %>
@@ -1128,13 +1247,13 @@
                           </div>
                           <!-- MODAL END  -->
               
-                          <!-- Report Modal START -->
+                          <!-- Report Comment Modal START -->
                           <div
                             data-te-modal-init
                             class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
-                            id="reportModal<%= item._id %>"
+                            id="reportCommentModal<%= comments[i]._id %>"
                             tabindex="-1"
-                            aria-labelledby="reportModalLabel"
+                            aria-labelledby="reportCommentModalLabel"
                             aria-hidden="true"
                           >
                             <div
@@ -1200,9 +1319,9 @@
                                     class="ml-1 inline-block rounded bg-danger px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-danger-800 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
                                     data-te-ripple-init
                                     data-te-ripple-color="light"
-                                    href="/reportPost/<%= item._id %>"
+                                    href="/comment/reportComment/<%- item._id %>/comments/<%- comments[i]._id %>"
                                   >
-                                    REPORT POST
+                                    REPORT Comment
                                   </a>
                                 </div>
                               </div>
