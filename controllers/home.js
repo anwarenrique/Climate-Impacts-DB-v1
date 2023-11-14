@@ -370,6 +370,14 @@ module.exports = {
         .sort({ createdAt: "desc" })
         .lean();
 
+      const editCommentId = req.query.editCommentId;
+      let editComment = null;
+      if (editCommentId) {
+        editComment = comments.find(
+          (comment) => comment._id.toString() === editCommentId
+        );
+      }
+
       if (!item) {
         // Item not found
         return res.status(404).render("error/404");
@@ -379,6 +387,7 @@ module.exports = {
         item,
         comments: comments,
         user,
+        editComment,
       });
 
       // if (view == "guestDashboard") {
