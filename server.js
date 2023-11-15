@@ -46,9 +46,9 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 
 //todo - Set Routes
+app.use("/auth", require("./routes/auth"));
 app.use("/", homeRoutes);
 app.use("/edit", editRoutes);
-app.use("/auth", require("./routes/auth"));
 app.use("/comment", commentRoutes);
 app.use("/profile", profileRoutes);
 

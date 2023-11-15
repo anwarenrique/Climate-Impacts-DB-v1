@@ -5,19 +5,62 @@ const Comment = require("../models/Comment");
 module.exports = {
   getProfile: async (req, res) => {
     try {
+      // Fundamental states (req.params)
+      const view = req.params.view || "dashboard";
       const profileId = req.params.id;
-      const userId = req.user.id;
-      // Retrieve the user document to get postCount and commentCount
-      const user = await User.findById(userId);
+
+      //Guest or logged in user (req.user)
+      let user = req.user;
+      if (!req.user) {
+        user = {
+          _id: "guest",
+          likedPosts: [],
+          savedPosts: [],
+        };
+      }
+
+      // Optional states (req.query)
+      const {
+        page = 1,
+        sort = "defaultSort",
+        regionfilter,
+        countryfilter,
+        healthriskfilter,
+      } = req.query;
+
       //Retrieve the profile document to get postCount and commentCount
       const profile = await User.findById(profileId);
+
+      // Helper function to process filters
+      const processFilter = (filter) => {
+        if (Array.isArray(filter)) {
+          return filter
+            .map((item) => item.split(",").map((subItem) => subItem.trim()))
+            .flat();
+        }
+        return filter.split(",").map((subItem) => subItem.trim());
+      };
+
+      let filterParameters = [];
+
+      // Process filters
+      if (regionfilter) filterParameters.push(...processFilter(regionfilter));
+      if (countryfilter) filterParameters.push(...processFilter(countryfilter));
+      if (healthriskfilter)
+        filterParameters.push(...processFilter(healthriskfilter));
+
+      const uniqueItems = [...new Set(filterParameters)];
+      // Maintain filterParameters as an array
+      filterParameters = [...uniqueItems];
+
       // Fetch the posts posted by the user indicated in the router
-      const items = await ItemList.find({
+      let query = await ItemList.find({
         postedBy: profileId, // Only select items posted by the specified user
       }).populate("postedBy");
+
       res.render("profile.ejs", {
         itemList: items,
-        user: req.user,
+        user,
         profile: profile,
       });
     } catch (err) {

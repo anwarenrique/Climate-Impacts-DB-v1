@@ -5,7 +5,7 @@ const router = express.Router();
 const profileController = require("../controllers/profile");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-router.get("/:id", profileController.getProfile); //read
+// router.get("/:id", profileController.getProfile); //read
 router.get("/guestDashboard/:id", profileController.getGuestProfile); //read
 router.get("/getEditProfile/:id", ensureAuth, profileController.getEditProfile); //access the edit profile page
 router.post(
