@@ -50,6 +50,38 @@
       </button>
     </form>
 
+    <form action="/profile/editProfileLink/<%=profile._id %>" method="post">
+      <h3>Edit your featured link</h3>
+      <textarea
+        name="newProfileLink"
+        id="newProfileLink"
+        cols="30"
+        placeholder="enter your new featured link"
+        required
+        minlength="4"
+        maxlength="2100"
+      ></textarea>
+      <button class="text-red-500 cursor-pointer" type="submit">
+        Submit changes
+      </button>
+    </form>
+
+    <form action="/profile/editProfileBio/<%=profile._id %>" method="post">
+      <h3>Edit your bio</h3>
+      <textarea
+        name="newProfileBio"
+        id="newProfileBio"
+        cols="30"
+        placeholder="enter your new Bio"
+        required
+        minlength="4"
+        maxlength="160"
+      ></textarea>
+      <button class="text-red-500 cursor-pointer" type="submit">
+        Submit changes
+      </button>
+    </form>
+
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
 
     <script>

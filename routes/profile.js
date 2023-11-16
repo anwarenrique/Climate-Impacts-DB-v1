@@ -13,5 +13,15 @@ router.post(
   ensureAuth,
   profileController.editDisplayName
 ); //edit the display name
+router.post(
+  "/editProfileLink/:id",
+  ensureAuth,
+  profileController.editProfileLink
+); //edit the display name
+router.post(
+  "/editProfileBio/:id",
+  ensureAuth,
+  profileController.editProfileBio
+); //edit the display name
 
 module.exports = router;
