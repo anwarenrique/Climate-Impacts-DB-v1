@@ -34,6 +34,14 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  profileLink: {
+    type: String,
+    default: "",
+  },
+  profileBio: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema, "Users");

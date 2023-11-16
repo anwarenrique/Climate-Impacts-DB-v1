@@ -112,4 +112,30 @@ module.exports = {
       return res.status(500).json({ message: "Server error" });
     }
   },
+  editProfileLink: async (req, res) => {
+    const userId = req.user.id;
+    const newProfileLink = req.body.newProfileLink;
+    try {
+      await User.findByIdAndUpdate(userId, {
+        profileLink: newProfileLink,
+      });
+      return res.redirect("/profile/" + userId);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Server error" });
+    }
+  },
+  editProfileBio: async (req, res) => {
+    const userId = req.user.id;
+    const newProfileBio = req.body.newProfileBio;
+    try {
+      await User.findByIdAndUpdate(userId, {
+        profileBio: newProfileBio,
+      });
+      return res.redirect("/profile/" + userId);
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Server error" });
+    }
+  },
 };
