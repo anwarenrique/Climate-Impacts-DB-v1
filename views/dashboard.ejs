@@ -212,7 +212,7 @@ role="dialog">
             </button>
           </a>
             <% }%>
-          <form action="/dashboard">
+          <form action="/feed">
             <div
               class="w-24 bg-[#CACACA] font-roboto font-bold rounded-3xl text-navblack text-base"
             >
@@ -259,7 +259,7 @@ role="dialog">
         >
           <!-- Tailwind-elements multi select -->
           <div>
-            <form action="/dashboard" method="GET">
+            <form action="/feed" method="GET">
               <div
                 class="w-64 mx-auto mb-6 flex items-center flex-col justify-center text-navblack text-lg"
               >
@@ -465,7 +465,7 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
     <li>
       <% if (currentPage > 1) { %>
         <a
-          href="/dashboard?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+          href="/feed?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
           class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
         >
           Previous
@@ -478,7 +478,7 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
     <% for (let page = 1; page <= totalPages; page++) { %>
       <li <% if (page === currentPage) { %> aria-current="page" <% } %> >
         <a
-          href="/dashboard?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+          href="/feed?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
           class="relative block rounded px-3 py-1.5 text-sm <%= page == currentPage ? 'text-md font-bold text-primary-700 bg-[#CACACA]' : 'text-neutral-600' %> transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
         >
           <%= page %>
@@ -493,7 +493,7 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       <% if (currentPage < totalPages) { %>
 
         <a
-          href="/dashboard?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+          href="/feed?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
           class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
         >
           Next
