@@ -6,12 +6,12 @@ const router = express.Router();
 const homeController = require("../controllers/home");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-router.get("/home", ensureGuest, homeController.getLogin); //read
+router.get("/", ensureGuest, homeController.getLogin); //read
 router.post("/new", ensureAuth, homeController.createItem); //Add post to database
 router.get("/newPost", ensureAuth, homeController.getNewPost); //go to the 'write post' view
-router.get("/:view?/:id?", homeController.getUnifiedDashboard);
+router.get("/feed/:view?/:id?", homeController.getUnifiedDashboard);
 // router.get("/dashboard", ensureAuth, homeController.getDashboard); //go to the main feed for (logged in users)
-router.get("/guestDashboard/:view?/:id?", homeController.getUnifiedDashboard); //go to main feed (for non logged in users)
+// router.get("/guestDashboard/:view?/:id?", homeController.getUnifiedDashboard); //go to main feed (for non logged in users)
 router.get("/likePost/:id", ensureAuth, homeController.likePost); //like a post
 router.get("/savePost/:id", ensureAuth, homeController.savePost); //save a post
 router.get("/clearFilter/:view/:id", homeController.clearFilter); //clear the filter you set

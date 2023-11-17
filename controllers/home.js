@@ -78,7 +78,15 @@ module.exports = {
       // Maintain filterParameters as an array
       filterParameters = [...uniqueItems];
 
-      let query = ItemList.find().populate("postedBy");
+      // Logic to make sure profile view only filters and sorts posts made by profile user
+      let query = {};
+      if (view == "profile") {
+        query = ItemList.find({
+          postedBy: profileId, // Only select items posted by the specified user
+        }).populate("postedBy");
+      } else {
+        query = ItemList.find().populate("postedBy");
+      }
 
       // Apply filters to the query
       if (regionfilter) query = query.where("regioninput").in(regionfilter);
@@ -139,7 +147,7 @@ module.exports = {
       // Check if page number is valid
       if (sanitizedPage > totalPages) {
         return res.redirect(
-          `/dashboard?page=${totalPages}&sort=${sort}&regionfilter=${regionfilter}&countryfilter=${countryfilter}&healthriskfilter=${healthriskfilter}`
+          `/feed?page=${totalPages}&sort=${sort}&regionfilter=${regionfilter}&countryfilter=${countryfilter}&healthriskfilter=${healthriskfilter}`
         );
       }
 
@@ -243,7 +251,7 @@ module.exports = {
       res.redirect("/");
     } catch (err) {
       if (err) return res.status(500).send(err);
-      res.redirect("/dashboard");
+      res.redirect("/feed");
     }
   },
   getGuestDashboard: async (req, res) => {
@@ -261,7 +269,7 @@ module.exports = {
       const post = await ItemList.findById(postId);
       if (!post) {
         console.log("Post not found.");
-        res.redirect("/dashboard");
+        res.redirect("/feed");
         return;
       }
 
@@ -318,7 +326,7 @@ module.exports = {
       await user.save();
 
       // Redirect back to the original post or a specific page, as desired
-      res.redirect("/dashboard");
+      res.redirect("back");
     } catch (err) {
       if (err) return res.status(500).send(err);
     }
@@ -335,11 +343,11 @@ module.exports = {
       }
       //If you started at dashboard, redirect to dashboard
       else if (view == "dashboard") {
-        res.redirect("/dashboard");
+        res.redirect("/feed");
 
         //if you started at profile, redirect to profile
       } else if (view == "profile") {
-        res.redirect("/profile/" + profileId);
+        res.redirect("/feed/profile/" + profileId);
       } else if (view == "likedPosts") {
         res.redirect("/likedPosts");
       } else if (view == "savedPosts") {

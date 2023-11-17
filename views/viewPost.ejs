@@ -201,7 +201,7 @@
     <div class="flex w-20">
       <a
         class="self-start mx-auto mt-1.5 rounded-full w-7/12"
-        href="/profile/<%= item.postedBy._id%>"
+        href="/feed/profile/<%= item.postedBy._id%>"
         ><img
           class="self-start mx-auto rounded-full w-full"
           src="<%- item.postedBy?.image%>"
@@ -215,7 +215,7 @@
         <!-- Top bar with username, date posted, and link -->
         <div class="flex gap-x-1.5">
           <a
-            href="/profile/<%= item.postedBy._id%>"
+            href="/feed/profile/<%= item.postedBy._id%>"
             class="underline font-roboto text-sm"
             ><%= item.postedBy?.displayName%></a
           >
@@ -497,7 +497,7 @@
 
         <a
           class="rounded-3xl h-full hover:underline"
-          href="/dashboard?regionfilter=<%= region%>&&countryfilter=&healthriskfilter="
+          href="/feed/dashboard?regionfilter=<%= region%>&&countryfilter=&healthriskfilter="
         >
           <div
             class="bg-[#BEEDC0] p-1.5 px-2 rounded-3xl font-roboto text-sm hover:bg-[#a0e5a3] transition duration-150"
@@ -513,7 +513,7 @@
         item.countryinput.forEach(country => { %>
         <a
           class="rounded-3xl h-full hover:underline"
-          href="/dashboard?regionfilter=&&countryfilter=<%= country%>&healthriskfilter="
+          href="/feed/dashboard?regionfilter=&&countryfilter=<%= country%>&healthriskfilter="
         >
           <div
             class="bg-[#C6E8F0] p-1.5 px-2 rounded-3xl font-roboto text-sm hover:bg-[#9ED8E5] transition duration-150"
@@ -528,7 +528,7 @@
         item.healthriskinput.forEach(healthRisk => { %>
         <a
           class="rounded-3xl h-full hover:underline"
-          href="/dashboard?regionfilter=&&countryfilter=&healthriskfilter=<%=healthRisk%>"
+          href="/feed/dashboard?regionfilter=&&countryfilter=&healthriskfilter=<%=healthRisk%>"
         >
           <div
             class="bg-[#E7C6B2] p-1.5 px-2 rounded-3xl font-roboto text-sm hover:bg-[#DBA98B] transition duration-150"
@@ -1104,7 +1104,7 @@
                   <div class="flex w-20 pt-2">
                     <a
                       class="self-start mx-auto pt-2.5 rounded-full w-7/12"
-                      href="/profile/<%= comments[i].postedBy._id%>"
+                      href="/feed/profile/<%= comments[i].postedBy._id%>"
                       ><img
                         class="self-start mx-auto rounded-full w-full"
                         src="<%- comments[i].postedBy?.image%>"
@@ -1119,7 +1119,7 @@
                     <div class="flex justify-between pt-2.5">
                       <div class="flex gap-x-1.5 ">
                         <a
-                          href="/profile/<%= comments[i].postedBy._id%>"
+                          href="/feed/profile/<%= comments[i].postedBy._id%>"
                           class="underline font-roboto text-sm"
                           ><%= comments[i].postedBy?.displayName%></a
                         >
@@ -1572,7 +1572,7 @@
                   <div class="flex w-20 pt-2">
                     <a
                       class="self-start mx-auto pt-2.5 rounded-full w-7/12"
-                      href="/profile/<%= comments[i].postedBy._id%>"
+                      href="/feed/profile/<%= comments[i].postedBy._id%>"
                       ><img
                         class="self-start mx-auto rounded-full w-full"
                         src="<%- comments[i].postedBy?.image%>"
@@ -1587,7 +1587,7 @@
                     <div class="flex justify-between pt-2.5">
                       <div class="flex gap-x-1.5 ">
                         <a
-                          href="/profile/<%= comments[i].postedBy._id%>"
+                          href="/feed/profile/<%= comments[i].postedBy._id%>"
                           class="underline font-roboto text-sm"
                           ><%= comments[i].postedBy?.displayName%></a
                         >

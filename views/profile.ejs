@@ -246,7 +246,7 @@ role="dialog">
         >
           <!-- Tailwind-elements multi select -->
           <div>
-            <form action="/profile/<%=profile._id%>" method="GET">
+            <form action="/feed/profile/<%=profile._id%>" method="GET">
               <div
                 class="w-64 mx-auto mb-6 flex items-center flex-col justify-center text-navblack text-lg"
               >
@@ -502,7 +502,7 @@ role="dialog">
         </section>
         <% } %>
 
-            <form action="/profile/<%=profile._id%>">
+            <form action="/feed/profile/<%=profile._id%>">
               <div
                 class="w-24 bg-[#CACACA] font-roboto font-bold rounded-3xl text-navblack text-base mr-4"
               >
@@ -560,7 +560,7 @@ role="dialog">
         <li>
           <% if (currentPage > 1) { %>
             <a
-              href="/profile/<%= profile._id%>?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
               class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
             >
               Previous
@@ -573,7 +573,7 @@ role="dialog">
         <% for (let page = 1; page <= totalPages; page++) { %>
           <li <% if (page === currentPage) { %> aria-current="page" <% } %> >
             <a
-              href="/profile/<%= profile._id%>?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
               class="relative block rounded px-3 py-1.5 text-sm <%= page == currentPage ? 'text-md font-bold text-primary-700 bg-[#CACACA]' : 'text-neutral-600' %> transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
             >
               <%= page %>
@@ -588,7 +588,7 @@ role="dialog">
           <% if (currentPage < totalPages) { %>
     
             <a
-              href="/profile/<%= profile._id%>?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
               class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
             >
               Next
