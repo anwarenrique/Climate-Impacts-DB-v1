@@ -264,13 +264,13 @@ role="dialog">
                   data-te-class-form-outline="w-64 relative bg-[#BEEDC0] rounded-full hover:bg-[#a0e5a3] transition duration-150"
                 >
                   >
-                  <option value="The Americas (all subregions)">
+                  <option >
                     The Americas (all subregions)
                   </option>
-                  <option value="North America">North America</option>
-                  <option value="Central America">Central America</option>
-                  <option value="Caribbean">Caribbean</option>
-                  <option value="South America">South America</option>
+                  <option >North America</option>
+                  <option >Central America</option>
+                  <option >Caribbean</option>
+                  <option >South America</option>
                 </select>
                 <label
                   data-te-select-label-ref
@@ -560,7 +560,7 @@ role="dialog">
         <li>
           <% if (currentPage > 1) { %>
             <a
-              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
               class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
             >
               Previous
@@ -573,7 +573,7 @@ role="dialog">
         <% for (let page = 1; page <= totalPages; page++) { %>
           <li <% if (page === currentPage) { %> aria-current="page" <% } %> >
             <a
-              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
               class="relative block rounded px-3 py-1.5 text-sm <%= page == currentPage ? 'text-md font-bold text-primary-700 bg-[#CACACA]' : 'text-neutral-600' %> transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
             >
               <%= page %>
@@ -588,7 +588,7 @@ role="dialog">
           <% if (currentPage < totalPages) { %>
     
             <a
-              href="/feed/profile/<%= profile._id%>?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+              href="/feed/profile/<%= profile._id %>?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
               class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
             >
               Next
