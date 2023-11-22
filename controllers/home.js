@@ -5,7 +5,11 @@ const ReportedPost = require("../models/reportedPost");
 const { post } = require("../routes/home");
 
 let filteredItems = []; //declare this variable that will store filtered results
-let filterParameters = [];
+let filterParameters = {
+  region: [],
+  country: [],
+  healthrisk: [],
+};
 const ITEMS_PER_PAGE = 5; // Number of items per page
 
 const movePostToReportedCollection = async (post) => {
@@ -42,7 +46,11 @@ module.exports = {
       //check the last view, and clear filter if they came from somewhere else
       if (view != req.session.lastView) {
         filteredItems = [];
-        filterParameters = [];
+        filterParameters = {
+          region: [],
+          country: [],
+          healthrisk: [],
+        };
       }
 
       //Guest or logged in user (req.user)
@@ -63,27 +71,30 @@ module.exports = {
         healthriskfilter,
       } = req.query;
 
-      // Helper function to process filters
-      const processFilter = (filter) => {
+      // Helper function to process filters and add them to filterParameters
+      const processFilter = (filter, type) => {
         if (Array.isArray(filter)) {
-          return filter
+          filter
             .map((item) => item.split(",").map((subItem) => subItem.trim()))
-            .flat();
+            .flat()
+            .forEach((item) => filterParameters[type].push(item));
+        } else {
+          filter
+            .split(",")
+            .map((subItem) => subItem.trim())
+            .forEach((item) => filterParameters[type].push(item));
         }
-        return filter.split(",").map((subItem) => subItem.trim());
       };
 
-      // let filterParameters = [];
+      // Process each filter and add to respective array in filterParameters
+      if (regionfilter) processFilter(regionfilter, "region");
+      if (countryfilter) processFilter(countryfilter, "country");
+      if (healthriskfilter) processFilter(healthriskfilter, "healthrisk");
 
-      // Process filters
-      if (regionfilter) filterParameters.push(...processFilter(regionfilter));
-      if (countryfilter) filterParameters.push(...processFilter(countryfilter));
-      if (healthriskfilter)
-        filterParameters.push(...processFilter(healthriskfilter));
-
-      const uniqueItems = [...new Set(filterParameters)];
-      // Maintain filterParameters as an array
-      filterParameters = [...uniqueItems];
+      // Ensuring uniqueness in each filter category
+      filterParameters.region = [...new Set(filterParameters.region)];
+      filterParameters.country = [...new Set(filterParameters.country)];
+      filterParameters.healthrisk = [...new Set(filterParameters.healthrisk)];
 
       // Logic to make sure profile view only filters and sorts posts made by profile user
       let query = {};
@@ -190,6 +201,7 @@ module.exports = {
           `filtering by ${regionfilter}, ${countryfilter}, ${healthriskfilter}`
         );
         console.log(`showing ${view} view on page ${page}`);
+        console.log(filterParameters);
         return res.render("profile.ejs", renderData);
       }
       console.log(
@@ -352,7 +364,11 @@ module.exports = {
     try {
       // Reset the filteredItems to an empty array
       filteredItems = [];
-      filterParameters = [];
+      filterParameters = {
+        region: [],
+        country: [],
+        healthrisk: [],
+      };
       const profileId = req.params.id;
       const view = req.params.view;
 
