@@ -37,6 +37,13 @@ module.exports = {
       // Fundamental states (req.params)
       const view = req.params.view || "dashboard";
       const profileId = req.params.id;
+      console.log(`request received for ${view} view with ${profileId} ID`);
+
+      //check the last view, and clear filter if they came from somewhere else
+      if (view != req.session.lastView) {
+        filteredItems = [];
+        filterParameters = [];
+      }
 
       //Guest or logged in user (req.user)
       let user = req.user;
@@ -66,7 +73,7 @@ module.exports = {
         return filter.split(",").map((subItem) => subItem.trim());
       };
 
-      let filterParameters = [];
+      // let filterParameters = [];
 
       // Process filters
       if (regionfilter) filterParameters.push(...processFilter(regionfilter));
@@ -100,7 +107,7 @@ module.exports = {
         let cloneQuery = query.clone();
         filteredItems = await cloneQuery.exec();
       }
-      console.log("Filtered Items:", filteredItems);
+      // console.log("Filtered Items:", filteredItems);
 
       // View-specific queries
       if (view === "profile") query = query.where("postedBy").equals(profileId);
@@ -145,10 +152,12 @@ module.exports = {
       const sanitizedPage = Math.max(page, 1);
 
       // Check if page number is valid
-      if (sanitizedPage > totalPages) {
+      if (sanitizedPage > totalPages && view === "dashboard") {
         return res.redirect(
           `/feed?page=${totalPages}&sort=${sort}&regionfilter=${regionfilter}&countryfilter=${countryfilter}&healthriskfilter=${healthriskfilter}`
         );
+      } else if (sanitizedPage > totalPages && view === "profile") {
+        `/feed/profile/profileId/page=${totalPages}&sort=${sort}&regionfilter=${regionfilter}&countryfilter=${countryfilter}&healthriskfilter=${healthriskfilter}`;
       }
 
       const skip = (sanitizedPage - 1) * ITEMS_PER_PAGE;
@@ -157,7 +166,6 @@ module.exports = {
 
       // Execute Query
       const itemList = await query.exec();
-      console.log(`Final Query: ${query}`);
 
       // Render appropriate view
       const renderData = {
@@ -173,12 +181,21 @@ module.exports = {
         currentSort: sort,
       };
 
+      req.session.lastView = view;
+
       if (view === "profile") {
         const profile = await User.findById(profileId);
         renderData.profile = profile;
+        console.log(
+          `filtering by ${regionfilter}, ${countryfilter}, ${healthriskfilter}`
+        );
+        console.log(`showing ${view} view on page ${page}`);
         return res.render("profile.ejs", renderData);
       }
-
+      console.log(
+        `filtering by ${regionfilter}, ${countryfilter}, ${healthriskfilter}`
+      );
+      console.log(`showing ${view} view on page ${page}`);
       return res.render(view + ".ejs", renderData);
     } catch (error) {
       console.error(error);
@@ -335,6 +352,7 @@ module.exports = {
     try {
       // Reset the filteredItems to an empty array
       filteredItems = [];
+      filterParameters = [];
       const profileId = req.params.id;
       const view = req.params.view;
 

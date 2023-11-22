@@ -347,7 +347,7 @@ role="dialog">
                     St. Kitts and Nevis
                   </option>
                   <option value="Suriname">Suriname</option>
-                  <option value="Trinida and Tobago">
+                  <option value="Trinidad and Tobago">
                     Trinidad and Tobago
                   </option>
                   <option value="United States">United States</option>
@@ -465,7 +465,7 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
     <li>
       <% if (currentPage > 1) { %>
         <a
-          href="/feed?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+          href="/feed?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
           class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
         >
           Previous
@@ -478,7 +478,7 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
     <% for (let page = 1; page <= totalPages; page++) { %>
       <li <% if (page === currentPage) { %> aria-current="page" <% } %> >
         <a
-          href="/feed?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+          href="/feed?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
           class="relative block rounded px-3 py-1.5 text-sm <%= page == currentPage ? 'text-md font-bold text-primary-700 bg-[#CACACA]' : 'text-neutral-600' %> transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
         >
           <%= page %>
@@ -493,7 +493,7 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       <% if (currentPage < totalPages) { %>
 
         <a
-          href="/feed?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %>&regionfilter=<%= uniqueRegionFilter.join(',') %>&countryfilter=<%= uniqueCountryFilter.join(',') %>&healthriskfilter=<%= uniqueHealthRiskFilter.join(',') %>"
+          href="/feed?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
           class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
         >
           Next
