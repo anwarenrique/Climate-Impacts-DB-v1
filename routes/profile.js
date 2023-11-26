@@ -23,5 +23,9 @@ router.post(
   ensureAuth,
   profileController.editProfileBio
 ); //edit the display name
-
+router.post(
+  "/editUserProfile/:id",
+  ensureAuth,
+  profileController.editUserProfile
+); //edit the user bio
 module.exports = router;
