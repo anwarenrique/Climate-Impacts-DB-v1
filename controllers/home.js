@@ -102,6 +102,10 @@ module.exports = {
         query = ItemList.find({
           postedBy: profileId, // Only select items posted by the specified user
         }).populate("postedBy");
+      } else if (view == "savedPosts") {
+        query = ItemList.find({
+          _id: { $in: user.savedPosts },
+        }).populate("postedBy");
       } else {
         query = ItemList.find().populate("postedBy");
       }
@@ -383,9 +387,9 @@ module.exports = {
       } else if (view == "profile") {
         res.redirect("/feed/profile/" + profileId);
       } else if (view == "likedPosts") {
-        res.redirect("/likedPosts");
+        res.redirect("/feed/likedPosts");
       } else if (view == "savedPosts") {
-        res.redirect("/savedPosts");
+        res.redirect("/feed/savedPosts");
       }
     } catch (error) {
       console.error(error);

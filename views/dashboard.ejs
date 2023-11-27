@@ -50,35 +50,64 @@
 %>
 
       <!--insert filter parameters here, but only if filters have been applied -->
-      <% if (filterParameters.length >= 1 && itemList.length >= 1) { %>
-      <section
-        class="flex justify-start w-6/12 mx-auto flex items-center max-w-[625px]"
-      >
-        <div class="filter-parameters">
-          <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems%> posts</h4>
-          <h4 class="font-bold">Showing filtered results for:</h4>
-          <p class=""><%= filterParameters %></p>
-        </div>
-      </section>
-      <% } else if (filterParameters.length >= 1 && itemList.length == 0) { %>
+      <!-- Check if any filters have been applied and if there are items to display -->
+      <% if ((filterParameters.region.length > 0 || filterParameters.country.length > 0 || filterParameters.healthrisk.length > 0) && itemList.length > 0) { %>
+        <section class="flex justify-start w-full mx-auto flex-col items-center max-w-[625px] ">
+          <div class="filter-parameters">
+            <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</h4>
+          </div>
+          <div class="py-2 bg-[#FAFAFA] rounded-3xl shadow-xl text-navblack w-full">
 
-        <section
-        class="flex justify-start w-6/12 mx-auto flex items-center max-w-[625px]"
-      >
-        <div class="">
-          <h4 class="font-bold">No posts were found for: </h4>
-          <p class=""><%= filterParameters %></p>
-        </div>
-      </section>
-        <% } else { %>
-          <section
-        class="flex justify-start w-6/12 mx-auto flex items-center max-w-[625px]"
-      >
-        <div class="">
-          <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems%> posts</h4>
-        </div>
-      </section>
-          <% } %>
+            <h4 class="font-bold text-lg pl-4">Showing filtered results for:</h4>
+            <% if (filterParameters.region.length > 0) { %>
+              <div class="flex justify-start pt-2 pl-20">
+                <p><b class="font-bold">Region: </b> <%= filterParameters.region.join(", ") %></p>
+              </div>
+            <% } %>
+            <% if (filterParameters.country.length > 0) { %>
+              <div class="flex justify-start pt-2 pl-20">
+                <p><b class="font-bold">Country: </b><%= filterParameters.country.join(", ") %></p>
+              </div>
+            <% } %>
+            <% if (filterParameters.healthrisk.length > 0) { %>
+              <div class="pt-2 pl-20">
+                <p><b class="font-bold">Health Impact: </b>
+                <%= filterParameters.healthrisk.join(", ") %></p>
+              </div>
+            <% } %>
+          </div>
+        </section>
+      <% } else if ((filterParameters.region.length > 0 || filterParameters.country.length > 0 || filterParameters.healthrisk.length > 0) && itemList.length == 0) { %>
+        <section class="flex justify-start w-3/4 mx-auto flex items-center max-w-[625px]">
+          <div class="py-2 bg-[#FAFAFA] rounded-3xl shadow-xl text-navblack">
+            <h4 class="font-bold">No posts were found for:</h4>
+            <% if (filterParameters.region.length > 0) { %>
+              <div class="flex justify-start py-2">
+                <p><b class="font-bold">Region: </b> <%= filterParameters.region.join(", ") %></p>
+              </div>
+            <% } %>
+            <% if (filterParameters.country.length > 0) { %>
+              <div class="flex justify-start py-2">
+                <p><b class="font-bold">Country: </b><%= filterParameters.country.join(", ") %></p>
+              </div>
+            <% } %>
+            <% if (filterParameters.healthrisk.length > 0) { %>
+              <div class="">
+                <p><b class="font-bold">Health Impact: </b>
+                <%= filterParameters.healthrisk.join(", ") %></p>
+              </div>
+            <% } %>
+          </div>
+        </section>
+      <% } else { %>
+        <section class="flex justify-start w-1/2 mx-auto flex items-center max-w-[625px]">
+          <div class="">
+            <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</h4>
+          </div>
+        </section>
+      <% } %>
+
+      
       <section
         class="flex justify-end w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       >
