@@ -184,7 +184,7 @@ role="dialog">
 
           <%} else {%>
             <% if (profile.id == user._id) { %>
-            <a href="/savedPosts" class="px-5 py-3 rounded-full font-roboto font-semibold leading-none bg-[#CACACA] hover:bg-[#bdbdbd] transition duration-150">My saved posts</a>
+            <a href="/feed/savedPosts" class="px-5 py-3 rounded-full font-roboto font-semibold leading-none bg-[#CACACA] hover:bg-[#bdbdbd] transition duration-150">My saved posts</a>
           <a href="/likedPosts" class="px-5 py-3 rounded-full font-roboto font-semibold leading-none bg-[#CACACA] hover:bg-[#bdbdbd] transition duration-150">My liked posts</a>
           <button  
           class="px-5 py-3 rounded-full font-roboto font-semibold leading-none bg-[#CACACA] hover:bg-[#bdbdbd] transition duration-150"
@@ -238,7 +238,7 @@ role="dialog">
               <div class="relative flex-auto p-4" data-te-modal-body-ref>
                 <form action="/profile/editUserProfile/<%=profile._id %>" method="post">
                   <div class="mb-3">
-                    <label for="displayNameInput">display Name:</label>
+                    <label for="displayNameInput">display name</label>
                     <input
                       type="text"
                       name="newDisplayName"
@@ -248,17 +248,7 @@ role="dialog">
                       id="displayNameInput" value="<%=profile.displayName %>"/>
                   </div>
                   <div class="mb-3">
-                    <label for="linkInput">featured link:</label>
-                    <input
-                      type="text"
-                      name="newProfileLink"
-                      minlength="4"
-                      maxlength="2100"
-                      class="relative m-0 -mr-0.5 block w-full flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-400 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                      id="linkInput" value="<%=profile.profileLink %>"/>
-                  </div>
-                  <div class="mb-3">
-                    <label for="bioInput">bio:</label>
+                    <label for="bioInput">bio</label>
                     <textarea
                       type="text"
                       name="newProfileBio"
@@ -268,12 +258,22 @@ role="dialog">
                       class="relative m-0 -mr-0.5 block w-full flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-400 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
                       id="bioInput" value="<%=profile.profileBio %>"><%=profile.profileBio %></textarea>
                   </div>
+                  <div class="mb-3">
+                    <label for="linkInput">featured link</label>
+                    <input
+                      type="text"
+                      name="newProfileLink"
+                      minlength="4"
+                      maxlength="2100"
+                      class="relative m-0 -mr-0.5 block w-full flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-400 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
+                      id="linkInput" value="<%=profile.profileLink %>"/>
+                  </div>
 
                   <div
                 class="flex flex-shrink-0 flex-wrap items-center justify-end rounded-b-md border-t-2 border-neutral-100 border-opacity-100 p-4 dark:border-opacity-50">
                 <button
                   type="button"
-                  class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
+                  class="px-5 py-3 rounded-full font-roboto font-semibold leading-none bg-[#CACACA] hover:bg-[#bdbdbd] transition duration-150"
                   data-te-modal-dismiss
                   data-te-ripple-init
                   data-te-ripple-color="light">
@@ -281,7 +281,7 @@ role="dialog">
                 </button>
                 <button
                   type="submit"
-                  class="ml-1 inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                  class="ml-2 rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-centers"
                   data-te-ripple-init
                   data-te-ripple-color="light">
                   Save changes
@@ -535,46 +535,49 @@ role="dialog">
           <!--insert filter parameters here, but only if filters have been applied -->
           <!-- Check if any filters have been applied and if there are items to display -->
             <% if ((filterParameters.region.length > 0 || filterParameters.country.length > 0 || filterParameters.healthrisk.length > 0) && itemList.length > 0) { %>
-              <section class="flex justify-start w-full px-4 mx-auto flex-col items-center max-w-[625px]">
+              <section class="flex justify-start w-full mx-auto flex-col items-center max-w-[625px] pb-2">
                 <div class="filter-parameters">
                   <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</h4>
                 </div>
-                <div class="py-2">
-                  <h4 class="font-bold text-lg">Showing filtered results for:</h4>
+                <div class="py-2 bg-[#FAFAFA] rounded-3xl shadow-xl text-navblack w-full">
+            
+                  <h4 class="font-bold text-lg pl-4">Showing filtered results for:</h4>
                   <% if (filterParameters.region.length > 0) { %>
-                    <div class="flex justify-start py-2">
-                    <p class="font-bold">Region: </p><p> <%= filterParameters.region.join(", ") %></p>
+                    <div class="flex justify-start pt-2 pl-20">
+                      <p><b class="font-bold">Region: </b> <%= filterParameters.region.join(", ") %></p>
                     </div>
                   <% } %>
                   <% if (filterParameters.country.length > 0) { %>
-                    <div class="flex justify-start py-2">
-                    <p class="font-bold">Country: </p><p><%= filterParameters.country.join(", ") %></p>
+                    <div class="flex justify-start pt-2 pl-20">
+                      <p><b class="font-bold">Country: </b><%= filterParameters.country.join(", ") %></p>
                     </div>
                   <% } %>
                   <% if (filterParameters.healthrisk.length > 0) { %>
-                    <div class="flex py-2 border border-sky-500 flex-wrap">
-                    <div class="font-bold border border-sky-500 inline">Health risk: </div><p class="border border-sky-500 inline-flex"><%= filterParameters.healthrisk.join(", ") %></p>
+                    <div class="pt-2 pl-20">
+                      <p><b class="font-bold">Health Impact: </b>
+                      <%= filterParameters.healthrisk.join(", ") %></p>
                     </div>
                   <% } %>
-                </div>
+                </div>%>
               </section>
             <% } else if ((filterParameters.region.length > 0 || filterParameters.country.length > 0 || filterParameters.healthrisk.length > 0) && itemList.length == 0) { %>
               <section class="flex justify-start w-3/4 mx-auto flex items-center max-w-[625px]">
-                <div class="">
+                <div class="py-2 bg-[#FAFAFA] rounded-3xl shadow-xl text-navblack">
                   <h4 class="font-bold">No posts were found for:</h4>
                   <% if (filterParameters.region.length > 0) { %>
                     <div class="flex justify-start py-2">
-                      <p class="font-bold">Region: </p><p><%= filterParameters.region.join(", ") %></p>
+                      <p><b class="font-bold">Region: </b> <%= filterParameters.region.join(", ") %></p>
                     </div>
                   <% } %>
                   <% if (filterParameters.country.length > 0) { %>
                     <div class="flex justify-start py-2">
-                      <p class="font-bold">Country: </p><p><%= filterParameters.country.join(", ") %></p>
+                      <p><b class="font-bold">Country: </b><%= filterParameters.country.join(", ") %></p>
                     </div>
                   <% } %>
                   <% if (filterParameters.healthrisk.length > 0) { %>
-                    <div class="flex py-2 flex-wrap">
-                      <p class="font-bold">Health risk: </p><p><%= filterParameters.healthrisk.join(", ") %></p>
+                    <div class="">
+                      <p><b class="font-bold">Health Impact: </b>
+                      <%= filterParameters.healthrisk.join(", ") %></p>
                     </div>
                   <% } %>
                 </div>
