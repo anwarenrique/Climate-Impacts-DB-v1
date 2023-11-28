@@ -106,6 +106,10 @@ module.exports = {
         query = ItemList.find({
           _id: { $in: user.savedPosts },
         }).populate("postedBy");
+      } else if (view == "likedPosts") {
+        query = ItemList.find({
+          _id: { $in: user.likedPosts },
+        }).populate("postedBy");
       } else {
         query = ItemList.find().populate("postedBy");
       }
@@ -168,11 +172,62 @@ module.exports = {
 
       // Check if page number is valid
       if (sanitizedPage > totalPages && view === "dashboard") {
-        return res.redirect(
-          `/feed?page=${totalPages}&sort=${sort}&regionfilter=${regionfilter}&countryfilter=${countryfilter}&healthriskfilter=${healthriskfilter}`
-        );
+        let dashboardRedirectUrl = `/feed?page=${totalPages}&sort=${sort}`;
+
+        // Append filters to the URL only if they exist
+        if (regionfilter) {
+          dashboardRedirectUrl += `&regionfilter=${regionfilter}`;
+        }
+        if (countryfilter) {
+          dashboardRedirectUrl += `&countryfilter=${countryfilter}`;
+        }
+        if (healthriskfilter) {
+          dashboardRedirectUrl += `&healthriskfilter=${healthriskfilter}`;
+        }
+
+        return res.redirect(dashboardRedirectUrl);
       } else if (sanitizedPage > totalPages && view === "profile") {
-        `/feed/profile/profileId/page=${totalPages}&sort=${sort}&regionfilter=${regionfilter}&countryfilter=${countryfilter}&healthriskfilter=${healthriskfilter}`;
+        let profileRedirectUrl = `/feed/profile/${profileId}?page=${totalPages}&sort=${sort}`;
+
+        // Append filters to the URL only if they exist
+        if (regionfilter) {
+          profileRedirectUrl += `&regionfilter=${regionfilter}`;
+        }
+        if (countryfilter) {
+          profileRedirectUrl += `&countryfilter=${countryfilter}`;
+        }
+        if (healthriskfilter) {
+          profileRedirectUrl += `&healthriskfilter=${healthriskfilter}`;
+        }
+        return res.redirect(profileRedirectUrl);
+      } else if (sanitizedPage > totalPages && view === "savedPosts") {
+        let savedPostsRedirectUrl = `/feed/savedPosts?page=${totalPages}&sort=${sort}`;
+
+        // Append filters to the URL only if they exist
+        if (regionfilter) {
+          savedPostsRedirectUrl += `&regionfilter=${regionfilter}`;
+        }
+        if (countryfilter) {
+          savedPostsRedirectUrl += `&countryfilter=${countryfilter}`;
+        }
+        if (healthriskfilter) {
+          savedPostsRedirectUrl += `&healthriskfilter=${healthriskfilter}`;
+        }
+        return res.redirect(savedPostsRedirectUrl);
+      } else if (sanitizedPage > totalPages && view === "likedPosts") {
+        let likedPostsRedirectUrl = `/feed/likedPosts?page=${totalPages}&sort=${sort}`;
+
+        // Append filters to the URL only if they exist
+        if (regionfilter) {
+          likedPostsRedirectUrl += `&regionfilter=${regionfilter}`;
+        }
+        if (countryfilter) {
+          likedPostsRedirectUrl += `&countryfilter=${countryfilter}`;
+        }
+        if (healthriskfilter) {
+          likedPostsRedirectUrl += `&healthriskfilter=${healthriskfilter}`;
+        }
+        return res.redirect(likedPostsRedirectUrl);
       }
 
       const skip = (sanitizedPage - 1) * ITEMS_PER_PAGE;
