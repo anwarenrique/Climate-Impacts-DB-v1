@@ -39,7 +39,7 @@
           <h3
             class="h-12 leading-10 flex font-roboto text-2xl text-navblack font-bold flex items-center"
           >
-            Saved Posts
+            My saved Posts
           </h3>
         </div>
       </section>
@@ -56,7 +56,7 @@
           <div class="filter-parameters">
             <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</h4>
           </div>
-          <div class="py-2 bg-[#FAFAFA] rounded-3xl shadow-xl text-navblack w-full">
+          <div class="py-2 bg-[#FFFCFC] rounded-3xl shadow-xl text-navblack w-full">
 
             <h4 class="font-bold text-lg pl-4">Showing filtered results for:</h4>
             <% if (filterParameters.region.length > 0) { %>
@@ -79,7 +79,7 @@
         </section>
       <% } else if ((filterParameters.region.length > 0 || filterParameters.country.length > 0 || filterParameters.healthrisk.length > 0) && itemList.length == 0) { %>
         <section class="flex justify-start w-3/4 mx-auto flex items-center max-w-[625px]">
-          <div class="py-2 bg-[#FAFAFA] rounded-3xl shadow-xl text-navblack w-full">
+          <div class="py-2 bg-[#FFFCFC] rounded-3xl shadow-xl text-navblack w-full">
             <h4 class="font-bold text-lg pl-4">No posts were found for:</h4>
             <% if (filterParameters.region.length > 0) { %>
               <div class="flex justify-start pt-2 pl-20">
@@ -229,6 +229,7 @@ role="dialog">
 
 
           <%} else {%>
+            <a href="/feed/likedPosts" class="px-5 py-3 rounded-full font-roboto font-semibold leading-none bg-[#CACACA] hover:bg-[#bdbdbd] transition duration-150">My liked posts</a>
             <a
             type="button"
             data-te-ripple-init
