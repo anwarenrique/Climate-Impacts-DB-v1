@@ -6,138 +6,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Post</title>
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
     />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
   </head>
-  <body>
+  <body class="font-sans bg-climagray">
     <!-- Nav bar -->
     <%- include('partials/navbar') %>
-    <h1>Share your climate and health story!</h1>
 
-    <!-- Form for adding new posts -->
-    <form action="/new" method="POST">
-      <label for="titleinput">Input Title*</label>
-      <textarea type="text" name="titleinput" maxlength="280" id="titleinput">
-      </textarea>
-      <text id="update_words1"></text>
-      <text id="update_chars1"></text>
-      <br />
-      <label for="textinput">Input Text*</label>
-      <textarea
-        id="textinput"
-        type="text"
-        name="textinput"
-        maxlength="40000"
-      ></textarea>
-      <!-- <span id="word-count2"></span> -->
-      <text id="update_words2"></text>
-      <text id="update_chars2"></text>
+    <!-- container div for feed, sort, title, filter -->
+    <div id="containerForAll" class="2xl:flex">
+      <div class="w-6/12 mx-auto max-w-[625px] border border-sky-500">
+        <div class="">
+          <h3
+            class="h-12 leading-10 flex font-roboto text-2xl text-navblack font-bold flex items-center"
+          >
+            Create a post
+          </h3>
+        </div>
 
-      <br />
-      <label for="linkinput">Paste Link*</label>
-      <input type="url" name="linkinput" maxlength="2100" id="linkinput" />
-      <br />
-      <label for="numinput">Input Year*</label>
-      <input type="number" name="numinput" value="2023" />
-      <br />
+        <!-- Form for adding new posts -->
+        <form action="/new" method="POST">
+          <label for="titleinput">Title*</label>
+          <textarea
+            type="text"
+            name="titleinput"
+            maxlength="280"
+            id="titleInput"
+            class="w-full h-auto resize-none rounded-lg"
+            rows="4"
+            autocorrect="on"
+            placeholder=" Give an eye-catching title!"
+          ></textarea>
+          <p id="titleCharCount">0/280</p>
+          <!-- <text id="update_words1"></text>
+          <text id="update_chars1"></text> -->
 
-      <label for="regioninput">Select a subregion:*</label>
-      <select name="regioninput" id="regioninput" type="text" multiple>
-        <option value="">--Please choose an option--</option>
-        <option value="The Americas (all subregions)">
-          The Americas (full region)
-        </option>
-        <option value="North America">North America</option>
-        <option value="Central America">Central America</option>
-        <option value="Caribbean">Caribbean</option>
-        <option value="South America">South America</option>
-      </select>
+          <label for="textinput">Input Text*</label>
+          <textarea
+            id="textinput"
+            type="text"
+            name="textinput"
+            maxlength="40000"
+          ></textarea>
+          <!-- <span id="word-count2"></span> -->
+          <text id="update_words2"></text>
+          <text id="update_chars2"></text>
 
-      <br />
-      <label for="countryinput">Please input affected country(s)*</label>
-      <select type="text" name="countryinput" id="countryinput" multiple>
-        <option value="All countries">All countries</option>
-        <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-        <option value="Argentina">Argentina</option>
-        <option value="Bahamas">Bahamas</option>
-        <option value="Barbados">Barbados</option>
-        <option value="Belize">Belize</option>
-        <option value="Bolivia">Bolivia</option>
-        <option value="Brazil">Brazil</option>
-        <option value="Canada">Canada</option>
-        <option value="Chile">Chile</option>
-        <option value="Colombia">Colombia</option>
-        <option value="Costa Rica">Costa Rica</option>
-        <option value="Cuba">Cuba</option>
-        <option value="Dominica">Dominica</option>
-        <option value="Dominican Republic">Dominican Republic</option>
-        <option value="Ecuador">Ecuador</option>
-        <option value="El Salvador">El Salvador</option>
-        <option value="Grenada">Grenada</option>
-        <option value="Guatemala">Guatemala</option>
-        <option value="Guyana">Guyana</option>
-        <option value="Haiti">Haiti</option>
-        <option value="Honduras">Honduras</option>
-        <option value="Jamaica">Jamaica</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Nicaragua">Nicaragua</option>
-        <option value="Panama">Panama</option>
-        <option value="Paraguay">Paraguay</option>
-        <option value="Peru">Peru</option>
-        <option value="Saint Lucia">Saint Lucia</option>
-        <option value="St Vincent and the Grenadines">
-          St. Vincent and the Grenadines
-        </option>
-        <option value="St Kitts and Nevis">St. Kitts and Nevis</option>
-        <option value="Suriname">Suriname</option>
-        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-        <option value="United States">United States</option>
-        <option value="Uruguay">Uruguay</option>
-        <option value="Venezuela">Venezuela</option>
-      </select>
+          <br />
+          <label for="linkinput">Paste Link*</label>
+          <input type="url" name="linkinput" maxlength="2100" id="linkinput" />
+          <br />
+          <label for="numinput">Input Year*</label>
+          <input type="number" name="numinput" value="2023" />
+          <br />
 
-      <br />
-      <label for="healthriskinput"
-        >Please input relevant climate-sensitive health risks</label
-      >
-      <select name="healthriskinput" id="healthriskinput" multiple>
-        <option value="General">General</option>
-        <option value="Air-borne and respiratory illnesses">
-          Air-borne and respiratory illnesses
-        </option>
-        <option value="Heat-related illness">Heat-related illness</option>
-        <option value="Injury and mortality from extreme weather events">
-          Injury and mortality from extreme weather events
-        </option>
-        <option value="Malnutrition and food-borne diseases">
-          Malnutrition and food-borne diseases
-        </option>
-        <option value="Mental and psychosocial health">
-          Mental and psychosocial health
-        </option>
-        <option value="Noncommunicable diseases (NCDs)">
-          Noncommunicable diseases (NCDs)
-        </option>
-        <option value="Vector-borne diseases">Vector-borne diseases</option>
-        <option
-          value="Water-borne diseases and other water-related health outcomes"
-        >
-          Water-borne diseases and other water-related health outcomes
-        </option>
-        <option value="Zoonoses">Zoonoses</option>
-      </select>
+          <label for="regioninput">Select a subregion:*</label>
+          <select name="regioninput" id="regioninput" type="text" multiple>
+            <option value="">--Please choose an option--</option>
+            <option value="The Americas (all subregions)">
+              The Americas (full region)
+            </option>
+            <option value="North America">North America</option>
+            <option value="Central America">Central America</option>
+            <option value="Caribbean">Caribbean</option>
+            <option value="South America">South America</option>
+          </select>
 
-      <br />
-      <label for="citationinput">Input Citation</label>
-      <input type="text" name="citationinput" />
+          <br />
+          <label for="countryinput">Please input affected country(s)*</label>
+          <select type="text" name="countryinput" id="countryinput" multiple>
+            <option value="All countries">All countries</option>
+            <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+            <option value="Argentina">Argentina</option>
+            <option value="Bahamas">Bahamas</option>
+            <option value="Barbados">Barbados</option>
+            <option value="Belize">Belize</option>
+            <option value="Bolivia">Bolivia</option>
+            <option value="Brazil">Brazil</option>
+            <option value="Canada">Canada</option>
+            <option value="Chile">Chile</option>
+            <option value="Colombia">Colombia</option>
+            <option value="Costa Rica">Costa Rica</option>
+            <option value="Cuba">Cuba</option>
+            <option value="Dominica">Dominica</option>
+            <option value="Dominican Republic">Dominican Republic</option>
+            <option value="Ecuador">Ecuador</option>
+            <option value="El Salvador">El Salvador</option>
+            <option value="Grenada">Grenada</option>
+            <option value="Guatemala">Guatemala</option>
+            <option value="Guyana">Guyana</option>
+            <option value="Haiti">Haiti</option>
+            <option value="Honduras">Honduras</option>
+            <option value="Jamaica">Jamaica</option>
+            <option value="Mexico">Mexico</option>
+            <option value="Nicaragua">Nicaragua</option>
+            <option value="Panama">Panama</option>
+            <option value="Paraguay">Paraguay</option>
+            <option value="Peru">Peru</option>
+            <option value="Saint Lucia">Saint Lucia</option>
+            <option value="St Vincent and the Grenadines">
+              St. Vincent and the Grenadines
+            </option>
+            <option value="St Kitts and Nevis">St. Kitts and Nevis</option>
+            <option value="Suriname">Suriname</option>
+            <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+            <option value="United States">United States</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Venezuela">Venezuela</option>
+          </select>
 
-      <button type="submit" id="submitButton">Add item</button>
-    </form>
+          <br />
+          <label for="healthriskinput"
+            >Please input relevant climate-sensitive health risks</label
+          >
+          <select name="healthriskinput" id="healthriskinput" multiple>
+            <option value="General">General</option>
+            <option value="Air-borne and respiratory illnesses">
+              Air-borne and respiratory illnesses
+            </option>
+            <option value="Heat-related illness">Heat-related illness</option>
+            <option value="Injury and mortality from extreme weather events">
+              Injury and mortality from extreme weather events
+            </option>
+            <option value="Malnutrition and food-borne diseases">
+              Malnutrition and food-borne diseases
+            </option>
+            <option value="Mental and psychosocial health">
+              Mental and psychosocial health
+            </option>
+            <option value="Noncommunicable diseases (NCDs)">
+              Noncommunicable diseases (NCDs)
+            </option>
+            <option value="Vector-borne diseases">Vector-borne diseases</option>
+            <option
+              value="Water-borne diseases and other water-related health outcomes"
+            >
+              Water-borne diseases and other water-related health outcomes
+            </option>
+            <option value="Zoonoses">Zoonoses</option>
+          </select>
 
-    <!-- PARTIAL FOR ITEMS LIST FEED -->
-    <%- include('partials/itemsFeed') %>
+          <br />
+          <label for="citationinput">Input Citation</label>
+          <input type="text" name="citationinput" />
+
+          <button type="submit" id="submitButton">Add item</button>
+        </form>
+      </div>
+    </div>
+    <footer><%- include('partials/footer') %></footer>
+
+    <!-- Tailwind Elements stuff -->
+    <script
+      type="text/javascript"
+      src="/tw-elements/dist/js/tw-elements.umd.min.js"
+    ></script>
+
+    <script>
+      const regionfilter = document.querySelector("#regionfilter");
+      const multiSelectInstance1 = te.Select.getInstance(regionfilter);
+      multiSelectInstance1.setValue([]);
+
+      const countryfilter = document.querySelector("#countryfilter");
+      const multiSelectInstance2 = te.Select.getInstance(countryfilter);
+      multiSelectInstance2.setValue([]);
+
+      const healthriskfilter = document.querySelector("#healthriskfilter");
+      const multiSelectInstance3 = te.Select.getInstance(healthriskfilter);
+      multiSelectInstance3.setValue([]);
+
+      const sortSelect = document.querySelector("#sortSelect");
+      const sortInstance = te.Select.getInstance(sortSelect);
+      sortInstance.setValue([]);
+    </script>
 
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script>
     <script>
@@ -162,69 +218,96 @@
     <script type="text/javascript" src="\ckeditor5\build\ckeditor.js"></script>
     <script type="text/javascript">
       const sendButton = document.querySelector("#submitButton");
-      const maxCharacters1 = 280;
+      // const maxCharacters1 = 280;
       const maxCharacters2 = 4000;
       const charactersBox = document.querySelector("#update_chars1");
       const wordsBox = document.querySelector("#update_words1");
       const charactersBox2 = document.querySelector("#update_chars2");
       const wordsBox2 = document.querySelector("#update_words2");
 
-      ClassicEditor.create(document.querySelector("#titleinput"), {
-        wordCount: {
-          onUpdate: (stats) => {
-            const textLength = stats.characters;
-            const isLimitExceeded = textLength > maxCharacters1;
+      document.getElementById("titleInput").onkeyup = function () {
+        document.getElementById("titleCharCount").innerHTML =
+          this.value.length + "/280";
+      };
 
-            wordsBox.textContent = `Words in the post: ${stats.words}`;
+      document.getElementById("titleInput").onclick = function () {
+        document.getElementById("titleCharCount").innerHTML =
+          this.value.length + "/280";
+      };
 
-            // Display the number of characters in the progress chart. When the limit is exceeded,
-            // display how many characters should be removed.
-            if (isLimitExceeded) {
-              charactersBox.textContent = `Characters remaining: -${
-                stats.characters - maxCharacters1
-              }`;
-            } else {
-              charactersBox.textContent = `Total characters: ${stats.characters}`;
-            }
+      // const textarea = document.querySelector("titleInput");
+      // const charCountElement = document.getElementById("titleCharCount");
 
-            if (textLength > maxCharacters1) {
-              sendButton.setAttribute("disabled", "disabled");
-            } else {
-              sendButton.removeAttribute("disabled");
-            }
-          },
-        },
-      })
-        // .then((editor) => {
-        //   window.editor = editor;
-        //   const wordCountPlugin = editor.plugins.get("WordCount");
-        //   const wordCountWrapper = document.getElementById("word-count1");
-        //   wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+      // textarea.addEventListener("input", (event) => {
+      //   const target = event.currentTarget;
+      //   const maxLength = target.getAttribute("maxlength");
+      //   const currentLength = target.value.length;
 
-        //   // charlimit practice
-        //   const maxCharacters1 = 30;
-        //   const maxCharacters2 = 10;
+      //   if (currentLength >= maxLength) {
+      //     charCountElement.textContent =
+      //       "You have reached the maximum number of characters.";
+      //   } else {
+      //     charCountElement.innerHTML = `${
+      //       maxLength - currentLength
+      //     } chars left`;
+      //   }
+      // });
+      // ClassicEditor.create(document.querySelector("#titleinput"), {
+      //   wordCount: {
+      //     onUpdate: (stats) => {
+      //       const textLength = stats.characters;
+      //       const isLimitExceeded = textLength > maxCharacters1;
 
-        //   editor.model.document.on("change", () => {
-        //     const textLength = editor.getData().length;
+      //       wordsBox.textContent = `Words in the post: ${stats.words}`;
 
-        //     if (textLength >= maxCharacters) {
-        //       sendButton.setAttribute("disabled", "disabled");
-        //     } else {
-        //       sendButton.removeAttribute("disabled");
-        //     }
-        //   });
+      //       // Display the number of characters in the progress chart. When the limit is exceeded,
+      //       // display how many characters should be removed.
+      //       if (isLimitExceeded) {
+      //         charactersBox.textContent = `Characters remaining: -${
+      //           stats.characters - maxCharacters1
+      //         }`;
+      //       } else {
+      //         charactersBox.textContent = `Total characters: ${stats.characters}`;
+      //       }
 
-        //   // charlimit practice
-        // })
-        .catch((error) => {
-          console.error("Oops, something went wrong!");
-          console.error(
-            "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
-          );
-          console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
-          console.error(error);
-        });
+      //       if (textLength > maxCharacters1) {
+      //         sendButton.setAttribute("disabled", "disabled");
+      //       } else {
+      //         sendButton.removeAttribute("disabled");
+      //       }
+      //     },
+      //   },
+      // })
+      // .then((editor) => {
+      //   window.editor = editor;
+      //   const wordCountPlugin = editor.plugins.get("WordCount");
+      //   const wordCountWrapper = document.getElementById("word-count1");
+      //   wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
+
+      //   // charlimit practice
+      //   const maxCharacters1 = 30;
+      //   const maxCharacters2 = 10;
+
+      //   editor.model.document.on("change", () => {
+      //     const textLength = editor.getData().length;
+
+      //     if (textLength >= maxCharacters) {
+      //       sendButton.setAttribute("disabled", "disabled");
+      //     } else {
+      //       sendButton.removeAttribute("disabled");
+      //     }
+      //   });
+
+      //   // charlimit practice
+      // })
+      // .catch((error) => {
+      //   console.error("Oops, something went wrong!");
+      //   console.error(
+      //     "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
+      //   );
+      //   console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
+      //   console.error(error);
+      // });
 
       ClassicEditor.create(document.querySelector("#textinput"), {
         wordCount: {
