@@ -47,16 +47,16 @@
             name="titleinput"
             maxlength="280"
             id="titleInput"
-            class="w-full h-auto resize-none rounded-lg"
-            rows="4"
+            class="w-full h-auto resize-none rounded-lg px-4"
             autocorrect="on"
             placeholder=" Give an eye-catching title!"
           ></textarea>
-          <p id="titleCharCount">0/280</p>
+          <div class="flex justify-end"><p id="titleCharCount">0/280</p></div>
+
           <!-- <text id="update_words1"></text>
           <text id="update_chars1"></text> -->
 
-          <label for="textinput">Input Text*</label>
+          <label for="textinput">Additional Text (Optional)</label>
           <textarea
             id="textinput"
             type="text"
@@ -64,16 +64,30 @@
             maxlength="40000"
           ></textarea>
           <!-- <span id="word-count2"></span> -->
-          <text id="update_words2"></text>
-          <text id="update_chars2"></text>
+          <div class="flex justify-end">
+            <text id="update_words2"></text>
+            <text id="update_chars2"></text>
+          </div>
 
-          <br />
           <label for="linkinput">Paste Link*</label>
-          <input type="url" name="linkinput" maxlength="2100" id="linkinput" />
-          <br />
-          <label for="numinput">Input Year*</label>
-          <input type="number" name="numinput" value="2023" />
-          <br />
+          <input
+            type="url"
+            name="linkinput"
+            maxlength="2100"
+            id="linkinput"
+            class="w-full rounded-lg px-4 mb-2"
+            placeholder="provide a link for your post"
+          />
+
+          <div>
+            <label for="numinput">Input Year*</label>
+            <input
+              type="number"
+              name="numinput"
+              class="w-1/2 mb-2"
+              placeholder="indicate the year of your post"
+            />
+          </div>
 
           <label for="regioninput">Select a subregion:*</label>
           <select name="regioninput" id="regioninput" type="text" multiple>
@@ -161,11 +175,19 @@
             <option value="Zoonoses">Zoonoses</option>
           </select>
 
-          <br />
+          <!-- <br />
           <label for="citationinput">Input Citation</label>
-          <input type="text" name="citationinput" />
+          <input type="text" name="citationinput" /> -->
 
-          <button type="submit" id="submitButton">Add item</button>
+          <button
+            type="submit"
+            id="submitButton"
+            data-te-ripple-init
+            data-te-ripple-color="light"
+            class="mt-4 rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"
+          >
+            Add post<i class="fa-solid fa-plus"></i>
+          </button>
         </form>
       </div>
     </div>
@@ -225,15 +247,19 @@
       const charactersBox2 = document.querySelector("#update_chars2");
       const wordsBox2 = document.querySelector("#update_words2");
 
-      document.getElementById("titleInput").onkeyup = function () {
+      document.getElementById("titleInput").oninput = function () {
         document.getElementById("titleCharCount").innerHTML =
           this.value.length + "/280";
       };
 
-      document.getElementById("titleInput").onclick = function () {
-        document.getElementById("titleCharCount").innerHTML =
-          this.value.length + "/280";
-      };
+      const titleInput = document.getElementById("titleInput");
+
+      titleInput.addEventListener("input", autoResize, false);
+
+      function autoResize() {
+        this.style.height = "auto"; //Reset the height
+        this.style.height = this.scrollHeight + "px"; // Set the height to the scroll height
+      }
 
       // const textarea = document.querySelector("titleInput");
       // const charCountElement = document.getElementById("titleCharCount");
