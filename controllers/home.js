@@ -315,6 +315,32 @@ module.exports = {
     }
   },
   createItem: async (req, res) => {
+    // Extract the fields from req.body
+    const {
+      titleinput,
+      textinput,
+      linkinput,
+      numinput,
+      regioninput,
+      countryinput,
+      healthriskinput,
+      citationinput,
+    } = req.body;
+
+    // Validation checks
+    if (!titleinput || titleinput.length > 280) {
+      return res.redirect("/formError?error=Invalid title");
+    }
+    if (textinput && textinput.length > 40000) {
+      return res.redirect("/formError?error=Text input is too long");
+    }
+    if (!linkinput || linkinput.length > 2100) {
+      return res.redirect("/formError?error=Invalid link");
+    }
+    if (!numinput) {
+      return res.redirect("/formError?error=Number input is required");
+    }
+
     const newItem = new ItemList({
       titleinput: req.body.titleinput,
       textinput: req.body.textinput,
@@ -327,19 +353,18 @@ module.exports = {
       postedBy: req.user.id,
       likes: 0,
       comments: 0,
-      // User: req.body.User,
     });
 
     try {
       await newItem.save();
       // Update the user's postCount
       await User.findByIdAndUpdate(req.user.id, { $inc: { postCount: 1 } });
-
       console.log(newItem);
       res.redirect("/");
     } catch (err) {
+      console.log(err);
       if (err) return res.status(500).send(err);
-      res.redirect("/feed");
+      res.redirect("/formError?error=An error occurred while saving the post");
     }
   },
   getGuestDashboard: async (req, res) => {
@@ -570,6 +595,15 @@ module.exports = {
     } catch (error) {
       console.error(error);
       res.status(500).render("error/500");
+    }
+  },
+  getFormError: async (req, res) => {
+    const error = req.params.error;
+    try {
+      res.render("error/formError.ejs", { error });
+    } catch (err) {
+      res.render("error/500");
+      if (err) return res.status(500).send(err);
     }
   },
 };

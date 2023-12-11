@@ -30,7 +30,7 @@
 
     <!-- container div for feed, sort, title, filter -->
     <div id="containerForAll" class="2xl:flex">
-      <div class="w-6/12 mx-auto max-w-[625px] border border-sky-500">
+      <div class="w-6/12 mx-auto max-w-[625px]">
         <div class="">
           <h3
             class="h-12 leading-10 flex font-roboto text-2xl text-navblack font-bold flex items-center"
@@ -84,6 +84,7 @@
             <input
               type="number"
               name="numinput"
+              id="numinput"
               class="w-1/2 mb-2"
               placeholder="indicate the year of your post"
             />
@@ -188,6 +189,8 @@
           >
             Add post<i class="fa-solid fa-plus"></i>
           </button>
+
+          <div id="errorMessages"></div>
         </form>
       </div>
     </div>
@@ -376,6 +379,82 @@
           console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
           console.error(error);
         });
+    </script>
+    <script>
+      const addButton = document.getElementById("submitButton");
+      const form = document.querySelector("form");
+      const errorMessagesDiv = document.getElementById("errorMessages");
+
+      addButton.addEventListener("click", function (event) {
+        console.log("Add Post Button clicked");
+        event.preventDefault(); // Prevent default form submission
+        let errors = [];
+        errorMessagesDiv.innerHTML = "";
+
+        // Validate Title
+        const title = document.getElementById("titleInput").value.trim();
+        if (!title || title.length > 280) {
+          console.log("title error detected");
+          errors.push(
+            "Title is required and must be less than 280 characters."
+          );
+        }
+
+        // Validate Link
+        const link = document.getElementById("linkinput").value.trim();
+        if (!link || link.length > 2100) {
+          console.log("link error detected");
+          errors.push(
+            "Link is required and must be less than 2100 characters."
+          );
+        }
+
+        // Validate Year
+        const year = document.getElementById("numinput").value.trim();
+        if (!year) {
+          console.log("year input not entered");
+          errors.push("Year is required.");
+        } else if (year < 1990 || year > Date) {
+          console.log("link error detected");
+          errors.push("Year must be after 1990 and before today");
+        }
+
+        // Validate Region
+        const region = document.getElementById("regioninput").value;
+        if (!region) {
+          console.log("invalid region element");
+          errors.push("Please select at least one region.");
+        }
+
+        // Validate Country
+        const country = document.getElementById("countryinput").value;
+        if (!country) {
+          console.log("invalid country element");
+          errors.push("Please select at least one country.");
+        }
+
+        // Validate Health risk
+        const healthrisk = document.getElementById("healthriskinput").value;
+        if (!healthrisk) {
+          console.log("invalid healthrisk element");
+          errors.push("Please select at least one health risk.");
+        }
+
+        // If there are no errors, submit the form manually
+        if (errors.length === 0) {
+          console.log("no errors detected");
+          form.submit();
+        } else {
+          console.log("errors detected");
+          // Display errors
+          errors.forEach((error) => {
+            const p = document.createElement("p");
+            p.textContent = error;
+            p.style.color = "red";
+            errorMessagesDiv.appendChild(p);
+          });
+        }
+      });
     </script>
   </body>
 </html>

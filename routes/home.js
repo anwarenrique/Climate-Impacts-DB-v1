@@ -19,5 +19,6 @@ router.get("/viewPost/:view?/:id?", homeController.getViewPost); //view single p
 router.get("/likedPosts", ensureAuth, homeController.getLikedPosts); //view page with posts you have liked
 router.get("/savedPosts", ensureAuth, homeController.getSavedPosts); //view page with posts you have saved
 router.get("/reportPost/:id", ensureAuth, homeController.reportPost); //reports a post
+router.get("/formError?:error", homeController.getFormError); //render error page if post is submitted incorrectly
 
 module.exports = router;
