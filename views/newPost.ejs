@@ -49,7 +49,7 @@
             id="titleInput"
             class="w-full h-auto resize-none rounded-lg px-4"
             autocorrect="on"
-            placeholder=" Give an eye-catching title!"
+            placeholder="Give an eye-catching title!"
           ></textarea>
           <div class="flex justify-end"><p id="titleCharCount">0/280</p></div>
 
@@ -190,7 +190,7 @@
             Add post<i class="fa-solid fa-plus"></i>
           </button>
 
-          <div id="errorMessages"></div>
+          <div id="errorMessages" class="mt-4"></div>
         </form>
       </div>
     </div>
@@ -264,80 +264,6 @@
         this.style.height = this.scrollHeight + "px"; // Set the height to the scroll height
       }
 
-      // const textarea = document.querySelector("titleInput");
-      // const charCountElement = document.getElementById("titleCharCount");
-
-      // textarea.addEventListener("input", (event) => {
-      //   const target = event.currentTarget;
-      //   const maxLength = target.getAttribute("maxlength");
-      //   const currentLength = target.value.length;
-
-      //   if (currentLength >= maxLength) {
-      //     charCountElement.textContent =
-      //       "You have reached the maximum number of characters.";
-      //   } else {
-      //     charCountElement.innerHTML = `${
-      //       maxLength - currentLength
-      //     } chars left`;
-      //   }
-      // });
-      // ClassicEditor.create(document.querySelector("#titleinput"), {
-      //   wordCount: {
-      //     onUpdate: (stats) => {
-      //       const textLength = stats.characters;
-      //       const isLimitExceeded = textLength > maxCharacters1;
-
-      //       wordsBox.textContent = `Words in the post: ${stats.words}`;
-
-      //       // Display the number of characters in the progress chart. When the limit is exceeded,
-      //       // display how many characters should be removed.
-      //       if (isLimitExceeded) {
-      //         charactersBox.textContent = `Characters remaining: -${
-      //           stats.characters - maxCharacters1
-      //         }`;
-      //       } else {
-      //         charactersBox.textContent = `Total characters: ${stats.characters}`;
-      //       }
-
-      //       if (textLength > maxCharacters1) {
-      //         sendButton.setAttribute("disabled", "disabled");
-      //       } else {
-      //         sendButton.removeAttribute("disabled");
-      //       }
-      //     },
-      //   },
-      // })
-      // .then((editor) => {
-      //   window.editor = editor;
-      //   const wordCountPlugin = editor.plugins.get("WordCount");
-      //   const wordCountWrapper = document.getElementById("word-count1");
-      //   wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
-
-      //   // charlimit practice
-      //   const maxCharacters1 = 30;
-      //   const maxCharacters2 = 10;
-
-      //   editor.model.document.on("change", () => {
-      //     const textLength = editor.getData().length;
-
-      //     if (textLength >= maxCharacters) {
-      //       sendButton.setAttribute("disabled", "disabled");
-      //     } else {
-      //       sendButton.removeAttribute("disabled");
-      //     }
-      //   });
-
-      //   // charlimit practice
-      // })
-      // .catch((error) => {
-      //   console.error("Oops, something went wrong!");
-      //   console.error(
-      //     "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
-      //   );
-      //   console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
-      //   console.error(error);
-      // });
-
       ClassicEditor.create(document.querySelector("#textinput"), {
         wordCount: {
           onUpdate: (stats) => {
@@ -363,22 +289,14 @@
             }
           },
         },
-      })
-        // .then((editor) => {
-        //   window.editor = editor;
-        //   const wordCountPlugin = editor.plugins.get("WordCount");
-        //   const wordCountWrapper = document.getElementById("word-count2");
-
-        //   wordCountWrapper.appendChild(wordCountPlugin.wordCountContainer);
-        // })
-        .catch((error) => {
-          console.error("Oops, something went wrong!");
-          console.error(
-            "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
-          );
-          console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
-          console.error(error);
-        });
+      }).catch((error) => {
+        console.error("Oops, something went wrong!");
+        console.error(
+          "Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:"
+        );
+        console.warn("Build id: reb26uh8ox5-193g9pg23i6c");
+        console.error(error);
+      });
     </script>
     <script>
       const addButton = document.getElementById("submitButton");
