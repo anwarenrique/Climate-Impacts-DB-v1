@@ -37,10 +37,10 @@ module.exports = {
         healthriskinput: req.body.healthriskinput,
         citationinput: req.body.citationinput,
       });
-      res.redirect("/dashboard");
+      res.redirect("/feed/dashboard");
     } catch (err) {
       if (err) return res.status(500).send(err);
-      res.redirect("/dashboard");
+      res.redirect("/feed/dashboard");
     }
   },
 };
