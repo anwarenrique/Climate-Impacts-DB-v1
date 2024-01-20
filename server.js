@@ -1,6 +1,10 @@
 //todo - Declare Variables and import necessary modules and routes
 const express = require("express");
 const app = express();
+
+//Set trust proxy
+app.set("trust proxy", true);
+
 const PORT = 8500;
 const mongoose = require("mongoose");
 const passport = require("passport");
