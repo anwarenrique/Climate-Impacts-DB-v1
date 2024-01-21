@@ -6,7 +6,7 @@ const router = express.Router();
 const homeController = require("../controllers/home");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-router.get("/", ensureGuest, homeController.getLogin); //read
+router.get("/", ensureGuest, homeController.getUnifiedDashboard); //read
 router.post("/new", ensureAuth, homeController.createItem); //Add post to database
 router.get("/newPost", ensureAuth, homeController.getNewPost); //go to the 'write post' view
 router.get("/feed/:view?/:id?", homeController.getUnifiedDashboard);

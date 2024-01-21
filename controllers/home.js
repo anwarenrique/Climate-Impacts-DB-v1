@@ -31,7 +31,7 @@ const movePostToReportedCollection = async (post) => {
 module.exports = {
   getLogin: async (req, res) => {
     try {
-      const items = await res.render("dashboard.ejs");
+      const items = await res.render("login.ejs");
     } catch (err) {
       if (err) return res.status(500).send(err);
     }
