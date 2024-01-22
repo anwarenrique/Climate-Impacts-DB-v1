@@ -25,6 +25,20 @@
     />
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-0WC50VL0LH"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-0WC50VL0LH");
+  </script>
   <body class="font-sans bg-climagray">
     <!-- Nav bar -->
     <%- include('partials/navbarGuest') %>
