@@ -975,11 +975,6 @@ body::before {
   margin-right: 1rem;
 }
 
-.mx-6 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
-
 .mx-8 {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -1128,10 +1123,6 @@ body::before {
 
 .mr-1 {
   margin-right: 0.25rem;
-}
-
-.mr-12 {
-  margin-right: 3rem;
 }
 
 .mr-2 {
@@ -2930,11 +2921,6 @@ body::before {
 .py-1\.5 {
   padding-top: 0.375rem;
   padding-bottom: 0.375rem;
-}
-
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
 }
 
 .py-2 {
@@ -5740,10 +5726,6 @@ body::before {
     align-items: center;
   }
 
-  .md\:justify-start {
-    justify-content: flex-start;
-  }
-
   .md\:gap-x-14 {
     -moz-column-gap: 3.5rem;
          column-gap: 3.5rem;
@@ -5763,6 +5745,11 @@ body::before {
     padding: 0px;
   }
 
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
   .md\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -5774,10 +5761,6 @@ body::before {
 
   .md\:pr-\[17px\] {
     padding-right: 17px;
-  }
-
-  .md\:text-left {
-    text-align: left;
   }
 
   .md\:hover\:bg-transparent:hover {
@@ -5815,16 +5798,8 @@ body::before {
     margin-bottom: 2rem;
   }
 
-  .lg\:block {
-    display: block;
-  }
-
-  .lg\:grid-cols-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .lg\:justify-between {
-    justify-content: space-between;
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .lg\:text-left {
