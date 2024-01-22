@@ -65,7 +65,7 @@ module.exports = {
       // Optional states (req.query)
       const {
         page = 1,
-        sort = "defaultSort",
+        sort = "createdAtDecreasing",
         regionfilter,
         countryfilter,
         healthriskfilter,
