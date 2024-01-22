@@ -19,7 +19,7 @@ ClimaVita is a digital platform dedicated to showcasing real-world examples of h
 ClimaVita is continuously evolving. We are exploring the expansion of the platform to feature ongoing projects, plans, and response actions addressing health and climate change impacts across the Americas, uploaded by users. This expansion aims to foster enhanced collaboration among project planners and implementers, creating a dynamic platform for sharing progress, lessons learned, and inspiring examples.
 
 ## Feedback
-Want to help improve ClimaVita? Please submit feedback and requests for new features to the ClimaVita feedback board https://climatracker.canny.io/feedback-and-feature-requests
+Want to help improve ClimaVita? Please submit feedback and requests for new features to the ClimaVita feedback board https://climavita.canny.io/feedback-and-feature-requests
 
 ## Instructions 
 
