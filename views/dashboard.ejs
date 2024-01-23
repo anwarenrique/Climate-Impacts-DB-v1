@@ -58,7 +58,7 @@
   let endNumber = startNumber + itemList.length - 1;
 %>
 
-          <!--insert filter parameters here, but only if filters have been applied -->
+          
       <!-- Check if any filters have been applied and if there are items to display -->
       <% if ((filterParameters.region.length > 0 || filterParameters.country.length > 0 || filterParameters.healthrisk.length > 0) && itemList.length > 0) { %>
         <section class="flex justify-start w-full mx-auto flex-col items-center max-w-[625px] ">
@@ -120,13 +120,7 @@
       <section
         class="flex justify-end w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       >
-        <!-- <div class="">
-          <h3
-            class="h-12 leading-10 flex font-roboto text-xl text-navblack font-bold flex items-center"
-          >
-            Climate Change and Health Impacts Feed
-          </h3>
-        </div> -->
+        
         <div class="flex justify-items-end flex gap-x-2">
 
         <!-- Only show the working 'Create Post' button if the user is logged in -->
@@ -204,14 +198,7 @@ role="dialog">
     <!--Modal footer-->
     <div
       class="flex flex-shrink-0 flex-wrap items-center justify-center rounded-b-md p-4 pb-12 dark:border-opacity-50">
-      <!-- <button
-        type="button"
-        class="inline-block rounded bg-primary-100 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:bg-primary-accent-100 focus:bg-primary-accent-100 focus:outline-none focus:ring-0 active:bg-primary-accent-200"
-        data-te-modal-dismiss
-        data-te-ripple-init
-        data-te-ripple-color="light">
-        Close
-      </button> -->
+      
       <a 
       href="/auth/google"
       type="button"
@@ -571,23 +558,9 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       sortInstance.setValue([]);
     </script>
 
-    <!-- OLD multi select stuff -->
-    <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 
     <script>
-      // new MultiSelectTag("regioninput"); // id
-      // new MultiSelectTag("countryinput"); // id
-      // new MultiSelectTag("healthriskinput"); // id
-
-      // new MultiSelectTag("regionfilter", {
-      //   rounded: true,
-      // }); // id
-      // new MultiSelectTag("countryfilter"); // id
-      // new MultiSelectTag("healthriskfilter"); // id
-
-      // CKEDITOR.replace('textinput', {
-      //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
-      // })
+      
 
       function showConfirmation(itemId) {
         console.log("Button clicked!");
