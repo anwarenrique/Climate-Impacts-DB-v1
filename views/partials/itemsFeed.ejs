@@ -5,7 +5,7 @@
     href="#"
   >
     <!-- Div for profile pic on the left START-->
-    <div class="flex w-20">
+    <div class="md:flex md:w-20">
       <a
         class="self-start mx-auto mt-1.5 rounded-full w-7/12"
         href="/feed/profile/<%= item.postedBy._id%>"
@@ -46,7 +46,7 @@
         </div>
 
         <!-- 3 BUTTONS DROP DOWN START-->
-        <div class="justify-self-end pr-2">
+        <div class="justify-self-end md:pr-2">
           <div class="relative" data-te-dropdown-ref>
             <button
               class="w-8 h-8 rounded-full hover:bg-[#e2e7eb] transition duration-150 active:bg-[#e2e7eb] focus:bg-[#e2e7eb]"
@@ -60,7 +60,7 @@
               <i class="fa-solid fa-ellipsis" style="color: #5b7083"></i>
             </button>
             <ul
-              class="absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
+              class="md:absolute z-[1000] float-left m-0 hidden min-w-max list-none overflow-hidden rounded-lg border-none bg-white bg-clip-padding text-left text-base shadow-lg dark:bg-neutral-700 [&[data-te-dropdown-show]]:block"
               aria-labelledby="dropdownMenuSmallButton"
               data-te-dropdown-menu-ref
             >
@@ -284,14 +284,14 @@
       <!-- Main text of post -->
       <a
         href="/viewPost/dashboard/<%= item._id %>"
-        class="block text-base font-medium font-roboto pt-2 pb-1.5 mr-3.5 w-[30rem] hover:underline"
+        class="block text-base font-medium font-roboto pt-2 pb-1.5 mr-3.5 md:w-[30rem] hover:underline"
       >
         <%- item.titleinput %>
       </a>
       <!-- Show preview of extended text body -->
       <% if (item.textinput && item.textinput.length > 0) { %>
       <a
-        class="block text-neutral-700 text-sm pb-1.5 w-[30rem] hover:underline transition duration-150"
+        class="block text-neutral-700 text-sm pb-1.5 md:w-[30rem] hover:underline transition duration-150"
         href="/viewPost/dashboard/<%= item._id %>"
       >
         <%- item.textinput.length > 145 ? item.textinput.slice(0, 145) + ' ...'
@@ -300,7 +300,7 @@
       <% } %>
 
       <!-- View full post button -->
-      <div class="flex justify-center w-[30rem]">
+      <div class="flex justify-center md:w-[30rem]">
         <a
           href="/viewPost/dashboard/<%= item._id %>"
           class="rounded-3xl h-full hover:underline"
