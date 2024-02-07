@@ -1,7 +1,7 @@
 <ul>
   <% itemList.forEach(item => { %>
   <div
-    class="block w-full bg-[#FFFCFC] rounded-3xl mb-3 shadow-xl flex justify-start transition duration-150"
+    class="block w-full bg-[#FFFCFC] md:rounded-3xl mb-1 md:mb-3 shadow-xl flex justify-start transition duration-150"
     href="#"
   >
     <!-- Div for profile pic on the left START-->
@@ -19,8 +19,8 @@
     <!-- Div for profile pic on the left END-->
 
     <!-- box for all other POST contents START-->
-    <li class="w-full">
-      <div class="flex justify-between pt-2">
+    <li class="w-full px-4 md:px-0">
+      <div class="md:flex justify-between pt-2">
         <div class="flex gap-x-1.5">
           <a
             href="/feed/profile/<%= item.postedBy._id%>"
