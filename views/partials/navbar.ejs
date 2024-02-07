@@ -1,7 +1,9 @@
 <header class="mb-4">
   <nav class="flex justify-between items-center md:w-[92%] mx-auto">
     <div class="border-solid border-sky-500 border-1">
-      <a class="font-roboto font-semibold text-3xl" href="/feed/dashboard"
+      <a
+        class="font-roboto font-semibold text-3xl md:pl-0 pl-4"
+        href="/feed/dashboard"
         >ClimaVita</a
       >
     </div>
@@ -54,7 +56,7 @@
       </ul>
     </div>
     <% if (user._id === "guest") {%>
-    <div class="flex items-center gap-6 text-xl">
+    <div class="flex items-center gap-6 text-xl mr-2 md:mr-0">
       <button
         class="px-5 py-2 rounded-full font-roboto font-semibold flex gap-3 leading-none bg-[#28bb85] flex items-center justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold transition duration-150 text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59]"
         type="button"
