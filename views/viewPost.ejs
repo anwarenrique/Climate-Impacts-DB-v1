@@ -44,7 +44,7 @@
 
       <!-- SECTION FOR POST AND BACK BUTTON  -->
       
-      <div class="flex justify-between w-6/12 mx-auto h-14 flex items-center max-w-[625px]"> 
+      <div class="flex justify-between w-full md:w-6/12 mx-auto h-14 flex items-center max-w-[625px]"> 
 
         <!-- BACK TO LAST PAGE BUTTON -->
        
@@ -70,7 +70,7 @@
           data-te-ripple-color="light"
           data-te-toggle="modal"
   data-te-target="#exampleModalViewCreatePost"
-          class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"
+          class="mr-2 md:mr-0  rounded-full relative inline-block rounded bg-[#28bb85] px-3 md:px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"
         >
             Create a post<i class="fa-solid fa-plus"></i>
         </button>
@@ -184,13 +184,13 @@
     <div class="flex max-w-[1240px] 2xl:mx-auto mx-auto ">
     
       <!-- PARTIAL FOR ITEMS LIST FEED VIEW OF POST --> 
-      <section class="w-1/2 max-w-[625px] 2xl:w-[625px] mx-auto">
+      <section class="md:w-1/2 max-w-[625px] 2xl:w-[625px] mx-auto">
         <div class=""> 
           <div
-    class="block w-full bg-[#FFFCFC] rounded-3xl shadow-xl flex justify-start transition duration-150"
+    class="block px-2 md:px-0 w-full bg-[#FFFCFC] md:rounded-3xl shadow-xl flex justify-start transition duration-150"
     href="#"
   >
-    <div class="flex w-20">
+    <div class="md:flex w-0 md:w-20">
       <a
         class="self-start mx-auto mt-1.5 rounded-full w-7/12"
         href="/feed/profile/<%= item.postedBy._id%>"
@@ -468,12 +468,12 @@
       <!-- Main text of post -->
       <h1
         
-        class="block text-xl font-medium font-roboto pt-2 pb-1.5 mr-3.5 w-[30rem]"
+        class="block text-lg leading-6 md:text-xl font-medium font-roboto pt-2 pb-1.5 mr-3.5 md:w-[30rem]"
       >
         <%- item.titleinput %>
     </h1>
 
-        <div class="block text-neutral-700 text-sm pb-1.5 w-[30rem]"> 
+        <div class="block text-neutral-700 text-sm pb-1.5 md:w-[30rem]"> 
           <%- item.textinput%>
         </div>
       
@@ -531,7 +531,7 @@
         <% }); %> <% } %>
       </div>
 
-      <div class="flex justify-start w-[30rem] py-1">
+      <div class="flex justify-start md:w-[30rem] py-1">
         <div class="flex justify-between w-4/6">
           <!-- comments icon -->
           <div
@@ -896,7 +896,7 @@
 
         <!-- COMMENTS SECTION START -->
         <div class="max-w-[625px] 2xl:w-[625px]"> 
-          <div class="flex justify-end text-neutral-500 pr-3.5 py-2.5 border-neutral-300 border-b-2"> 
+          <div class="flex justify-center md:justify-end text-neutral-500 pr-3.5 py-2.5 border-neutral-300 border-b-2"> 
             <% if (item.comments == 0) { %>
             <p>No comments</p>
             <%} else if (item.comments == 1) {%>
@@ -958,7 +958,7 @@
             id="submitButton" 
             data-te-ripple-init
             data-te-ripple-color="light"
-            class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"><i class="fa-solid fa-plus"></i> Add comment</button>
+            class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 mx-auto md:mx-0 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"><i class="fa-solid fa-plus"></i> Add comment</button>
           </form>
 
           <text id="update_chars3"></text>
@@ -972,7 +972,7 @@
             data-te-ripple-init
             data-te-ripple-color="light"
             id="submitButton" 
-            class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"><i class="fa-solid fa-plus"></i> Add comment</button>
+            class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 mx-auto md:mx-0 text-base font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59] flex gap-x-2.5 items-center"><i class="fa-solid fa-plus"></i> Add comment</button>
           </div>
             <!--ADD COMMENT BUTTON MODAL START-->
             <div
@@ -1349,7 +1349,7 @@
                     <p><%- comments[i].comment%></p>
 
                     <!-- Like, Comment, and save buttons - with logic for guest users vs logged in START -->
-                    <div class="flex justify-start w-[30rem] py-1">
+                    <div class="flex justify-start md:w-[30rem] py-1">
                       <div class="flex justify-between w-4/6">
 
 
@@ -1817,7 +1817,7 @@
                     <p><%- comments[i].comment%></p>
 
                     <!-- Like, Comment, and save buttons - with logic for guest users vs logged in START -->
-                    <div class="flex justify-start w-[30rem] py-1">
+                    <div class="flex justify-start md:w-[30rem] py-1">
                       <div class="flex justify-between w-4/6">
 
 
