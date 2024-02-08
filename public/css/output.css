@@ -970,11 +970,6 @@ body::before {
   margin-bottom: 0px !important;
 }
 
-.mx-2 {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -1616,10 +1611,6 @@ body::before {
 
 .w-\[30px\] {
   width: 30px;
-}
-
-.w-\[30rem\] {
-  width: 30rem;
 }
 
 .w-\[328px\] {
@@ -5838,6 +5829,11 @@ body::before {
     padding-right: 0px;
   }
 
+  .md\:px-6 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
   .md\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
@@ -5867,6 +5863,11 @@ body::before {
   .md\:text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
+  }
+
+  .md\:text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 
   .md\:leading-10 {

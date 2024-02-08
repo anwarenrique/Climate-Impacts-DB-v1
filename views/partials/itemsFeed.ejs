@@ -5,7 +5,7 @@
     href="#"
   >
     <!-- Div for profile pic on the left START-->
-    <div class="md:flex md:w-20">
+    <div class="md:flex w-0 md:w-20">
       <a
         class="self-start mx-auto mt-1.5 rounded-full w-7/12"
         href="/feed/profile/<%= item.postedBy._id%>"
@@ -370,7 +370,7 @@
       <!-- Tag buttons for year, region, country, and health risk END -->
 
       <!-- Like, Comment, and save buttons - with logic for guest users vs logged in START -->
-      <div class="flex justify-start w-[30rem] py-1">
+      <div class="flex justify-start md:w-[30rem] py-1">
         <div class="flex justify-between w-4/6">
           <!-- comments icon with link to post START-->
           <form
