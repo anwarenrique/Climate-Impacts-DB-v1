@@ -5752,6 +5752,10 @@ body::before {
     width: 5rem;
   }
 
+  .md\:w-3\/4 {
+    width: 75%;
+  }
+
   .md\:w-6\/12 {
     width: 50%;
   }
@@ -5794,6 +5798,14 @@ body::before {
 
   .md\:justify-end {
     justify-content: flex-end;
+  }
+
+  .md\:justify-center {
+    justify-content: center;
+  }
+
+  .md\:justify-items-end {
+    justify-items: end;
   }
 
   .md\:gap-x-14 {
