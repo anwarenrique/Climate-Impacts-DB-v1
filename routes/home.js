@@ -9,6 +9,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 router.get("/", ensureGuest, homeController.getUnifiedDashboard); //read
 router.post("/new", ensureAuth, homeController.createItem); //Add post to database
 router.get("/newPost", ensureAuth, homeController.getNewPost); //go to the 'write post' view
+router.get("/about", homeController.getAbout); //go to about page
 router.get("/feed/:view?/:id?", homeController.getUnifiedDashboard);
 // router.get("/dashboard", ensureAuth, homeController.getDashboard); //go to the main feed for (logged in users)
 // router.get("/guestDashboard/:view?/:id?", homeController.getUnifiedDashboard); //go to main feed (for non logged in users)

@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="Tagify" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About ClimaVita</title>
+    <link rel="stylesheet" href="/css/output.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/css/multi-select-tag.css"
+    />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hanunoo&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-0WC50VL0LH"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-0WC50VL0LH");
+  </script>
+  <body class="font-sans bg-climagray">
+    <!-- Nav bar -->
+    <%- include('partials/navbar') %>
+
+    <!-- container div for feed, sort, title, filter -->
+    <div id="containerForAll" class="2xl:flex 2xl:flex-col">
+      <!-- Page title section -->
+      <!-- <section
+        class="mt-6 mb-2 md:mt-0 md:mb-0 md:flex md:justify-start md:w-6/12 mx-auto h-8 md:h-14 items-center max-w-[625px] border border-sky-500"
+      >
+        <div class="">
+          <h1
+            class="mx-4 md:mx-0 md:h-12 leading-5 md:leading-10 flex font-roboto text-xl md:text-2xl text-navblack font-bold flex items-center"
+          >
+            About ClimaVita
+          </h1>
+        </div>
+      </section> -->
+
+      <div class="flex justify-center max-w-[1240px] 2xl:mx-auto mx-auto">
+        <!-- FILTER BUTTON -->
+
+        <!-- Container for demo purpose -->
+        <div class="container mt-8 md:mt-24 md:mb-14 mx-auto md:px-6">
+          <!-- Section: Design Block -->
+          <section class="mb-32 px-4 md:px-0">
+            <div class="flex justify-center md:justify-start">
+              <h1 class="mb-4 text-3xl font-bold text">About</h1>
+            </div>
+            <!-- <p
+              class="mb-6 flex items-center font-bold uppercase text-danger dark:text-danger-500"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="mr-2 h-5 w-5"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z"
+                />
+              </svg>
+              Hot news
+            </p> -->
+
+            <p class="mb-10">
+              ClimaVita is a digital platform dedicated to showcasing real-world
+              examples of how climate change affects health in the Americas. Our
+              goal is to enhance awareness and provide accessible, concrete
+              evidence of climate change’s impact, catering to public health
+              professionals, researchers, journalists, policymakers, and the
+              general public. Through ClimaVita, we strive to bring forth
+              compelling narratives and data that highlight the urgency of
+              addressing climate change in the context of global health. The
+              name ClimaVita is a combination of the latin words for ‘climate’
+              and ‘life’.
+            </p>
+
+            <!-- Section: Design Block -->
+            <section class="text-center text-base">
+              <h2 class="mb-8 text-3xl font-bold">Current Features</h2>
+              <div class="flex grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
+                <div
+                  class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                >
+                  <div
+                    class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="w-6 h-6 fill-[#077F59]"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16V384c0 8.8 7.2 16 16 16H512c8.8 0 16-7.2 16-16V128c0-8.8-7.2-16-16-16H64zM0 128C0 92.7 28.7 64 64 64H512c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128zM176 320H400c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H176c-8.8 0-16-7.2-16-16V336c0-8.8 7.2-16 16-16zm-72-72c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H120c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H200c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H280c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H360c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16zm64 96c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V248zm16-96h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H440c-8.8 0-16-7.2-16-16V168c0-8.8 7.2-16 16-16z"/></svg>
+                  </div>
+                  <h5 class="mb-4 text-lg font-bold">Concise Posting</h5>
+                  <p class="text">
+                    Users can create and upload posts highlighting the impacts
+                    of climate change on health in a concise format, inspired by
+                    the brevity of Twitter, for clear and punchy communication.
+                    Additional details and context can be added in the extended
+                    post body.
+                  </p>
+                </div>
+
+                <div
+                  class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                >
+                  <div
+                    class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                  </svg>
+                  
+                  </div>
+                  <h5 class="mb-4 text-lg font-bold">
+                    Advanced Filtering and Sorting
+                  </h5>
+                  <p class="text">
+                    Users can easily navigate through the content by applying
+                    filters based on region, country, and type of health impact,
+                    alongside sorting options for quick access to relevant
+                    posts.
+                  </p>
+                </div>
+
+                <div
+                  class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                >
+                  <div
+                    class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                  >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                  </svg>
+                  
+                  </div>
+                  <h5 class="mb-4 text-lg font-bold">Interactive Engagement</h5>
+                  <p class="text">
+                    The platform encourages interaction, discussion, and
+                    knowledge sharing by enabling users to like, save, and
+                    comment on posts.
+                  </p>
+                </div>
+              </div>
+            </section>
+            <!-- Section: Design Block -->
+
+            <hr
+              class="my-16 h-0.5 border-t-0 bg-neutral-400 opacity-100 dark:opacity-50"
+            />
+
+            <!-- Container for demo purpose -->
+
+            <h1 class="mb-4 text-3xl font-bold">Planned Expansions</h1>
+
+            <!-- <p class="mb-6">
+              <strong>Planned Expansions to Enhance ClimaVita:</strong>
+            </p> -->
+
+            <!-- <div
+              class="flex flex-wrap md:flex justify-center md:justify-start mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4"
+            >
+              <div
+                class="mb-6 mr-0 md:mr-4 h-14 md:inline rounded-md bg-primary-100 p-4 text-primary"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  class="h-6 w-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"
+                  />
+                </svg>
+              </div>
+              <div class="">
+                <h5 class="mb-4 text-center md:text-left text-lg font-bold">
+                  Best Practices and Case Study Repository
+                </h5>
+                <p class="text text-center md:text-left">
+                  A new section for health and climate researchers,
+                  professionals, and project planners to share and discover
+                  posts on real-world success stories, projects, inspiring case
+                  studies, and partnership opportunities. Like the impacts
+                  section, this would include links to sources and the ability
+                  to apply filters based on region, country, health topic, and
+                  more. Longer form case studies may feature interviews with key
+                  players or team leads who have led successful projects. The
+                  aim of this section is to increase knowledge exchange,
+                  collaboration, and provide inspiration for entities looking to
+                  implement or improve health and climate change initiatives.s
+                </p>
+              </div>
+            </div> -->
+
+            <div
+              class="md:flex md:justify-start mb-12 md:mb-4 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
+              <div
+                class="mb-6 mx-auto md:mr-4 h-14 w-14 md:inline rounded-md bg-[#BEEDC0] p-4 text-[#077F59]  text-center"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
+              </svg>
+              
+              </div>
+              <div class="">
+                <h5 class="mb-4 text-center md:text-left text-lg font-bold">
+                  Best Practices and Case Study Repository
+                </h5>
+                <p class="text text-center md:text-left">
+                  A new section for health and climate researchers,
+                  professionals, and project planners to share and discover
+                  posts on real-world success stories, projects, inspiring case
+                  studies, and partnership opportunities. Like the impacts
+                  section, this would include links to sources and the ability
+                  to apply filters based on region, country, health topic, and
+                  more. Longer form case studies may feature interviews with key
+                  players or team leads who have led successful projects. The
+                  aim of this section is to increase knowledge exchange,
+                  collaboration, and provide inspiration for entities looking to
+                  implement or improve health and climate change initiatives.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="md:flex md:justify-start mb-12 md:mb-4 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
+              <div
+                class="mb-6 mx-auto md:mr-4 h-14 w-14 md:inline rounded-md bg-[#BEEDC0] p-4 text-[#077F59] text-center"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
+              </svg>
+              
+
+                
+                
+              </div>
+              <div class="">
+                <h5 class="mb-4 text-center md:text-left text-lg font-bold">
+                  Comprehensive Resources Library
+                </h5>
+                <p class="text text-center md:text-left">
+                  There is an existing wealth of health and climate change
+                  related resources including guidance documents, reports,
+                  toolkits, and virtual courses spread throughout the Internet.
+                  We will introduce a user-friendly repository of said
+                  resources, allowing users to easily access these in one place.
+                  Users will be able to filter and sort resources by health
+                  topic, resource type, with the ability to like, comment, and
+                  save for later.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="md:flex md:justify-start mb-12 md:mb-4 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
+              <div
+                class="mb-6 mx-auto md:mr-4 h-14 w-14 md:inline rounded-md bg-[#BEEDC0] p-4 text-[#077F59] text-center"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+              </svg>
+              
+              </div>
+              <div class="">
+                <h5 class="mb-4 text-center md:text-left text-lg font-bold">
+                  Events Repository
+                </h5>
+                <p class="text text-center md:text-left">
+                  We will introduce a section for users to post and discover
+                  upcoming webinars, presentations, and courses related to
+                  health and climate change all in one place, aiming to increase
+                  visibility and participation. This section will be closely
+                  linked with the resources library to ensure access of
+                  post-event materials.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="md:flex md:justify-start mb-12 md:mb-4 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
+              <div
+                class="mb-6 mx-auto md:mr-4 h-14 w-14 md:inline rounded-md bg-[#BEEDC0] p-4 text-[#077F59] text-center"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-[#077F59] " viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M192 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm-8 384V352h16V480c0 17.7 14.3 32 32 32s32-14.3 32-32V192h56 64 16c17.7 0 32-14.3 32-32s-14.3-32-32-32H384V64H576V256H384V224H320v48c0 26.5 21.5 48 48 48H592c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H368c-26.5 0-48 21.5-48 48v80H243.1 177.1c-33.7 0-64.9 17.7-82.3 46.6l-58.3 97c-9.1 15.1-4.2 34.8 10.9 43.9s34.8 4.2 43.9-10.9L120 256.9V480c0 17.7 14.3 32 32 32s32-14.3 32-32z"/></svg>
+              </div>
+              <div class="">
+                <h5 class="mb-4 text-center md:text-left text-lg font-bold">
+                  Public Awareness Section
+                </h5>
+                <p class="text text-center md:text-left">
+                  Utilizing compelling design and simple language, this section
+                  will aim to educate a broad audience about the health impacts
+                  of climate change and the steps needed to protect themselves
+                  and their communities. This will feature interactive maps,
+                  diagrams, and drawing from illustrative examples in the
+                  impacts section. This may include case studies and interviews
+                  with persons affected by climate disasters across the
+                  Americas.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="md:flex md:justify-start mb-12 md:mb-12 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+            >
+              <div
+                class="mb-6 mx-auto md:mr-4 h-14 w-14 md:inline rounded-md bg-[#BEEDC0] p-4 text-[#077F59] text-center"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+              </svg>
+              
+              </div>
+              <div class="">
+                <h5 class="mb-4 text-center md:text-left text-lg font-bold">
+                  Policy Advocacy Toolkit
+                </h5>
+                <p class="text text-center md:text-left">
+                  As an extension to the public awareness section, this will
+                  consist of the development of tools and resources designed
+                  specifically to aid users in advocating for effective health
+                  and climate change policies. This could include templates for
+                  policy briefs, letters to representatives, examples of ongoing
+                  and successful advocacy campaigns, and guides on engaging
+                  effectively with policy makers.
+                </p>
+              </div>
+            </div>
+
+            <!-- <p class="mb-6">
+              <strong>Other planned additions:</strong>
+            </p> -->
+            <!-- Container for demo purpose -->
+            <div class="container mx-auto md:px-6">
+              <!-- Section: Design Block -->
+              <section class="text-center mb-12">
+                <h2 class="mb-8 text-3xl font-bold">
+                  Planned Site-wide Upgrades
+                </h2>
+                <div class="flex grid gap-x-6 md:grid-cols-3 lg:gap-x-12">
+                  <div
+                    class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                  >
+                    <div
+                      class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    
+                    </div>
+                    <h5 class="mb-4 text-lg font-bold">Search function</h5>
+                    <p class="text-neutral-500 dark:text-neutral-300">
+                      A site-wide search feature to easily locate impacts,
+                      resources, events, and more.
+                    </p>
+                  </div>
+
+                  <div
+                    class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                  >
+                    <div
+                      class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+                    </svg>
+                    
+                    </div>
+                    <h5 class="mb-4 text-lg font-bold">AI Integration</h5>
+                    <p class="text-neutral-500 dark:text-neutral-300">
+                      To improve content quality and personalize discovery,
+                      aiding users in crafting impactful posts.
+                    </p>
+                  </div>
+
+                  <div
+                    class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                  >
+                    <div
+                      class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
+                    </svg>
+                    
+                    </div>
+                    <h5 class="mb-4 text-lg font-bold">Direct messaging</h5>
+                    <p class="text-neutral-500 dark:text-neutral-300">
+                      Enabling direct collaboration among users for enhanced
+                      community interaction.
+                    </p>
+                  </div>
+                </div>
+              </section>
+              <!-- Section: Design Block -->
+
+              <div
+                class="block rounded-3xl bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700"
+              >
+                <h5
+                  class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50"
+                >
+                  Feedback
+                </h5>
+                <p
+                  class="mb-4 text-base text-neutral-600 dark:text-neutral-200"
+                >
+                  Have ideas for new features? Encountering Bugs? Please submit
+                  feedback and requests for new features to the ClimaVita
+                  feedback board.
+                </p>
+                <a
+                  type="button"
+                  data-te-ripple-init
+                  data-te-ripple-color="light"
+                  href="https://climavita.canny.io/feedback-and-feature-requests"
+                  class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59]"
+                  target="_blank"
+                >
+                  <button class="flex gap-x-2.5 items-center">
+                    Submit Feedback
+                  </button>
+                </a>
+              </div>
+            </div>
+
+            <hr
+              class="my-16 h-0.5 border-t-0 bg-neutral-400 opacity-100 dark:opacity-50"
+            />
+
+            <div class="container mx-auto md:px-6">
+              <!-- Section: Design Block -->
+              <section class="text-center mb-12">
+                <h2 class="mb-8 text-3xl font-bold">
+                  How It's Made
+                </h2>
+                <div class="flex grid gap-x-6 md:grid-cols-4 lg:gap-x-12">
+                  <div
+                    class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                  >
+                    <div
+                      class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="h-6 w-6"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z"
+                        />
+                      </svg>
+                    </div>
+                    <h5 class="mb-4 text-lg font-bold">Back-End</h5>
+                    <p class="text-neutral-500 dark:text-neutral-300">
+                      Node.js and Express for fast, secure, and efficient server-side operations. 
+                    </p>
+                  </div>
+
+                  <div
+                    class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                  >
+                    <div
+                      class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+                    </svg>
+                    
+                    </div>
+                    <h5 class="mb-4 text-lg font-bold">Database</h5>
+                    <p class="text-neutral-500 dark:text-neutral-300">
+                      MongoDB for a flexible, scalable data management solution. 
+                    </p>
+                  </div>
+
+                  <div
+                    class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                  >
+                    <div
+                      class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-[#077F59]" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M64 96c0-35.3 28.7-64 64-64H512c35.3 0 64 28.7 64 64V352H512V96H128V352H64V96zM0 403.2C0 392.6 8.6 384 19.2 384H620.8c10.6 0 19.2 8.6 19.2 19.2c0 42.4-34.4 76.8-76.8 76.8H76.8C34.4 480 0 445.6 0 403.2zM281 209l-31 31 31 31c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-48-48c-9.4-9.4-9.4-24.6 0-33.9l48-48c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9zM393 175l48 48c9.4 9.4 9.4 24.6 0 33.9l-48 48c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l31-31-31-31c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg>
+                    </div>
+                    <h5 class="mb-4 text-lg font-bold">Front-End</h5>
+                    <p class="text-neutral-500 dark:text-neutral-300">
+                      EJS for templating, Tailwind CSS for styling, and JavaScript for dynamic client-side interactions. 
+                    </p>
+                  </div>
+
+                  <div
+                    class="mb-12 md:mb-0 md:bg-[#FFFCFC] md:rounded-3xl md:p-4 md:shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]"
+                  >
+                    <div
+                      class="mb-6 inline-block rounded-md bg-[#BEEDC0] p-4 text-[#077F59]"
+                    >
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z" />
+                    </svg>
+                    
+                    </div>
+                    <h5 class="mb-4 text-lg font-bold">Authentication</h5>
+                    <p class="text-neutral-500 dark:text-neutral-300">
+                      Passport.js with Google OAuth 2.0 provides secure authentication mechanisms, ensuring user data protection and privacy. 
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <!--Background-->
+<section
+class="rounded-3xl p-6 text-center shadow-lg md:p-12 md:text-left bg-[#28bb85]"
+style="background-image: url(/img/wave2.svg);background-size: cover";>
+<div class="flex justify-center">
+  <div class="max-w-3xl">
+    <div
+      class="m-4 block rounded-3xl bg-white p-6 shadow-lg dark:bg-neutral-800 dark:shadow-black/20">
+      <!--Testimonial-->
+      <div class="md:flex md:flex-row">
+        <div
+          class="mx-auto mb-6 flex w-36 items-center justify-center md:mx-0 md:w-96 lg:mb-0">
+          <img
+            src="/img/IMG_9643.png"
+            class="rounded-full shadow-md dark:shadow-black/30"
+            alt="Anwar Mendez" />
+        </div>
+        <div class="md:ml-6">
+          <p
+            class="mb-6 font-light text-neutral-500 dark:text-neutral-300">
+            ClimaVita started as a simple tool I developed to make my everyday work more efficient, but it became apparent that it has potential to serve a greater purpose and audience. I hope you find it useful! 
+          </p>
+          <p
+            class="mb-2 text-xl font-semibold text-neutral-800 dark:text-neutral-200">
+            Anwar Mendez, MPH
+          </p>
+          <p
+            class="mb-2 font-semibold text-neutral-500 dark:text-neutral-400">
+            Creator and Lead Software Developer of ClimaVita
+          </p>
+          <a
+              type="button"
+              data-te-ripple-init
+              data-te-ripple-color="light"
+              href="https://github.com/anwarenrique/Climate-Impacts-DB-v1"
+              class="rounded-full relative inline-block rounded bg-[#28bb85] px-6 pb-2 pt-2.5 text-base font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#34D398] transition duration-150 ease-in-out hover:bg-[#077F59] hover:shadow-[0_8px_9px_-4px_#34D398] focus:bg-[#077F59] focus:shadow-[0_8px_9px_-4px_#34D398] focus:outline-none focus:ring-0 active:bg-[#077F59] active:shadow-[0_8px_9px_-4px_#34D398] dark:shadow-[0_4px_9px_-4px_#34D398] dark:hover:shadow-[0_8px_9px_-4px_#077F59] dark:focus:shadow-[0_8px_9px_-4px_#34D398] dark:active:shadow-[0_8px_9px_-4px_#077F59]"
+              target="_blank"
+            >
+              <button class="flex gap-x-2.5 items-center">
+                View Source Code<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                  />
+                </svg>
+              </button>
+            </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+            <!-- Container for demo purpose -->
+          </section>
+          <!-- Section: Design Block -->
+        </div>
+        <!-- Container for demo purpose -->
+
+        <!-- PARTIAL FOR ITEMS LIST FEED -->
+        <!-- <section
+          class="md:w-1/2 max-w-[625px] 2xl:w-[625px] mt-6 md:mt-0 border border-sky-500 mx-4"
+        >
+          <h1>chuba</h1>
+          <p>
+            ClimaVita is a pioneering digital platform designed to bridge the
+            gap between climate change and public health. By showcasing
+            real-world impacts of climate change on health, we aim to enhance
+            awareness, support advocacy, and foster a community of
+            collaboration. Our platform currently offers:
+          </p>
+          <ul>
+            <li>
+              <span class="font-bold">Concise Posting:</span> Users can create
+              and upload posts highlighting the impacts of climate change on
+              health in a concise format, inspired by the brevity of Twitter,
+              for clear and punchy communication.
+            </li>
+            <li>
+              <span>Advanced Filtering and Sorting:</span> To navigate through
+              the wealth of information, users can apply filters based on
+              region, country, and type of health impact, alongside sorting
+              options for quick access to relevant posts.
+            </li>
+            <li>
+              <span class="font-bold">Interactive Engagement:</span> Our
+              platform encourages dynamic interaction, allowing users to like,
+              save, and comment on posts, fostering a vibrant community of
+              knowledge sharing and discussion.
+            </li>
+          </ul>
+          <h2>Next Steps</h2>
+          <p>
+            As ClimaVita evolves, we are excited to announce several major
+            planned expansions to enhance our platform's utility and reach:
+          </p>
+          <ul>
+            <li>
+              <span class="font-bold"
+                >Best Practices and Examples Repository:</span
+              >
+              A new section for health and climate practitioners to share
+              successful stories, projects, and best practices, facilitating
+              engagement and collaboration on innovative solutions.
+            </li>
+            <li>
+              <span>Comprehensive Resources Library:</span> We will introduce a
+              user-friendly repository of valuable resources, including guidance
+              documents, toolkits, webinar recordings, and online courses,
+              making it easier for practitioners to access and utilize essential
+              information.
+            </li>
+            <li>
+              Public Awareness Section: Utilizing compelling design and simple
+              language, this section will aim to educate a broad audience about
+              the health impacts of climate change, featuring interactive maps
+              and personal stories to highlight the urgent need for action.
+            </li>
+            <li>
+              Policy Advocacy Toolkit: To empower effective advocacy, this
+              toolkit will provide resources and materials for both public and
+              health sector use, supporting the creation of impactful policy
+              briefs and campaigns.
+            </li>
+          </ul>
+          <h2>How It's Made</h2>
+          <p>
+            ClimaVita leverages modern technology stacks to ensure a robust,
+            scalable, and user-friendly experience:
+          </p>
+          <ul>
+            <li>
+              Back-End: Built on Node.js and Express, our platform ensures fast,
+              secure, and efficient server-side operations.
+            </li>
+            <li>
+              Database: MongoDB offers us a flexible, scalable database solution
+              to store and manage our growing data efficiently.
+            </li>
+            <li>
+              Front-End: We use EJS for templating, Tailwind CSS for styling,
+              and JavaScript for dynamic client-side functionalities, creating
+              an intuitive and engaging user interface.
+            </li>
+            <li>
+              Authentication: Passport.js provides secure authentication
+              mechanisms, ensuring user data protection and privacy.
+            </li>
+          </ul>
+          <p>
+            Through these technologies, ClimaVita is committed to delivering a
+            seamless experience for our users, fostering an informed and active
+            community ready to tackle the challenges of climate change and
+            public health together.
+          </p>
+        </section>
+        <div class="md:w-1/4 2xl:w-[315px]"></div> -->
+      </div>
+    </div>
+    <footer><%- include('partials/footer') %></footer>
+    <!-- Tailwind Elements stuff -->
+    <script
+      type="text/javascript"
+      src="/tw-elements/dist/js/tw-elements.umd.min.js"
+    ></script>
+
+    <script>
+      const regionfilter = document.querySelector("#regionfilter");
+      const multiSelectInstance1 = te.Select.getInstance(regionfilter);
+      multiSelectInstance1.setValue([]);
+
+      const countryfilter = document.querySelector("#countryfilter");
+      const multiSelectInstance2 = te.Select.getInstance(countryfilter);
+      multiSelectInstance2.setValue([]);
+
+      const healthriskfilter = document.querySelector("#healthriskfilter");
+      const multiSelectInstance3 = te.Select.getInstance(healthriskfilter);
+      multiSelectInstance3.setValue([]);
+
+      const sortSelect = document.querySelector("#sortSelect");
+      const sortInstance = te.Select.getInstance(sortSelect);
+      sortInstance.setValue([]);
+    </script>
+
+    <script>
+      function showConfirmation(itemId) {
+        console.log("Button clicked!");
+        const result = confirm(
+          "Are you sure you want to delete this post/comment?"
+        );
+        if (result) {
+          window.location.href = `/edit/remove/${itemId}`;
+        }
+      }
+    </script>
+    <script>
+      ClassicEditor.create(document.querySelector("#textinput")).catch(
+        (error) => {
+          console.error(error);
+        }
+      );
+    </script>
+  </body>
+</html>

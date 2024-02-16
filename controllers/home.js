@@ -36,6 +36,22 @@ module.exports = {
       if (err) return res.status(500).send(err);
     }
   },
+  getAbout: async (req, res) => {
+    try {
+      //Guest or logged in user (req.user)
+      let user = req.user;
+      if (!req.user) {
+        user = {
+          _id: "guest",
+        };
+      }
+      res.render("about.ejs", {
+        user,
+      });
+    } catch (err) {
+      if (err) return res.status(500).send(err);
+    }
+  },
   getUnifiedDashboard: async (req, res) => {
     try {
       // Fundamental states (req.params)
