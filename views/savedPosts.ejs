@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="Tagify" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Climate-Health Impacts Database</title>
+    <title>My saved posts</title>
     <link rel="stylesheet" href="/css/output.css" />
     <link rel="stylesheet" href="/css/custom.css" />
     <link
@@ -42,11 +42,11 @@
     <div id="containerForAll" class="2xl:flex 2xl:flex-col">
       <!-- Page title section -->
       <section
-        class="flex justify-start w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
+        class="mt-6 mb-2 md:mt-0 md:mb-0 md:flex md:justify-start md:w-6/12 mx-auto h-8 md:h-14 items-center max-w-[625px]"
       >
         <div class="">
           <h3
-            class="h-12 leading-10 flex font-roboto text-2xl text-navblack font-bold flex items-center"
+            class="mx-4 md:mx-0 md:h-12 leading-5 md:leading-10 flex font-roboto text-xl md:text-2xl text-navblack font-bold flex items-center"
           >
             My saved Posts
           </h3>
@@ -61,7 +61,7 @@
       <!--insert filter parameters here, but only if filters have been applied -->
       <!-- Check if any filters have been applied and if there are items to display -->
       <% if ((filterParameters.region.length > 0 || filterParameters.country.length > 0 || filterParameters.healthrisk.length > 0) && itemList.length > 0) { %>
-        <section class="flex justify-start w-full mx-auto flex-col items-center max-w-[625px] ">
+        <section class="md:flex md:justify-start w-full mx-auto md:flex-col items-center max-w-[625px]">
           <div class="filter-parameters">
             <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</h4>
           </div>
@@ -109,7 +109,7 @@
           </div>
         </section>
       <% } else { %>
-        <section class="flex justify-start w-1/2 mx-auto flex items-center max-w-[625px]">
+        <section class="flex justify-center md:justify-start w-full md:w-1/2 mx-auto flex items-center max-w-[625px]">
           <div class="">
             <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</h4>
           </div>
@@ -118,7 +118,7 @@
 
       
       <section
-        class="flex justify-end w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
+        class="flex justify-center md:justify-end w-full md:w-6/12 mx-auto md:h-14 flex items-center max-w-[625px]"
       >
         <!-- <div class="">
           <h3
@@ -127,7 +127,7 @@
             Climate Change and Health Impacts Feed
           </h3>
         </div> -->
-        <div class="flex justify-items-end flex gap-x-2">
+        <div class="flex-wrap md:flex justify-items-end md:gap-x-2 my-2 md:my-0">
 
         <!-- Only show the working 'Create Post' button if the user is logged in -->
         <% if (user._id === 'guest') { %>
@@ -253,7 +253,7 @@ role="dialog">
             <% }%>
           <form action="/feed/savedPosts">
             <div
-              class="w-24 bg-[#CACACA] font-roboto font-bold rounded-3xl text-navblack text-base"
+              class="w-24 bg-[#CACACA] font-roboto font-bold rounded-3xl text-navblack text-base mt-2 md:mt-0"
             >
               <select
                 data-te-select-init
@@ -291,16 +291,16 @@ role="dialog">
         </div>
       </section>
 
-      <div class="flex max-w-[1240px] 2xl:mx-auto mx-auto">
+      <div class="md:flex max-w-[1240px] 2xl:mx-auto mx-auto">
         <!-- FILTER BUTTON -->
         <section
-          class="w-1/4 text-xl flex flex-col 2xl:max-w-[315px] 2xl:min-w-[315px]"
+          class="md:w-1/4 text-xl md:flex md:flex-col 2xl:max-w-[315px] 2xl:min-w-[315px]"
         >
           <!-- Tailwind-elements multi select -->
           <div>
             <form action="/feed/savedPosts" method="GET">
               <div
-                class="w-64 mx-auto mb-6 flex items-center flex-col justify-center text-navblack text-lg"
+                class="w-80 md:w-64 mx-auto mb-2 md:mb-6 flex items-center flex-col justify-center text-navblack text-lg"
               >
                 <select
                   id="regionfilter"
@@ -313,7 +313,7 @@ role="dialog">
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                   data-te-class-dropdown="bg-[#FFFCFC] rounded-xl"
-                  data-te-class-form-outline="w-64 relative bg-[#BEEDC0] rounded-full hover:bg-[#a0e5a3] transition duration-150"
+                  data-te-class-form-outline="w-80 md:w-64 relative bg-[#BEEDC0] rounded-full hover:bg-[#a0e5a3] transition duration-150"
                 >
                   >
                   <option value="The Americas (all subregions)">
@@ -332,7 +332,7 @@ role="dialog">
               </div>
 
               <div
-                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack text-lg"
+                class="w-80 md:w-64 mx-auto my-2 md:my-6 flex items-center flex-col justify-center rounded-3xl text-navblack text-lg"
               >
                 <select
                   class=""
@@ -346,7 +346,7 @@ role="dialog">
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                   data-te-class-dropdown="rounded-xl w-72 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
-                  data-te-class-form-outline="w-64 relative bg-[#C6E8F0] rounded-full hover:bg-[#9ED8E5] transition duration-150"
+                  data-te-class-form-outline="w-80 md:w-64 relative bg-[#C6E8F0] rounded-full hover:bg-[#9ED8E5] transition duration-150"
                 >
                   <option value="All countries">All countries</option>
                   <option value="Antigua and Barbuda">
@@ -401,7 +401,7 @@ role="dialog">
               </div>
 
               <div
-                class="w-64 mx-auto my-6 flex items-center flex-col justify-center rounded-3xl text-navblack text-lg"
+                class="w=80 md:w-64 mx-auto my-2 md:my-6 flex items-center flex-col justify-center rounded-3xl text-navblack text-lg"
               >
                 <select
                   class=""
@@ -415,7 +415,7 @@ role="dialog">
                   data-te-class-notch-leading="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none left-0 top-0 h-full !w-6 border-r-0 rounded-l-full group-data-[te-input-focused]:border-r-0 group-data-[te-input-state-active]:border-r-0"
                   data-te-class-notch-trailing="pointer-events-none border border-solid box-border bg-transparent transition-all duration-200 ease-linear motion-reduce:transition-none grow h-full border-l-0 rounded-r-full group-data-[te-input-focused]:border-l-0 group-data-[te-input-state-active]:border-l-0"
                   data-te-class-dropdown="rounded-xl w-96 relative outline-none min-w-[100px] m-0 scale-[0.8] opacity-0 bg-white shadow-[0_2px_5px_0_rgba(0,0,0,0.16),_0_2px_10px_0_rgba(0,0,0,0.12)] transition duration-200 motion-reduce:transition-none data-[te-select-open]:scale-100 data-[te-select-open]:opacity-100 dark:bg-zinc-700"
-                  data-te-class-form-outline="w-64 relative bg-[#E7C6B2] rounded-full hover:bg-[#DBA98B] transition duration-150"
+                  data-te-class-form-outline="w-80 md:w-64 relative bg-[#E7C6B2] rounded-full hover:bg-[#DBA98B] transition duration-150"
                   data-te-class-select-arrow="absolute right-3 text-[0.4rem] cursor-pointer peer-focus:text-primary peer-data-[te-input-focused]:text-primary group-data-[te-was-validated]/validation:peer-valid:text-green-600 group-data-[te-was-validated]/validation:peer-invalid:text-[rgb(220,76,100)] w-5 h-5"
                   data-te-class-options-wrapper="overflow-y-auto overflow-x-auto"
                 >
@@ -458,7 +458,7 @@ role="dialog">
               </div>
 
               <button
-                class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold my-6 hover:bg-[#bdbdbd] transition duration-150"
+                class="w-80 md:w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold my-2 md:my-6 hover:bg-[#bdbdbd] transition duration-150"
                 type="submit"
                 data-te-ripple-init
                 data-te-ripple-color="light"
@@ -473,7 +473,7 @@ role="dialog">
           <form action="/clearFilter/savedPosts/1">
             <button
               type="submit"
-              class="w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold hover:bg-[#bdbdbd] transition duration-150"
+              class="w-80 md:w-64 bg-[#CACACA] flex items-center flex-col justify-center mx-auto p-2.5 rounded-3xl font-roboto font-bold hover:bg-[#bdbdbd] transition duration-150"
               data-te-ripple-init
               data-te-ripple-color="light"
             >
@@ -483,10 +483,10 @@ role="dialog">
         </section>
 
         <!-- PARTIAL FOR ITEMS LIST FEED -->
-        <section class="w-1/2 max-w-[625px] 2xl:w-[625px]">
+        <section class="md:w-1/2 max-w-[625px] 2xl:w-[625px] mt-6 md:mt-0">
           <%- include('partials/itemsFeed') %>
         </section>
-        <div class="w-1/4 2xl:w-[315px]"></div>
+        <div class="md:w-1/4 2xl:w-[315px]"></div>
       </div>
 
       <!-- Pagination controls -->
@@ -571,23 +571,9 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
       sortInstance.setValue([]);
     </script>
 
-    <!-- OLD multi select stuff -->
-    <!-- <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag/dist/js/multi-select-tag.js"></script> -->
 
     <script>
-      // new MultiSelectTag("regioninput"); // id
-      // new MultiSelectTag("countryinput"); // id
-      // new MultiSelectTag("healthriskinput"); // id
 
-      // new MultiSelectTag("regionfilter", {
-      //   rounded: true,
-      // }); // id
-      // new MultiSelectTag("countryfilter"); // id
-      // new MultiSelectTag("healthriskfilter"); // id
-
-      // CKEDITOR.replace('textinput', {
-      //     plugins: 'wysiwygarea, toolbar, basicstyles, link'
-      // })
 
       function showConfirmation(itemId) {
         console.log("Button clicked!");
