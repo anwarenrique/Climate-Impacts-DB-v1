@@ -1110,6 +1110,10 @@ body::before {
   margin-bottom: 10px;
 }
 
+.ml-0 {
+  margin-left: 0px;
+}
+
 .ml-1 {
   margin-left: 0.25rem;
 }
@@ -1120,6 +1124,10 @@ body::before {
 
 .ml-3 {
   margin-left: 0.75rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
 }
 
 .ml-6 {
@@ -1168,10 +1176,6 @@ body::before {
 
 .mr-6 {
   margin-right: 1.5rem;
-}
-
-.mr-\[0\.8rem\] {
-  margin-right: 0.8rem;
 }
 
 .mr-\[6px\] {
@@ -2779,6 +2783,11 @@ body::before {
   background-color: rgb(206 219 238 / var(--tw-bg-opacity));
 }
 
+.bg-sky-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(14 165 233 / var(--tw-bg-opacity));
+}
+
 .bg-transparent {
   background-color: transparent;
 }
@@ -2825,6 +2834,10 @@ body::before {
 
 .bg-cover {
   background-size: cover;
+}
+
+.bg-fixed {
+  background-attachment: fixed;
 }
 
 .bg-clip-padding {
@@ -3126,10 +3139,6 @@ body::before {
   padding-left: 18px;
 }
 
-.pl-\[3\.4rem\] {
-  padding-left: 3.4rem;
-}
-
 .pl-\[50px\] {
   padding-left: 50px;
 }
@@ -3152,10 +3161,6 @@ body::before {
 
 .pr-4 {
   padding-right: 1rem;
-}
-
-.pr-6 {
-  padding-right: 1.5rem;
 }
 
 .pr-\[24px\] {
@@ -3239,10 +3244,6 @@ body::before {
 
 .text-\[0\.4rem\] {
   font-size: 0.4rem;
-}
-
-.text-\[0\.78rem\] {
-  font-size: 0.78rem;
 }
 
 .text-\[0\.875rem\] {
@@ -3864,12 +3865,6 @@ body::before {
   transition-duration: 150ms;
 }
 
-.transition-transform {
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .delay-\[0ms\] {
   transition-delay: 0ms;
 }
@@ -4248,14 +4243,13 @@ body::before {
   background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-primary-400\/10:hover {
+  background-color: rgb(143 174 224 / 0.1);
+}
+
 .hover\:bg-primary-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(48 97 175 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-primary-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(40 81 146 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-primary-accent-100:hover {
@@ -4266,11 +4260,6 @@ body::before {
 .hover\:bg-secondary-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(228 230 233 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-slate-50:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
 .hover\:fill-\[\#8b8b8b\]:hover {
@@ -4285,10 +4274,6 @@ body::before {
 .hover\:text-\[\#8b8b8b\]:hover {
   --tw-text-opacity: 1;
   color: rgb(139 139 139 / var(--tw-text-opacity));
-}
-
-.hover\:text-inherit:hover {
-  color: inherit;
 }
 
 .hover\:text-navblack:hover {
@@ -4446,24 +4431,18 @@ body::before {
   background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
+.focus\:bg-primary-400\/10:focus {
+  background-color: rgb(143 174 224 / 0.1);
+}
+
 .focus\:bg-primary-600:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(48 97 175 / var(--tw-bg-opacity));
 }
 
-.focus\:bg-primary-700:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(40 81 146 / var(--tw-bg-opacity));
-}
-
 .focus\:bg-primary-accent-100:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(217 228 243 / var(--tw-bg-opacity));
-}
-
-.focus\:bg-slate-50:focus {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
 }
 
 .focus\:text-\[\#3b71ca\]:focus {
@@ -4474,10 +4453,6 @@ body::before {
 .focus\:text-gray-700:focus {
   --tw-text-opacity: 1;
   color: rgb(55 65 81 / var(--tw-text-opacity));
-}
-
-.focus\:text-inherit:focus {
-  color: inherit;
 }
 
 .focus\:text-neutral-700:focus {
@@ -4761,14 +4736,13 @@ body::before {
   background-color: rgb(176 35 58 / var(--tw-bg-opacity));
 }
 
+.active\:bg-primary-400\/10:active {
+  background-color: rgb(143 174 224 / 0.1);
+}
+
 .active\:bg-primary-700:active {
   --tw-bg-opacity: 1;
   background-color: rgb(40 81 146 / var(--tw-bg-opacity));
-}
-
-.active\:bg-primary-800:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(32 64 117 / var(--tw-bg-opacity));
 }
 
 .active\:bg-primary-accent-200:active {
@@ -4776,18 +4750,14 @@ body::before {
   background-color: rgb(206 219 238 / var(--tw-bg-opacity));
 }
 
-.active\:bg-slate-50:active {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
-}
-
-.active\:text-inherit:active {
-  color: inherit;
-}
-
 .active\:text-neutral-800:active {
   --tw-text-opacity: 1;
   color: rgb(38 38 38 / var(--tw-text-opacity));
+}
+
+.active\:text-primary-600:active {
+  --tw-text-opacity: 1;
+  color: rgb(48 97 175 / var(--tw-text-opacity));
 }
 
 .active\:text-primary-700:active {
@@ -5028,10 +4998,6 @@ body::before {
   z-index: 1;
 }
 
-.data-\[te-collapse-show\]\:block[data-te-collapse-show] {
-  display: block;
-}
-
 .data-\[te-input-state-active\]\:block[data-te-input-state-active] {
   display: block;
 }
@@ -5128,8 +5094,9 @@ body::before {
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
-.data-\[te-sidenav-state-active\]\:text-inherit[data-te-sidenav-state-active] {
-  color: inherit;
+.data-\[te-sidenav-state-active\]\:text-primary-600[data-te-sidenav-state-active] {
+  --tw-text-opacity: 1;
+  color: rgb(48 97 175 / var(--tw-text-opacity));
 }
 
 .data-\[te-carousel-fade\]\:opacity-0[data-te-carousel-fade] {
@@ -6088,6 +6055,10 @@ body::before {
     justify-items: end;
   }
 
+  .md\:gap-3 {
+    gap: 0.75rem;
+  }
+
   .md\:gap-x-14 {
     -moz-column-gap: 3.5rem;
          column-gap: 3.5rem;
@@ -6499,6 +6470,10 @@ body::before {
   margin-right: auto;
 }
 
+.\[\&\>svg\]\:h-3\.5>svg {
+  height: 0.875rem;
+}
+
 .\[\&\>svg\]\:h-4>svg {
   height: 1rem;
 }
@@ -6509,6 +6484,10 @@ body::before {
 
 .\[\&\>svg\]\:h-6>svg {
   height: 1.5rem;
+}
+
+.\[\&\>svg\]\:w-3\.5>svg {
+  width: 0.875rem;
 }
 
 .\[\&\>svg\]\:w-4>svg {
@@ -6528,18 +6507,12 @@ body::before {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.\[\&\>svg\]\:fill-gray-700>svg {
+  fill: #374151;
+}
+
 .\[\&\>svg\]\:fill-neutral-500>svg {
   fill: #737373;
-}
-
-.\[\&\>svg\]\:text-gray-400>svg {
-  --tw-text-opacity: 1;
-  color: rgb(156 163 175 / var(--tw-text-opacity));
-}
-
-.\[\&\>svg\]\:text-gray-600>svg {
-  --tw-text-opacity: 1;
-  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 .\[\&\>svg\]\:text-white>svg {
@@ -6547,13 +6520,54 @@ body::before {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.\[\&\>svg\]\:transition>svg {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.\[\&\>svg\]\:duration-300>svg {
+  transition-duration: 300ms;
+}
+
+.\[\&\>svg\]\:ease-linear>svg {
+  transition-timing-function: linear;
+}
+
+.group:hover .group-hover\:\[\&\>svg\]\:fill-primary-600>svg {
+  fill: #3061AF;
+}
+
+.group:focus .group-focus\:\[\&\>svg\]\:fill-primary-600>svg {
+  fill: #3061AF;
+}
+
+.group:active .group-active\:\[\&\>svg\]\:fill-primary-600>svg {
+  fill: #3061AF;
+}
+
+.groupte-sidenav-state-active .group-\[te-sidenav-state-active\]\:\[\&\>svg\]\:fill-primary-600>svg {
+  fill: #3061AF;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-reduce\:\[\&\>svg\]\:transition-none>svg {
+    transition-property: none;
+  }
+}
+
+:is(.dark .dark\:\[\&\>svg\]\:fill-gray-300>svg) {
+  fill: #d1d5db;
+}
+
 :is(.dark .dark\:\[\&\>svg\]\:fill-white>svg) {
   fill: #fff;
 }
 
-:is(.dark .dark\:\[\&\>svg\]\:text-gray-300>svg) {
-  --tw-text-opacity: 1;
-  color: rgb(209 213 219 / var(--tw-text-opacity));
+:is(.dark .group:hover .dark\:group-hover\:\[\&\>svg\]\:fill-gray-300>svg) {
+  fill: #d1d5db;
 }
 
 .\[\&\[data-te-dropdown-show\]\]\:block[data-te-dropdown-show] {
