@@ -1,7 +1,7 @@
 # About ClimaVita
 ClimaVita is a digital platform dedicated to showcasing real-world examples of how climate change affects health in the Americas. Our goal is to enhance awareness and provide accessible, concrete evidence of climate change’s impact, catering to public health professionals, journalists, policymakers, and the general public. Through ClimaVita, we strive to bring forth compelling narratives and data that highlight the urgency of addressing climate change in the context of global health.
 
-**Link to project:** https://climavita.onrender.com/ 
+**Link to project:** https://climavita.org 
 
 ## Features:
 - **Concise Posting**: Users can create and upload posts that are brief yet impactful, with a maximum length of 280 characters. This format is inspired by Twitter, encouraging clear, punchy communication. Additional details and context can be added in the extended post body.
