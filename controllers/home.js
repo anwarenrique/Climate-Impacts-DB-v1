@@ -531,16 +531,6 @@ module.exports = {
         user,
         editComment,
       });
-
-      // if (view == "guestDashboard") {
-      //   res.render("guestViewPost.ejs", { item, comments: comments });
-      // } else {
-      //   res.render("viewPost.ejs", {
-      //     item,
-      //     comments: comments,
-      //     user: req.user,
-      //   });
-      // }
     } catch (err) {
       console.error(err);
       res.status(500).render("error/500");
