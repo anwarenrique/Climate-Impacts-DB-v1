@@ -2,7 +2,6 @@ const ItemList = require("../models/ItemList");
 const User = require("../models/User");
 const Comment = require("../models/Comment");
 const ReportedPost = require("../models/reportedPost");
-const { post } = require("../routes/home");
 
 let filteredItems = []; //declare this variable that will store filtered results
 let filterParameters = {
@@ -289,38 +288,6 @@ module.exports = {
       return res.status(500).send("Server Error");
     }
   },
-  getDashboard: async (req, res) => {
-    try {
-      const page = parseInt(req.query.page) || 1; // Default to page 1 if no page parameter is provided
-
-      const totalItems = await ItemList.countDocuments();
-      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-
-      // Calculate the number of items to skip
-      const skip = (page - 1) * ITEMS_PER_PAGE;
-
-      // Assuming sort parameter is in the request query
-      const currentSort = req.query.sort || "defaultSort";
-
-      // Fetch items for the current page
-      const items = await ItemList.find()
-        .skip(skip)
-        .limit(ITEMS_PER_PAGE)
-        .populate("postedBy");
-
-      res.render("dashboard.ejs", {
-        itemList: items,
-        user: req.user,
-        totalPages: totalPages,
-        currentPage: page,
-        filterParameters,
-        currentSort,
-      });
-    } catch (err) {
-      res.render("error/500");
-      if (err) return res.status(500).send(err);
-    }
-  },
   getNewPost: async (req, res) => {
     try {
       const items = await ItemList.find().populate("postedBy");
@@ -381,14 +348,6 @@ module.exports = {
       console.log(err);
       if (err) return res.status(500).send(err);
       res.redirect("/formError?error=An error occurred while saving the post");
-    }
-  },
-  getGuestDashboard: async (req, res) => {
-    try {
-      const items = await ItemList.find().populate("postedBy");
-      res.render("guestDashboard.ejs", { itemList: items });
-    } catch (err) {
-      if (err) return res.status(500).send(err);
     }
   },
   likePost: async (req, res) => {
