@@ -1,36 +1,43 @@
-//todo - Declare Variables and import necessary modules and routes
+// Import necessary modules and initialize Express app
 const express = require("express");
 const app = express();
 
-//Set trust proxy
-app.set("trust proxy", true);
-
-const PORT = 8500;
-const mongoose = require("mongoose");
+// Import authentication and session management modules
 const passport = require("passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
-//*Import functions/routes
+// Import database connection setup and route handlers
 const connectDB = require("./config/database");
 const homeRoutes = require("./routes/home");
 const editRoutes = require("./routes/edit");
 const commentRoutes = require("./routes/comment");
 const profileRoutes = require("./routes/profile");
 
+// Load environment variables from .env file
 require("dotenv").config({ path: "./config/.env" });
 
-//Pasport config
+// Passport configuration for authentication
 require("./config/passport")(passport);
 
-//todo - Connect to Database
+// Set trust proxy to true when hosting behind a reverse proxy (e.g., Render)
+app.set("trust proxy", true);
+
+// Define the server port number
+const PORT = 8500;
+
+//Initialize database connection
 connectDB();
 
-//todo - Set Middleware
+//Middleware setup
+//set EJS as the view engine for template rendering
 app.set("view engine", "ejs");
+
+//Serve static files from the 'public' folder
 app.use(express.static("public"));
 
-//Sessions. It creates a session store using MongoStore with the provided mongoUrl for storing session data.
+// Configure session middleware with MongoDB store for session persistence
+// This helps in storing session data in MongoDB using connect-mongo
 app.use(
   session({
     secret: "keyboard cat",
@@ -42,19 +49,19 @@ app.use(
   })
 );
 
-//Passport middleware
+//Initialize Passport middleware for authentication
 app.use(passport.initialize());
 app.use(passport.session());
 
-//*Required to properly parse form POST requests - sending data
+// Parse URL-encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended: true }));
 
-//todo - Set Routes
+//Route definitions. Map URL paths to route handlers
 app.use("/", homeRoutes);
 app.use("/auth", require("./routes/auth"));
 app.use("/edit", editRoutes);
 app.use("/comment", commentRoutes);
 app.use("/profile", profileRoutes);
 
-//todo - Start Server
+//Server Initialization
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
