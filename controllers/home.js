@@ -95,8 +95,8 @@ module.exports = {
       const processFilter = (filter, type) => {
         if (Array.isArray(filter)) {
           filter
-            // .map((item) => item.split(",").map((subItem) => subItem.trim()))
-            // .flat()
+            .map((item) => item.split(",").map((subItem) => subItem.trim()))
+            .flat()
             .forEach((item) => filterParameters[type].push(item));
         } else {
           filter
