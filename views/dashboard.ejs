@@ -476,6 +476,7 @@ role="dialog">
       </div>
 
       <!-- Pagination controls -->
+      <!-- Check if the sort variable has a leading comma, and if so, remove it -->
       <% const sanitizedCurrentSort = (String(currentSort).startsWith(',')) ? String(currentSort).substring(1) : String(currentSort); %>
       <% 
     const uniqueRegionFilter = [...new Set(regionfilter)];

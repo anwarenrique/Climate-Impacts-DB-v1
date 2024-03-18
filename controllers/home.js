@@ -53,9 +53,10 @@ module.exports = {
   },
   getUnifiedDashboard: async (req, res) => {
     try {
-      // Fundamental states (req.params)
+      // Fundamental states
       const view = req.params.view || "dashboard";
       const profileId = req.params.id;
+      let user = req.user;
       console.log(`request received for ${view} view with ${profileId} ID`);
 
       //check the last view, and clear filter if they came from somewhere else
@@ -68,8 +69,7 @@ module.exports = {
         };
       }
 
-      //Guest or logged in user (req.user)
-      let user = req.user;
+      //If user is a guest, give them empty liked and saved posts so that the like and save buttons are empty
       if (!req.user) {
         user = {
           _id: "guest",
@@ -77,21 +77,26 @@ module.exports = {
           savedPosts: [],
         };
       }
-      // Optional states (req.query)
+      // default dashboard settings
       const {
         page = 1,
-        sort = "likes",
+        sort = "yearDecreasing",
         regionfilter,
         countryfilter,
         healthriskfilter,
       } = req.query;
 
+      console.log("------");
+      console.log(
+        `Before filter processing. region: ${regionfilter} country: ${countryfilter} health: ${healthriskfilter} `
+      );
+      console.log(filterParameters);
       // Helper function to process filters and add them to filterParameters
       const processFilter = (filter, type) => {
         if (Array.isArray(filter)) {
           filter
-            .map((item) => item.split(",").map((subItem) => subItem.trim()))
-            .flat()
+            // .map((item) => item.split(",").map((subItem) => subItem.trim()))
+            // .flat()
             .forEach((item) => filterParameters[type].push(item));
         } else {
           filter
@@ -111,6 +116,11 @@ module.exports = {
       filterParameters.country = [...new Set(filterParameters.country)];
       filterParameters.healthrisk = [...new Set(filterParameters.healthrisk)];
 
+      console.log(
+        `After filter processing. region: ${regionfilter} country: ${countryfilter} health: ${healthriskfilter} `
+      );
+      console.log(filterParameters);
+      console.log("------");
       // Logic to make sure profile view only filters and sorts posts made by profile user
       let query = {};
       if (view == "profile") {
@@ -272,14 +282,14 @@ module.exports = {
         const profile = await User.findById(profileId);
         renderData.profile = profile;
         console.log(
-          `filtering by ${regionfilter}, ${countryfilter}, ${healthriskfilter}`
+          `filtering by region: ${regionfilter}, country: ${countryfilter}, health: ${healthriskfilter}`
         );
         console.log(`showing ${view} view on page ${page}`);
         console.log(filterParameters);
         return res.render("profile.ejs", renderData);
       }
       console.log(
-        `filtering by ${regionfilter}, ${countryfilter}, ${healthriskfilter}`
+        `filtering by region: ${regionfilter}, country: ${countryfilter}, health: ${healthriskfilter}`
       );
       console.log(`showing ${view} view on page ${page}`);
       return res.render(view + ".ejs", renderData);
