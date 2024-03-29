@@ -9,7 +9,7 @@ let filterParameters = {
   country: [],
   healthrisk: [],
 };
-const ITEMS_PER_PAGE = 5; // Number of items per page
+const ITEMS_PER_PAGE = 6; // Number of items per page
 
 const movePostToReportedCollection = async (post) => {
   const reportedPost = new ReportedPost(post.toObject());
@@ -446,7 +446,7 @@ module.exports = {
       }
       //If you started at dashboard, redirect to dashboard
       else if (view == "dashboard") {
-        res.redirect("/feed");
+        res.redirect("/feed/dashboard");
 
         //if you started at profile, redirect to profile
       } else if (view == "profile") {
@@ -576,6 +576,14 @@ module.exports = {
     const error = req.params.error;
     try {
       res.render("error/formError.ejs", { error });
+    } catch (err) {
+      res.render("error/500");
+      if (err) return res.status(500).send(err);
+    }
+  },
+  redirectToDashboard: async (req, res) => {
+    try {
+      res.redirect("/feed/dashboard");
     } catch (err) {
       res.render("error/500");
       if (err) return res.status(500).send(err);
