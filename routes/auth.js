@@ -13,7 +13,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/" }),
   (req, res) => {
-    res.redirect("/feed");
+    res.redirect("/feed/dashboard");
   }
 );
 
@@ -25,7 +25,7 @@ router.get("/logout", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/feed");
+    res.redirect("/feed/dashboard");
   });
 });
 
