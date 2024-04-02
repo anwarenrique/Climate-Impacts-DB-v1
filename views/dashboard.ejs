@@ -528,7 +528,6 @@ class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
 
     <li>
       <% if (currentPage < totalPages) { %>
-        <%createNextURL(currentPage)%>
         <a
           href="/feed/dashboard?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
           class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
