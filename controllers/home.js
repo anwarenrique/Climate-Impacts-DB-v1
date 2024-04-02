@@ -3,7 +3,10 @@ const User = require("../models/User");
 const Comment = require("../models/Comment");
 const ReportedPost = require("../models/reportedPost");
 
-let filteredItems = []; //declare this variable that will store filtered results
+//declare this variable that will store filtered results
+let filteredItems = [];
+
+//filterParameters purpose is to show the user what filters were selected
 let filterParameters = {
   region: [],
   country: [],
@@ -77,6 +80,7 @@ module.exports = {
           savedPosts: [],
         };
       }
+
       // default dashboard settings
       const {
         page = 1,
@@ -86,12 +90,17 @@ module.exports = {
         healthriskfilter,
       } = req.query;
 
+      console.log(
+        `NEW REQUEST HERE'S THE HEALTHRISKFILTER: ${healthriskfilter}`
+      );
+
       console.log("------");
       console.log(
         `Before filter processing. region: ${regionfilter} country: ${countryfilter} health: ${healthriskfilter} `
       );
       console.log(filterParameters);
       // Helper function to process filters and add them to filterParameters
+      //filterParameters purpose is to show the user what filters were selected
       const processFilter = (filter, type) => {
         if (Array.isArray(filter)) {
           filter
@@ -121,8 +130,11 @@ module.exports = {
       );
       console.log(filterParameters);
       console.log("------");
-      // Logic to make sure profile view only filters and sorts posts made by profile user
+
+      //initialize query object
       let query = {};
+
+      // Logic to make sure profile view only filters and sorts posts made by profile user
       if (view == "profile") {
         query = ItemList.find({
           postedBy: profileId, // Only select items posted by the specified user
@@ -150,17 +162,6 @@ module.exports = {
       if (regionfilter || countryfilter || healthriskfilter) {
         let cloneQuery = query.clone();
         filteredItems = await cloneQuery.exec();
-      }
-      // console.log("Filtered Items:", filteredItems);
-
-      // View-specific queries
-      if (view === "profile") query = query.where("postedBy").equals(profileId);
-      if (view === "likedPosts" || view === "savedPosts") {
-        const userId = req.user.id;
-        const user = await User.findById(userId);
-        query = query
-          .where("_id")
-          .in(view === "likedPosts" ? user.likedPosts : user.savedPosts);
       }
 
       //If items have been filtered already, maintain those while sorting
