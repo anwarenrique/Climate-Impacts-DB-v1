@@ -479,9 +479,9 @@ role="dialog">
       <!-- Check if the sort variable has a leading comma, and if so, remove it -->
       <% const sanitizedCurrentSort = (String(currentSort).startsWith(',')) ? String(currentSort).substring(1) : String(currentSort); %>
       <% 
-    const uniqueRegionFilter = [...new Set(regionfilter)];
-    const uniqueCountryFilter = [...new Set(countryfilter)];
-    const uniqueHealthRiskFilter = [...new Set(healthriskfilter)];
+    const uniqueRegionFilter = filterParameters.region
+    const uniqueCountryFilter = filterParameters.country
+    const uniqueHealthRiskFilter = filterParameters.healthrisk
 
 %>
 
