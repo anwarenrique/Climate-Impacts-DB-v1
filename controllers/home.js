@@ -4,14 +4,14 @@ const Comment = require("../models/Comment");
 const ReportedPost = require("../models/reportedPost");
 
 //declare this variable that will store filtered results
-let filteredItems = [];
+// let filteredItems = [];
 
-//filterParameters purpose is to show the user what filters were selected
-let filterParameters = {
-  region: [],
-  country: [],
-  healthrisk: [],
-};
+// //filterParameters purpose is to show the user what filters were selected
+// let filterParameters = {
+//   region: [],
+//   country: [],
+//   healthrisk: [],
+// };
 const ITEMS_PER_PAGE = 6; // Number of items per page
 
 const movePostToReportedCollection = async (post) => {
@@ -63,6 +63,21 @@ module.exports = {
       console.log(" ");
       console.log("***START***");
       console.log(`request received for ${view} view with ${profileId} ID`);
+
+      // Initialize session variables if it's the user's first visit
+      if (!req.session.filteredItems) {
+        req.session.filteredItems = [];
+      }
+      let filteredItems = req.session.filteredItems;
+
+      if (!req.session.filterParameters) {
+        req.session.filterParameters = {
+          region: [],
+          country: [],
+          healthrisk: [],
+        };
+      }
+      let filterParameters = req.session.filterParameters;
 
       //check the last view, and clear filter if they came from somewhere else
       if (view != req.session.lastView) {
