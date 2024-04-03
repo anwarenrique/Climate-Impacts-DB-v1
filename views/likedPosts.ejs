@@ -492,9 +492,9 @@ role="dialog">
       <!-- Pagination controls -->
       <% const sanitizedCurrentSort = (String(currentSort).startsWith(',')) ? String(currentSort).substring(1) : String(currentSort); %>
       <% 
-    const uniqueRegionFilter = [...new Set(regionfilter)];
-    const uniqueCountryFilter = [...new Set(countryfilter)];
-    const uniqueHealthRiskFilter = [...new Set(healthriskfilter)];
+      const uniqueRegionFilter = filterParameters.region
+      const uniqueCountryFilter = filterParameters.country
+      const uniqueHealthRiskFilter = filterParameters.healthrisk
 %>
 <div
 class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"

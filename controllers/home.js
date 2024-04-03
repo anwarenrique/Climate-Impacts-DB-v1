@@ -60,6 +60,8 @@ module.exports = {
       const view = req.params.view || "dashboard";
       const profileId = req.params.id;
       let user = req.user;
+      console.log(" ");
+      console.log("***START***");
       console.log(`request received for ${view} view with ${profileId} ID`);
 
       //check the last view, and clear filter if they came from somewhere else
@@ -89,16 +91,12 @@ module.exports = {
         countryfilter,
         healthriskfilter,
       } = req.query;
-
-      console.log(
-        `NEW REQUEST HERE'S THE HEALTHRISKFILTER: ${healthriskfilter}`
-      );
-
-      console.log("------");
-      console.log(
-        `Before filter processing. region: ${regionfilter} country: ${countryfilter} health: ${healthriskfilter} `
-      );
-      console.log(filterParameters);
+      console.log("---------------");
+      console.log(`RAW HEALTHRISKFILTER: ${healthriskfilter}`);
+      console.log(`RAW REGIONFILTER: ${regionfilter}`);
+      console.log(`RAW COUNTRYFILTER: ${countryfilter}`);
+      console.log("---------------");
+      // console.log(filterParameters);
       // Helper function to process filters and add them to filterParameters
       //filterParameters purpose is to show the user what filters were selected
       const processFilter = (filter, type) => {
@@ -128,7 +126,7 @@ module.exports = {
       console.log(
         `After filter processing. region: ${regionfilter} country: ${countryfilter} health: ${healthriskfilter} `
       );
-      console.log(filterParameters);
+      console.log(`FILTERPARAMETERS: ${filterParameters.healthrisk}`);
       console.log("------");
 
       //initialize query object
@@ -293,6 +291,7 @@ module.exports = {
         `filtering by region: ${regionfilter}, country: ${countryfilter}, health: ${healthriskfilter}`
       );
       console.log(`showing ${view} view on page ${page}`);
+      console.log(`***END***`);
       return res.render(view + ".ejs", renderData);
     } catch (error) {
       console.error(error);
