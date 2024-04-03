@@ -447,8 +447,8 @@ module.exports = {
   clearFilter: async (req, res) => {
     try {
       // Reset the filteredItems to an empty array
-      filteredItems = [];
-      filterParameters = {
+      req.session.filteredItems = [];
+      req.session.filterParameters = {
         region: [],
         country: [],
         healthrisk: [],
