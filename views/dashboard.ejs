@@ -111,7 +111,6 @@
       <% } else { %>
         <section class="flex justify-center md:justify-start w-full md:w-1/2 mx-auto flex items-center max-w-[625px]">
           <div class="">
-            <h4>Showing <%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</h4>
           </div>
         </section>
       <% } %>
@@ -497,49 +496,75 @@ role="dialog">
 <div
 class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]"
 >
-<nav aria-label="Page navigation example" class="">
+<!-- NEW PAGINATION -->
+<nav aria-label="Page navigation example">
   <ul class="list-style-none flex">
-    <li>
-      <% if (currentPage > 1) { %>
+    <% if (currentPage > 1) {%>
+      <li>
         <a
-          href="/feed/dashboard?page=<%= parseInt(currentPage) - 1 %>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
-          class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        >
-          Previous
-        </a>
-      <% } else { %>
-        <!-- Hidden Previous Button -->
-      <% } %>
-    </li>
-
-    <% for (let page = 1; page <= totalPages; page++) { %>
-      <li <% if (page === currentPage) { %> aria-current="page" <% } %> >
-        <a
-          href="/feed/dashboard/dashboard?page=<%= parseInt(page)%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
-          class="relative block rounded px-3 py-1.5 text-sm <%= page == currentPage ? 'text-md font-bold text-primary-700 bg-[#CACACA]' : 'text-neutral-600' %> transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        >
-          <%= page %>
-          <% if (page === currentPage) { %>
-            <span class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]">(current)</span>
-          <% } %>
+          href="/feed/dashboard/dashboard?page=<%= parseInt(currentPage-1)%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
+          class="relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+        >Previous
         </a>
       </li>
-    <% } %>
-
-    <li>
-      <% if (currentPage < totalPages) { %>
+      <%if (currentPage > 2) {%>
+      <li>
         <a
-          href="/feed/dashboard?page=<%= parseInt(currentPage) + 1 %>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
-          class="relative block rounded bg-transparent px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
-        >
-          Next
+          href="/feed/dashboard/dashboard?page=<%=1%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
+          class="relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+        >1
         </a>
-      <% } else { %>
-        <!-- Hidden Next Button -->
-      <% } %>
+      </li>
+      <span>..</span>
+      <% }%>
+      <li>
+        <a
+          href="/feed/dashboard/dashboard?page=<%= parseInt(currentPage-1)%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
+          class="relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+        ><%= currentPage-1 %>
+        </a>
+      </li>
+    <%} %>
+    <li 
+      <a
+        href="/feed/dashboard/dashboard?page=<%= parseInt(currentPage)%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
+        class="relative block rounded px-3 py-1.5 text-sm text-md font-bold text-primary-700 bg-[#CACACA] transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+        >
+        <%= currentPage %>
+          <span class="absolute -m-px h-px w-px overflow-hidden whitespace-nowrap border-0 p-0 [clip:rect(0,0,0,0)]">(current)</span>
+      </a>
     </li>
-  </ul>
+
+    <% if (currentPage < totalPages) {%>
+      <li>
+        <a
+          href="/feed/dashboard/dashboard?page=<%= parseInt(currentPage) + 1%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
+          class="relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+        ><%= parseInt(currentPage) + 1%>
+        </a>
+      </li>
+      <% if (currentPage < (totalPages-1)) {%>
+      <span>..</span>
+      <li>
+        <a
+          href="/feed/dashboard/dashboard?page=<%=parseInt(totalPages)%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
+          class="relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+        ><%=totalPages%>
+        </a>
+      </li>
+      <%} %>
+      <li>
+        <a
+          href="/feed/dashboard/dashboard?page=<%= parseInt(currentPage) + 1%>&sort=<%= sanitizedCurrentSort %><% uniqueRegionFilter.forEach(function(filter) { %>&regionfilter=<%= filter %><% }); %><% uniqueCountryFilter.forEach(function(filter) { %>&countryfilter=<%= filter %><% }); %><% uniqueHealthRiskFilter.forEach(function(filter) { %>&healthriskfilter=<%= filter %><% }); %>"
+          class="relative block rounded px-3 py-1.5 text-sm text-neutral-600 transition-all duration-300 hover:bg-neutral-200 hover:underline dark:text-white dark:hover:bg-neutral-700 dark:hover:text-white"
+        >Next
+        </a>
+      </li>
+    <%} %>
 </nav>
+</div>
+<div class="flex justify-center w-6/12 mx-auto h-14 flex items-center max-w-[625px]">
+  <p class="text-md text-neutral-600"><%= startNumber %>-<%= endNumber %> out of <%= totalItems %> posts</p>
 </div>
     </div>
     <footer>
